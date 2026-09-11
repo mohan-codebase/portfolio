@@ -1,0 +1,159 @@
+import type { StaticImageData } from 'next/image';
+
+import biteDesktop from '@/assets/work/bite-desktop.webp';
+import biteMobile from '@/assets/work/bite-mobile.webp';
+import biteShopMobile from '@/assets/work/bite-shop-mobile.webp';
+import botanical from '@/assets/work/botanical.webp';
+import medical from '@/assets/work/medical.webp';
+import presentsirDarkDesktop from '@/assets/work/presentsir-dark-desktop.webp';
+import presentsirDarkMobile from '@/assets/work/presentsir-dark-mobile.webp';
+import presentsirDesktop from '@/assets/work/presentsir-desktop.webp';
+import presentsirMobile from '@/assets/work/presentsir-mobile.webp';
+import spotify from '@/assets/work/spotify.webp';
+import techienutpamDesktop from '@/assets/work/techienutpam-desktop.png';
+import techienutpamMobile from '@/assets/work/techienutpam-mobile.png';
+
+export type Shot = { src: StaticImageData; alt: string };
+
+export type FeaturedProject = {
+  slug: string;
+  title: string;
+  year: string;
+  category: string;
+  role: string;
+  summary: string;
+  stack: string[];
+  links: { live: string; code?: string };
+  /** Hostname printed in the browser frame's address bar. */
+  domain: string;
+  /** Editorial caption printed on the artboard. */
+  caption: string;
+  /** Artboard colour behind the screenshots, and whether it reads as dark or light. */
+  tone: { background: string; theme: 'dark' | 'light' };
+  /** Each project gets its own artboard composition. */
+  layout: 'wide' | 'duo' | 'crop';
+  shots: { desktop: Shot; desktopAlt?: Shot; mobile: Shot; mobileAlt?: Shot };
+  /** `desktop` is a full-page capture that scrolls inside its frame on hover. */
+  scrollable?: boolean;
+};
+
+export type ArchiveProject = {
+  title: string;
+  type: string;
+  stack: string[];
+  year: string;
+  href: string;
+  image?: Shot;
+  /** Links to this very site. */
+  current?: boolean;
+};
+
+const github = 'https://github.com/mohan-codebase';
+
+export const featured: FeaturedProject[] = [
+  {
+    slug: 'techienutpam',
+    title: 'Techie Nutpam',
+    year: '2026',
+    category: 'Agency platform & rebuild',
+    role: 'Fullstack development & redesign',
+    summary:
+      'A high-performance digital agency platform rebuilt in Next.js 16 and React 19. Features Tailwind CSS 4, smooth momentum scrolling with Lenis, interactive dark-mode components, and fluid animations powered by GSAP and Framer Motion.',
+    stack: ['Next.js 16', 'React 19', 'Tailwind CSS 4', 'GSAP', 'TypeScript'],
+    links: { live: 'https://techienutpam.in/' },
+    domain: 'techienutpam.in',
+    caption: 'Digital agency — desktop & mobile preview',
+    tone: { background: '#120e1c', theme: 'dark' },
+    layout: 'wide',
+    scrollable: false,
+    shots: {
+      desktop: {
+        src: techienutpamDesktop,
+        alt: 'Techie Nutpam digital agency platform: “We turn ideas into digital products.”',
+      },
+      mobile: {
+        src: techienutpamMobile,
+        alt: 'Techie Nutpam mobile experience.',
+      },
+    },
+  },
+  {
+    slug: 'presentsir',
+    title: 'PresentSir',
+    year: '2025',
+    category: 'Web app — team project',
+    role: 'Developer in a student team',
+    summary:
+      'Attendance management for institutes — track classes, mark attendance and generate reports. Built by a team of UI/UX designers, graphic designers, content creators and developers from Schools of Techies.',
+    stack: ['React', 'Bootstrap', 'Express', 'MongoDB'],
+    links: { live: 'https://attendance-app-black-omega.vercel.app', code: `${github}/attendance-app` },
+    domain: 'attendance-app-black-omega.vercel.app',
+    caption: 'Landing page — light & dark themes',
+    tone: { background: '#dcd7e5', theme: 'light' },
+    layout: 'duo',
+    shots: {
+      desktop: { src: presentsirDesktop, alt: 'PresentSir landing page in light mode: “Smart attendance for hassle-free mentoring”.' },
+      desktopAlt: { src: presentsirDarkDesktop, alt: 'The same PresentSir landing page in dark mode.' },
+      mobile: { src: presentsirMobile, alt: 'PresentSir on a phone in light mode.' },
+      mobileAlt: { src: presentsirDarkMobile, alt: 'PresentSir on a phone in dark mode.' },
+    },
+  },
+  {
+    slug: 'bite',
+    title: 'Bite',
+    year: '2024',
+    category: 'Storefront study',
+    role: 'Design & build',
+    summary:
+      'A six-page storefront study for a plastic-free toothpaste brand — home, shop, about, sign-up, login and payment — built with Bootstrap 5 to practise responsive layouts and reusable UI patterns.',
+    stack: ['HTML', 'CSS', 'Bootstrap 5'],
+    links: { live: 'https://bitepaste.netlify.app/', code: `${github}/bite-paste` },
+    domain: 'bitepaste.netlify.app',
+    caption: 'Home & shop — desktop and mobile',
+    tone: { background: '#e4dacb', theme: 'light' },
+    layout: 'crop',
+    scrollable: true,
+    shots: {
+      desktop: { src: biteDesktop, alt: 'Bite homepage on desktop: “It’s time to brush better.” over a photo of toothpaste tablets.' },
+      mobile: { src: biteMobile, alt: 'Bite homepage on a phone.' },
+      mobileAlt: { src: biteShopMobile, alt: 'Bite shop page on a phone, with category filters.' },
+    },
+  },
+];
+
+export const archive: ArchiveProject[] = [
+  {
+    title: 'Spotify Premium',
+    type: 'Page clone',
+    stack: ['HTML', 'CSS'],
+    year: '2024',
+    href: 'https://spotify-project-clone.netlify.app/',
+    image: { src: spotify, alt: 'Spotify Premium page clone.' },
+  },
+  {
+    title: 'Botanical',
+    type: 'Plant store UI',
+    stack: ['HTML', 'Bootstrap'],
+    year: '2024',
+    href: 'https://plant-shop-website1.netlify.app/',
+    image: { src: botanical, alt: 'Botanical plant store homepage.' },
+  },
+  {
+    title: 'Medical & Treatment',
+    type: 'First project',
+    stack: ['HTML', 'CSS'],
+    year: '2024',
+    href: 'https://medical-treatment.netlify.app/',
+    image: { src: medical, alt: 'Medical & Treatment landing page.' },
+  },
+  {
+    title: 'Portfolio',
+    type: 'This website',
+    stack: ['Next.js', 'TypeScript'],
+    year: '2026',
+    href: '#top',
+    current: true,
+  },
+];
+
+export const githubProfile = github;

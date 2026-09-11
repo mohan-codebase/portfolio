@@ -1,0 +1,565 @@
+/* ------------------------------------------------------------------------
+   Stage: a sticky, full-height dark plate that the About section slides over.
+   ------------------------------------------------------------------------ */
+
+.hero {
+  position: relative;
+  z-index: 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+@media (min-height: 560px) {
+  .hero {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.stage {
+  --px: 0.7;
+  --py: 0.6;
+  position: relative;
+  overflow: clip;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2.5rem;
+  min-height: 100svh;
+  padding-block: calc(var(--header-h) + 2.25rem) 1.75rem;
+}
+
+/* ------------------------------------------------------------------------
+   Backdrop: layout columns, a brighter copy revealed around the pointer,
+   and a warm glow. Everything here is decorative.
+   ------------------------------------------------------------------------ */
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.columns {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.columns span {
+  border-left: 1px solid color-mix(in srgb, var(--paper) 5.5%, transparent);
+}
+
+.columns span:last-child {
+  border-right: 1px solid color-mix(in srgb, var(--paper) 5.5%, transparent);
+}
+
+.columns span:nth-child(n + 5) {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .columns span:nth-child(n + 5) {
+    display: block;
+  }
+
+  .columns span:nth-child(n + 9) {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .columns span:nth-child(n + 9) {
+    display: block;
+  }
+}
+
+.spotlight {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 800ms var(--ease-out);
+  -webkit-mask-image: radial-gradient(circle 24rem at calc(var(--px) * 100%) calc(var(--py) * 100%), #000 0%, transparent 100%);
+  mask-image: radial-gradient(circle 24rem at calc(var(--px) * 100%) calc(var(--py) * 100%), #000 0%, transparent 100%);
+}
+
+.spotlight .columns span {
+  border-color: color-mix(in srgb, var(--paper) 22%, transparent);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 calc(8rem - 1px),
+    color-mix(in srgb, var(--paper) 14%, transparent) calc(8rem - 1px) 8rem
+  );
+}
+
+.stage[data-pointer='true'] .spotlight {
+  opacity: 1;
+}
+
+.glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 75vmax;
+  height: 75vmax;
+  margin: -37.5vmax 0 0 -37.5vmax;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--signal) 24%, transparent) 0%,
+    color-mix(in srgb, #6366f1 12%, transparent) 45%,
+    transparent 100%
+  );
+  transform: translate3d(calc(var(--px) * 100vw), calc(var(--py) * 100svh), 0);
+  will-change: transform;
+  filter: blur(30px);
+}
+
+/* ------------------------------------------------------------------------
+   Top band
+   ------------------------------------------------------------------------ */
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+}
+
+.index {
+  color: var(--accent-ink);
+}
+
+.place {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .place {
+    display: block;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Headline
+   ------------------------------------------------------------------------ */
+
+.titleWrap {
+  position: relative;
+}
+
+.title {
+  /* Sized so "EXPERIENCES." spans the container; capped by height on short screens. */
+  font-size: min(16.8vw, 16rem);
+  font-weight: 800;
+  font-variation-settings: 'wdth' 84;
+  line-height: 0.86;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: min(12.4vw, 16rem, calc((100svh - 21rem) / 2.65));
+    font-variation-settings: 'wdth' 100;
+  }
+}
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+/* First visit: the intro panel lifts to reveal the hero, so the headline is
+   already painted beneath it (a fast LCP) and only settles upward. Repeat
+   visits skip the intro, and the lines rise all the way out of their masks. */
+.row {
+  --rise-from: 18%;
+}
+
+:global(html[data-intro='skip']) .row {
+  --rise-from: 115%;
+}
+
+.row .line > span {
+  animation: rise 1.3s var(--ease-out) both;
+  animation-delay: calc(var(--intro-delay) + var(--i) * 110ms);
+}
+
+.rowAccent :global(.serif) {
+  font-size: 1.62em;
+  line-height: 0.72;
+  letter-spacing: -0.02em;
+}
+
+/* Tablet: a taller lockup fills portrait screens; desktop indents by three columns. */
+@media (min-width: 768px) {
+  .rowAccent {
+    padding-inline-start: 25%;
+  }
+
+  .rowAccent :global(.serif) {
+    font-size: 1.42em;
+    line-height: 0.76;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rowAccent {
+    padding-inline-start: calc((100% + var(--col-gap)) / 12 * 3);
+  }
+
+  .rowAccent :global(.serif) {
+    font-size: 1.14em;
+    line-height: 0.8;
+  }
+}
+
+/* Redline note pointing at the serif word. */
+.note {
+  display: none;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.22em;
+  color: var(--mute);
+  font-size: 1rem;
+  letter-spacing: normal;
+  opacity: 0;
+  animation: fade 900ms var(--ease-out) forwards;
+  animation-delay: calc(var(--intro-delay) + 900ms);
+}
+
+.leader {
+  width: clamp(2rem, 6vw, 6rem);
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: draw 900ms var(--ease-out) forwards;
+  animation-delay: calc(var(--intro-delay) + 1000ms);
+}
+
+@media (min-width: 1024px) {
+  .note {
+    display: inline-flex;
+  }
+}
+
+/* The last word carries a live dimension line. */
+.measured {
+  position: relative;
+  display: inline-block;
+}
+
+.dimension {
+  position: absolute;
+  top: calc(100% + 0.06em);
+  left: 0;
+  right: 0.3em;
+  display: flex;
+  justify-content: center;
+  height: 0.75rem;
+  border-inline: 1px solid var(--signal);
+  color: var(--signal);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  letter-spacing: var(--tracking-label);
+  line-height: 0.75rem;
+  opacity: 0;
+  animation: fade 900ms var(--ease-out) forwards;
+  animation-delay: calc(var(--intro-delay) + 1100ms);
+}
+
+.dimension::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+}
+
+.dimension > span {
+  position: relative;
+  padding-inline: 0.6rem;
+  background: var(--bg);
+}
+
+/* ------------------------------------------------------------------------
+   Floating spec chips (tablet and up)
+   ------------------------------------------------------------------------ */
+
+.chips {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .chips {
+    position: absolute;
+    inset: 0;
+    display: block;
+    pointer-events: none;
+  }
+}
+
+.chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--signal) 24%, var(--line));
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ink-2) 84%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 16px 36px -10px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    0 0 20px -6px color-mix(in srgb, var(--signal) 20%, transparent);
+  color: var(--fg);
+  line-height: 1.5;
+  opacity: 0;
+  transform: translate3d(calc((var(--px) - 0.5) * var(--depth) * 1px), calc((var(--py) - 0.5) * var(--depth) * 1px), 0);
+  animation:
+    fade 1s var(--ease-out) forwards,
+    float var(--float) ease-in-out infinite alternate;
+  animation-delay: calc(var(--intro-delay) + 1200ms), 0s;
+}
+
+.chip[data-chip='easing'] {
+  top: 2%;
+  right: 0;
+}
+
+.chip[data-chip='swatch'] {
+  top: 40%;
+  right: 12%;
+  animation-delay: calc(var(--intro-delay) + 1350ms), -3s;
+}
+
+.chip[data-chip='grid'] {
+  top: 44%;
+  left: 0;
+  animation-delay: calc(var(--intro-delay) + 1500ms), -5s;
+}
+
+.curve {
+  color: var(--fg);
+}
+
+.swatch {
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--signal);
+  border-radius: 2px;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--signal) 70%, transparent);
+}
+
+.gridIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+  background: repeating-linear-gradient(
+    to right,
+    color-mix(in srgb, var(--signal) 55%, transparent) 0 3px,
+    transparent 3px 6px
+  );
+}
+
+.stage[data-paused] .chip,
+.stage[data-paused] .scrollTrack::after {
+  animation-play-state: paused;
+}
+
+/* ------------------------------------------------------------------------
+   Bottom band
+   ------------------------------------------------------------------------ */
+
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 1.75rem var(--col-gap);
+  opacity: 0;
+  animation: fade 1s var(--ease-out) forwards;
+  animation-delay: calc(var(--intro-delay) + 500ms);
+}
+
+.lede {
+  grid-column: 1 / -1;
+  max-width: 32ch;
+  font-size: clamp(1.0625rem, 0.9rem + 0.45vw, 1.3125rem);
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+
+.readout {
+  display: none;
+}
+
+.scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  justify-self: end;
+  color: var(--mute);
+  transition: color 300ms ease;
+}
+
+.scrollTrack {
+  position: relative;
+  width: 1px;
+  height: 2.75rem;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.scrollTrack::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--signal);
+  transform: translateY(-100%);
+  animation: scrollHint 2.2s var(--ease-in-out) infinite;
+}
+
+@media (hover: hover) {
+  .scroll:hover {
+    color: var(--fg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .bottom {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .lede {
+    grid-column: 1 / span 4;
+  }
+
+  .cta {
+    grid-column: 6 / span 3;
+  }
+
+  .readout {
+    grid-column: 9 / span 2;
+    display: grid;
+    gap: 0.35rem;
+    color: var(--mute);
+  }
+
+  .readout div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .readout dd {
+    margin: 0;
+    color: var(--fg);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .scroll {
+    grid-column: 11 / span 2;
+    white-space: nowrap;
+  }
+}
+
+/* Two columns are too narrow for the readout on small laptops. */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .readout {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Exit: as the About sheet slides over, the plate recedes and darkens.
+   Pure CSS scroll timeline — skipped where unsupported or motion is reduced.
+   ------------------------------------------------------------------------ */
+
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (min-height: 560px) and (prefers-reduced-motion: no-preference) {
+    .inner {
+      animation: recede linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100svh;
+    }
+
+    .shade {
+      animation: darken linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100svh;
+    }
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translate3d(0, var(--rise-from), 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes draw {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes float {
+  to {
+    translate: 0 -8px;
+  }
+}
+
+@keyframes scrollHint {
+  0% {
+    transform: translateY(-100%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes recede {
+  to {
+    transform: translate3d(0, -10svh, 0) scale(0.96);
+  }
+}
+
+@keyframes darken {
+  to {
+    opacity: 0.75;
+  }
+}

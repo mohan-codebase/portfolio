@@ -1,0 +1,62 @@
+.marquee {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding-block: clamp(1.25rem, 0.5rem + 2vw, 2.5rem);
+  border-block: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+}
+
+/* Pause while off-screen (set by RevealObserver) and while hovered. */
+:global(.js) .marquee:not([data-visible]) .track {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) {
+  .marquee:hover .track {
+    animation-play-state: paused;
+  }
+}
+
+.group {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: clamp(1.5rem, 0.8rem + 2.5vw, 3.5rem);
+  padding-inline-end: clamp(1.5rem, 0.8rem + 2.5vw, 3.5rem);
+}
+
+.sans {
+  font-size: clamp(3rem, 1.2rem + 7.5vw, 10rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.serif {
+  font-size: clamp(3.4rem, 1.3rem + 8.4vw, 11.25rem);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.star {
+  flex: none;
+  width: clamp(1.25rem, 0.8rem + 1.8vw, 2.75rem);
+  height: auto;
+  color: var(--signal);
+}
+
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}

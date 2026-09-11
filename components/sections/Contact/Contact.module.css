@@ -1,0 +1,235 @@
+.contact {
+  z-index: 1;
+  overflow: clip;
+}
+
+.kicker {
+  margin-top: clamp(3rem, 2rem + 4vw, 6rem);
+  color: var(--mute);
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 3.25rem);
+  line-height: 1;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  gap: 3rem;
+  margin-block: 1.5rem clamp(4rem, 3rem + 6vw, 9rem);
+}
+
+.title {
+  font-size: var(--fs-mega);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.title :global(.serif) {
+  font-size: 1.15em;
+  line-height: 0.78;
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.body {
+  max-width: 22ch;
+  color: var(--mute);
+  font-size: var(--fs-lead);
+  line-height: 1.35;
+}
+
+.magnet {
+  --magnetic-reach: 2rem;
+  flex: none;
+}
+
+/* The one circle on the site. */
+.circle {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.6rem;
+  width: clamp(9rem, 7rem + 8vw, 15rem);
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent);
+  border-radius: 50%;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  font-variation-settings: 'wdth' 112;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    color 500ms var(--ease-out),
+    border-color 500ms var(--ease-out);
+}
+
+.circle::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--signal);
+  transform: scale(0);
+  transition: transform 700ms var(--ease-out);
+}
+
+.circleArrow {
+  font-size: 1.25rem;
+  transition: transform 700ms var(--ease-out);
+}
+
+.circle:focus-visible {
+  color: var(--ink);
+}
+
+.circle:focus-visible::before {
+  transform: none;
+}
+
+@media (hover: hover) {
+  .circle:hover {
+    color: var(--ink);
+    border-color: var(--signal);
+    box-shadow: 0 0 50px -6px color-mix(in srgb, var(--signal) 55%, transparent);
+  }
+
+  .circle:hover::before {
+    transform: none;
+  }
+
+  .circle:hover .circleArrow {
+    transform: rotate(45deg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cta {
+    position: absolute;
+    top: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+  }
+}
+
+/* Contact details */
+.details {
+  row-gap: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.block {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.emailRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.email {
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.875rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  background: linear-gradient(currentColor, currentColor) left bottom / 0% 1px no-repeat;
+  transition: background-size 600ms var(--ease-out);
+}
+
+.copy {
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--line);
+  color: var(--mute);
+  transition:
+    color 300ms ease,
+    border-color 300ms ease;
+}
+
+.copy[data-copied='true'] {
+  border-color: var(--signal);
+  color: var(--signal);
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.social svg {
+  transition: transform 500ms var(--ease-out);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+@media (hover: hover) {
+  .email:hover {
+    background-size: 100% 1px;
+  }
+
+  .copy:hover {
+    border-color: var(--fg);
+    color: var(--fg);
+  }
+
+  .social:hover svg {
+    transform: translate(2px, -2px);
+  }
+}
+
+@media (min-width: 768px) {
+  .block:first-child {
+    grid-column: 1 / span 4;
+  }
+
+  .block:nth-child(2) {
+    grid-column: 5 / span 2;
+  }
+
+  .block:nth-child(3) {
+    grid-column: 7 / span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .block:first-child {
+    grid-column: 1 / span 6;
+  }
+
+  .block:nth-child(2) {
+    grid-column: 7 / span 3;
+  }
+
+  .block:nth-child(3) {
+    grid-column: 10 / span 3;
+  }
+}

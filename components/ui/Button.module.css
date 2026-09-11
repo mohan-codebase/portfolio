@@ -1,0 +1,120 @@
+.button {
+  --frame: color-mix(in srgb, var(--fg) 30%, transparent);
+  --fill: var(--fg);
+  --on-fill: var(--bg);
+  --out-x: 150%;
+  --out-y: -150%;
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: stretch;
+  min-height: 3.25rem;
+  overflow: hidden;
+  border: 1px solid var(--frame);
+  color: var(--fg);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  font-variation-settings: 'wdth' 112;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    color 450ms var(--ease-out),
+    border-color 450ms var(--ease-out),
+    box-shadow 450ms var(--ease-out);
+  box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.4);
+}
+
+.button[data-arrow='down'] {
+  --out-x: 0%;
+  --out-y: 150%;
+}
+
+.button[data-arrow='right'] {
+  --out-x: 150%;
+  --out-y: 0%;
+}
+
+.solid {
+  --frame: var(--signal);
+  --fill: var(--fg);
+  --on-fill: var(--bg);
+  background: var(--signal);
+  color: var(--ink);
+  box-shadow: 0 0 24px -4px color-mix(in srgb, var(--signal) 45%, transparent);
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--fill);
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 600ms var(--ease-out);
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  padding-inline: 1.25rem 1.35rem;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  border-left: 1px solid var(--frame);
+  font-size: 0.95rem;
+  transition: border-color 450ms var(--ease-out);
+}
+
+.arrows {
+  display: grid;
+  overflow: hidden;
+  padding: 0.15em;
+}
+
+.arrows svg {
+  grid-area: 1 / 1;
+  transition: transform 650ms var(--ease-out);
+}
+
+.arrows svg:last-child {
+  transform: translate(calc(var(--out-x) * -1), calc(var(--out-y) * -1));
+}
+
+.button:focus-visible::before {
+  transform: none;
+}
+
+.button:focus-visible {
+  color: var(--on-fill);
+}
+
+@media (hover: hover) {
+  .button:hover::before {
+    transform: none;
+  }
+
+  .button:hover {
+    color: var(--on-fill);
+    border-color: var(--fill);
+    box-shadow: 0 10px 32px -4px color-mix(in srgb, var(--signal) 28%, rgba(0, 0, 0, 0.6));
+  }
+
+  .button:hover .icon {
+    border-color: color-mix(in srgb, var(--on-fill) 25%, transparent);
+  }
+
+  .button:hover .arrows svg:first-child {
+    transform: translate(var(--out-x), var(--out-y));
+  }
+
+  .button:hover .arrows svg:last-child {
+    transform: none;
+  }
+}

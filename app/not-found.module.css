@@ -1,0 +1,37 @@
+.page {
+  min-height: 100svh;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.inner {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 2rem;
+  min-height: 100svh;
+  padding-block: calc(var(--header-h) + 2rem) 3rem;
+}
+
+.index {
+  color: var(--accent-ink);
+}
+
+.title {
+  font-size: var(--fs-mega);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.text {
+  max-width: 34ch;
+  color: var(--mute);
+  font-size: var(--fs-lead);
+  line-height: 1.35;
+}
+
+.text :global(.serif) {
+  color: var(--fg);
+}

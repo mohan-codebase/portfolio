@@ -1,0 +1,58 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out);
+}
+
+.overlay[data-visible='true'] {
+  opacity: 1;
+}
+
+.columns {
+  height: 100%;
+}
+
+.columns span {
+  background: color-mix(in srgb, var(--signal) 9%, transparent);
+  border-inline: 1px solid color-mix(in srgb, var(--signal) 28%, transparent);
+}
+
+.columns span:nth-child(n + 5) {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .columns span:nth-child(n + 5) {
+    display: block;
+  }
+
+  .columns span:nth-child(n + 9) {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .columns span:nth-child(n + 9) {
+    display: block;
+  }
+}
+
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  z-index: 96;
+  padding: 0.6rem 0.9rem;
+  background: var(--signal);
+  color: var(--ink);
+  pointer-events: none;
+  transform: translate(-50%, calc(100% + 1.5rem));
+  transition: transform 500ms var(--ease-out);
+}
+
+.toast[data-visible='true'] {
+  transform: translate(-50%, 0);
+}

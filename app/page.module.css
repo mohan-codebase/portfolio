@@ -1,0 +1,10 @@
+/* Main sits above the footer so the footer can be uncovered at the end. */
+.main {
+  position: relative;
+  z-index: 1;
+  outline: none;
+}
+
+.opening {
+  position: relative;
+}

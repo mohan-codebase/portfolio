@@ -1,0 +1,87 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 180;
+  display: none;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+:global(.has-cursor) .cursor {
+  display: block;
+}
+
+.cursor[data-visible='true'] {
+  opacity: 1;
+}
+
+/* Drawn at its largest size and scaled down, so every state stays crisp. */
+.disc {
+  position: absolute;
+  top: -48px;
+  left: -48px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #fff;
+  transform: scale(0.09);
+  transition:
+    transform 500ms var(--ease-out),
+    background-color 250ms ease;
+}
+
+.cursor[data-state='link'] .disc {
+  transform: scale(0.5);
+}
+
+.cursor[data-state='hide'] .disc {
+  transform: scale(0);
+}
+
+.cursor[data-state='view'] {
+  mix-blend-mode: normal;
+}
+
+.cursor[data-state='view'] .disc {
+  background: var(--signal);
+  transform: scale(1);
+}
+
+.cursor[data-pressed] .disc {
+  transform: scale(0.07);
+}
+
+.cursor[data-pressed][data-state='view'] .disc {
+  transform: scale(0.9);
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+  transition:
+    opacity 250ms ease,
+    transform 500ms var(--ease-out);
+}
+
+.label:not(:empty)::after {
+  content: ' ↗';
+}
+
+.cursor[data-state='view'] .label {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}

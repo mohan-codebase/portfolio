@@ -1,0 +1,23 @@
+.text {
+  view-timeline-name: --reveal-words;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .word {
+      animation: brighten linear both;
+      animation-timeline: --reveal-words;
+      animation-range: cover calc(10% + var(--p) * 36%) cover calc(16% + var(--p) * 36%);
+    }
+  }
+}
+
+/* Colour rather than opacity: even unrevealed words keep ≥3:1 contrast (large text). */
+@keyframes brighten {
+  from {
+    color: color-mix(in srgb, var(--fg) 50%, var(--bg));
+  }
+  to {
+    color: var(--fg);
+  }
+}

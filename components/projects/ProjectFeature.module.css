@@ -1,0 +1,380 @@
+.project {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  row-gap: clamp(1.25rem, 1rem + 1vw, 2rem);
+}
+
+/* ------------------------------------------------------------------------
+   Index row
+   ------------------------------------------------------------------------ */
+
+.meta {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.number {
+  color: var(--accent-ink);
+}
+
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* ------------------------------------------------------------------------
+   Artboard
+   ------------------------------------------------------------------------ */
+
+.media {
+  grid-column: 1 / -1;
+  display: block;
+  outline-offset: 6px;
+}
+
+.artboard {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--tone);
+  color: var(--fg);
+}
+
+/* Three independent properties: `scale` for the reveal, `translate` for
+   scroll parallax, `transform` for hover — they never fight each other. */
+.stage {
+  position: absolute;
+  inset: 0;
+  transition:
+    transform 1.2s var(--ease-out),
+    scale 1.8s var(--ease-out);
+}
+
+:global(.js) .artboard[data-reveal] .stage {
+  scale: 1.1;
+}
+
+:global(.js) .artboard[data-reveal][data-in] .stage {
+  scale: 1;
+}
+
+.media[data-hover='true'] .stage,
+.media:focus-visible .stage {
+  transform: scale(1.025);
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .stage {
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+@keyframes drift {
+  from {
+    translate: 0 3.5%;
+  }
+  to {
+    translate: 0 -3.5%;
+  }
+}
+
+.layer {
+  position: absolute;
+  transform: translate3d(calc(var(--mx, 0) * var(--depth, 0) * 1px), calc(var(--my, 0) * var(--depth, 0) * 1px), 0);
+}
+
+.caption,
+.hint {
+  position: absolute;
+  z-index: 1;
+  color: var(--fg);
+  opacity: 0.72;
+}
+
+.caption {
+  bottom: 1rem;
+  left: 1.1rem;
+}
+
+.hint {
+  top: 1rem;
+  right: 1.1rem;
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  .hint {
+    display: block;
+    transition: opacity 400ms ease;
+  }
+
+  .media[data-hover='true'] .hint {
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Compositions — mobile first, each with its own small-screen arrangement.
+   ------------------------------------------------------------------------ */
+
+/* Wide: phone forward, browser cropped behind it. */
+.wide .browserA {
+  top: 8%;
+  left: 8%;
+  width: 150%;
+}
+
+.wide .phoneA {
+  right: 10%;
+  bottom: 7%;
+  width: 50%;
+}
+
+/* Duo & crop: two phones side by side on small screens. */
+.duo .browserA,
+.duo .browserB,
+.crop .browserA {
+  display: none;
+}
+
+.duo .phoneA,
+.crop .phoneA {
+  top: 17%;
+  left: 7%;
+  width: 43%;
+}
+
+.duo .phoneB,
+.crop .phoneB {
+  top: 7%;
+  right: 7%;
+  width: 43%;
+}
+
+@media (min-width: 768px) {
+  .wide .artboard {
+    aspect-ratio: 16 / 10;
+  }
+
+  .wide .browserA {
+    top: 10%;
+    left: 9%;
+    width: 72%;
+  }
+
+  .wide .phoneA {
+    top: 20%;
+    right: 8%;
+    bottom: auto;
+    width: 19%;
+  }
+
+  .duo .artboard,
+  .crop .artboard {
+    aspect-ratio: 5 / 4;
+  }
+
+  .duo .browserA,
+  .duo .browserB,
+  .crop .browserA {
+    display: block;
+  }
+
+  .duo .phoneA,
+  .duo .phoneB,
+  .crop .phoneB {
+    display: none;
+  }
+
+  .duo .browserA {
+    top: 9%;
+    left: 6%;
+    width: 72%;
+  }
+
+  .duo .browserB {
+    right: 6%;
+    bottom: 9%;
+    width: 72%;
+  }
+
+  /* Crop: the browser bleeds off the right edge; a phone anchors the left. */
+  .crop .browserA {
+    top: 10%;
+    left: 26%;
+    width: 96%;
+  }
+
+  .crop .phoneA {
+    top: auto;
+    bottom: 9%;
+    left: 7%;
+    width: 25%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wide .artboard {
+    aspect-ratio: 16 / 9;
+  }
+
+  .wide .browserA {
+    top: 11%;
+    left: 13%;
+    width: 63%;
+  }
+
+  .wide .phoneA {
+    top: 21%;
+    right: 11%;
+    width: 16%;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Info
+   ------------------------------------------------------------------------ */
+
+.info {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+  padding-top: 0.5rem;
+}
+
+.title {
+  font-size: clamp(2.25rem, 1.2rem + 3.4vw, 4.75rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  transition: translate 700ms var(--ease-out);
+}
+
+.summary {
+  max-width: 44ch;
+  color: var(--mute);
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem var(--col-gap);
+}
+
+.details dd {
+  margin: 0.45rem 0 0;
+  font-weight: 500;
+}
+
+.stack {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+}
+
+.code {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-block: 0.25rem;
+  background: linear-gradient(currentColor, currentColor) left bottom / 100% 1px no-repeat;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  transition: background-size 500ms var(--ease-out);
+}
+
+.code svg {
+  transition: transform 500ms var(--ease-out);
+}
+
+@media (hover: hover) {
+  .project:has(.media:hover) .title {
+    translate: 0.12em 0;
+  }
+
+  .code:hover {
+    background-size: 0% 1px;
+    background-position: right bottom;
+  }
+
+  .code:hover svg {
+    transform: translate(2px, -2px);
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Wide: info spreads across the grid under the artboard. */
+  .wide .info {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--col-gap);
+    row-gap: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .wide .title {
+    grid-column: 1 / span 5;
+    grid-row: 1 / span 2;
+  }
+
+  .wide .summary {
+    grid-column: 7 / span 4;
+  }
+
+  .wide .details {
+    grid-column: 11 / span 2;
+    grid-row: 1 / span 2;
+    grid-template-columns: 1fr;
+  }
+
+  .wide .links {
+    grid-column: 7 / span 4;
+  }
+
+  /* Duo: info on the left, artboard to the right. */
+  .duo .media {
+    grid-column: 5 / -1;
+    grid-row: 2;
+  }
+
+  .duo .info {
+    grid-column: 1 / span 4;
+    grid-row: 2;
+    align-self: end;
+  }
+
+  /* Crop: artboard on the left, info on the right. */
+  .crop .media {
+    grid-column: 1 / span 8;
+    grid-row: 2;
+  }
+
+  .crop .info {
+    grid-column: 10 / -1;
+    grid-row: 2;
+  }
+
+  .duo .title,
+  .crop .title {
+    font-size: clamp(2.25rem, 1rem + 2.6vw, 3.75rem);
+  }
+
+  .duo .details,
+  .crop .details {
+    grid-template-columns: 1fr;
+  }
+}

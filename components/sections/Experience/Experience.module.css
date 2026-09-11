@@ -1,0 +1,119 @@
+.experience {
+  z-index: 1;
+}
+
+.title {
+  margin-block: clamp(3rem, 2rem + 4vw, 6rem) clamp(3rem, 2rem + 4vw, 6rem);
+  font-size: var(--fs-display);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.title :global(.serif) {
+  font-size: 1.12em;
+  line-height: 0.8;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  row-gap: 0.9rem;
+  padding-block: 1.75rem 2.5rem;
+  border-top: 1px solid var(--line);
+  /* An accent hairline that runs along the top edge on hover. */
+  background: linear-gradient(var(--signal), var(--signal)) left top / 0% 1px no-repeat;
+  transition: background-size 900ms var(--ease-out);
+}
+
+.item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.year {
+  grid-column: 1 / -1;
+  font-size: clamp(4.5rem, 2rem + 9vw, 11rem);
+  font-weight: 200;
+  line-height: 0.8;
+  letter-spacing: -0.055em;
+  font-variant-numeric: tabular-nums;
+  transition:
+    font-weight 800ms var(--ease-out),
+    color 400ms ease;
+}
+
+.status {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--accent-ink);
+}
+
+.itemTitle {
+  grid-column: 1 / -1;
+  font-size: clamp(1.5rem, 1.05rem + 1.4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.body {
+  grid-column: 1 / -1;
+  max-width: 48ch;
+  color: var(--mute);
+}
+
+.tags {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+}
+
+@media (hover: hover) {
+  .item:hover {
+    background-size: 100% 1px;
+  }
+
+  .item:hover .year {
+    font-weight: 800;
+    color: var(--accent-ink);
+  }
+}
+
+@media (min-width: 1024px) {
+  .item {
+    align-items: start;
+    padding-block: 2.25rem 3rem;
+  }
+
+  .year {
+    grid-column: 1 / span 5;
+    grid-row: 1 / span 3;
+  }
+
+  .status {
+    grid-column: 7 / span 6;
+    grid-row: 1;
+  }
+
+  .itemTitle {
+    grid-column: 7 / span 6;
+    grid-row: 2;
+  }
+
+  .body {
+    grid-column: 7 / span 4;
+    grid-row: 3;
+  }
+
+  .tags {
+    grid-column: 11 / span 2;
+    grid-row: 3;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}

@@ -1,0 +1,133 @@
+.currently {
+  z-index: 1;
+  padding-block-start: 0;
+}
+
+.title {
+  margin-block: clamp(2.5rem, 2rem + 3vw, 4.5rem) clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--fg);
+}
+
+.cell {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+  padding: 1.25rem 0 1.4rem;
+  border-bottom: 1px solid var(--line);
+  transition: color 450ms var(--ease-out);
+}
+
+/* Hover inverts the cell like a flipped status tile. */
+.cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ink);
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 550ms var(--ease-out);
+}
+
+.verb {
+  display: flex;
+  gap: 0.75rem;
+  color: var(--mute);
+  transition: color 450ms var(--ease-out);
+}
+
+.index {
+  color: var(--accent-ink);
+}
+
+.value {
+  grid-column: 1 / -1;
+  font-size: clamp(2rem, 1.2rem + 2.6vw, 3.75rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.note {
+  grid-row: 1;
+  grid-column: 2;
+  color: var(--mute);
+  transition: color 450ms var(--ease-out);
+}
+
+@media (min-width: 768px) {
+  .board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cell {
+    grid-template-columns: 1fr;
+    align-content: space-between;
+    min-height: 15rem;
+    padding: 1.25rem 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+  }
+
+  .cell:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .value {
+    align-self: end;
+  }
+
+  .note {
+    grid-row: auto;
+    grid-column: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .board {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .cell {
+    min-height: 19rem;
+  }
+
+  .cell:nth-child(2n) {
+    border-right: 1px solid var(--line);
+  }
+
+  .cell:last-child {
+    border-right: 0;
+  }
+}
+
+@media (hover: hover) {
+  .cell:hover {
+    color: var(--paper);
+  }
+
+  .cell:hover::before {
+    transform: none;
+  }
+
+  .cell:hover .verb,
+  .cell:hover .note {
+    color: var(--mute-dark);
+  }
+
+  .cell:hover .index {
+    color: var(--signal);
+  }
+}

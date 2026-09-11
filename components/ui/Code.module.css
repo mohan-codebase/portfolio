@@ -1,0 +1,50 @@
+.pre {
+  margin: 0;
+  overflow: hidden;
+  color: #cfcac0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.75;
+  white-space: pre;
+  counter-reset: line;
+}
+
+.line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.75rem;
+  color: #4d4b46;
+}
+
+.keyword {
+  color: var(--signal);
+}
+
+.string {
+  color: #dcc9a6;
+}
+
+.number {
+  color: #eab08c;
+}
+
+.comment {
+  color: var(--mute-dark);
+  font-style: italic;
+}
+
+.tag,
+.fn,
+.type {
+  color: var(--paper);
+}
+
+.attr,
+.prop {
+  color: #a9a59b;
+}
+
+.punct {
+  color: #75726b;
+}

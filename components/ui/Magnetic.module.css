@@ -1,0 +1,17 @@
+.area {
+  --mx: 0px;
+  --my: 0px;
+  display: inline-block;
+  padding: var(--magnetic-reach, 1.25rem);
+  margin: calc(var(--magnetic-reach, 1.25rem) * -1);
+}
+
+.inner {
+  display: inline-block;
+  transform: translate3d(var(--mx), var(--my), 0);
+  transition: transform 900ms var(--ease-spring);
+}
+
+.area[data-active='true'] .inner {
+  transition: transform 250ms var(--ease-out);
+}
