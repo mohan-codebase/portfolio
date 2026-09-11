@@ -10,8 +10,6 @@ import presentsirDarkMobile from '@/assets/work/presentsir-dark-mobile.webp';
 import presentsirDesktop from '@/assets/work/presentsir-desktop.webp';
 import presentsirMobile from '@/assets/work/presentsir-mobile.webp';
 import spotify from '@/assets/work/spotify.webp';
-import techienutpamDesktop from '@/assets/work/techienutpam-desktop.png';
-import techienutpamMobile from '@/assets/work/techienutpam-mobile.png';
 
 export type Shot = { src: StaticImageData; alt: string };
 
@@ -51,32 +49,6 @@ export type ArchiveProject = {
 const github = 'https://github.com/mohan-codebase';
 
 export const featured: FeaturedProject[] = [
-  {
-    slug: 'techienutpam',
-    title: 'Techie Nutpam',
-    year: '2026',
-    category: 'Agency platform & rebuild',
-    role: 'Fullstack development & redesign',
-    summary:
-      'A high-performance digital agency platform rebuilt in Next.js 16 and React 19. Features Tailwind CSS 4, smooth momentum scrolling with Lenis, interactive dark-mode components, and fluid animations powered by GSAP and Framer Motion.',
-    stack: ['Next.js 16', 'React 19', 'Tailwind CSS 4', 'GSAP', 'TypeScript'],
-    links: { live: 'https://techienutpam.in/' },
-    domain: 'techienutpam.in',
-    caption: 'Digital agency — desktop & mobile preview',
-    tone: { background: '#120e1c', theme: 'dark' },
-    layout: 'wide',
-    scrollable: false,
-    shots: {
-      desktop: {
-        src: techienutpamDesktop,
-        alt: 'Techie Nutpam digital agency platform: “We turn ideas into digital products.”',
-      },
-      mobile: {
-        src: techienutpamMobile,
-        alt: 'Techie Nutpam mobile experience.',
-      },
-    },
-  },
   {
     slug: 'presentsir',
     title: 'PresentSir',

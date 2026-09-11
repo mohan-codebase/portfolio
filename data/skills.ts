@@ -44,7 +44,7 @@ export const skills: Skill[] = [
   {
     name: 'React',
     symbol: 'Re',
-    description: 'Component-driven interfaces, state and composition — used on Techie Nutpam and PresentSir.',
+    description: 'Component-driven interfaces, state and composition — used on PresentSir and modern web applications.',
     file: 'Contact.tsx',
     code: `<Magnetic strength={0.3}>
   <a href={mailto}>

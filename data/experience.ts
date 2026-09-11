@@ -11,7 +11,7 @@ export const experience: Milestone[] = [
   {
     year: '2026',
     title: 'Fullstack development',
-    body: 'Building real-world web applications, learning modern fullstack architecture and improving UI implementation — from the Techie Nutpam agency platform to this Next.js portfolio.',
+    body: 'Building real-world web applications, learning modern fullstack architecture and improving UI implementation — including this editorial Next.js portfolio.',
     tags: ['React', 'Next.js', 'Tailwind CSS'],
     current: true,
   },
