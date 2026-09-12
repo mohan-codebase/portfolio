@@ -8,11 +8,11 @@ import { site } from '@/data/site';
 
 import styles from './Experience.module.css';
 
-export function Experience() {
+export function Experience({ index = '05' }: { index?: string }) {
   return (
     <section id="experience" className={`section ${styles.experience}`} data-theme="light" aria-labelledby="experience-title">
       <div className="container">
-        <SectionHeader index="05" title="Experience" meta={`${site.since} — Now`} />
+        <SectionHeader index={index} title="Experience" meta={`${site.since} — Now`} />
 
         <h2 id="experience-title" className={styles.title} data-reveal="lines">
           <Lines
@@ -28,12 +28,12 @@ export function Experience() {
         </h2>
 
         <ol className={styles.list}>
-          {experience.map((milestone, index) => (
+          {experience.map((milestone, position) => (
             <li
               key={milestone.year}
               className={styles.item}
               data-reveal
-              style={{ '--delay': index * 100 } as CSSProperties}
+              style={{ '--delay': position * 100 } as CSSProperties}
             >
               <p className={styles.year}>{milestone.year}</p>
               <p className={`label ${styles.status}`}>
@@ -42,7 +42,7 @@ export function Experience() {
                     <span className="pulse" aria-hidden="true" /> Now
                   </>
                 ) : (
-                  `0${experience.length - index}`
+                  `0${experience.length - position}`
                 )}
               </p>
               <h3 className={styles.itemTitle}>{milestone.title}</h3>

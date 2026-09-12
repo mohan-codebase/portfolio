@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main id="main" className={styles.page} data-theme="dark">
+    <main id="main" tabIndex={-1} className={styles.page} data-theme="dark">
       <div className={`container ${styles.inner}`}>
         <p className="label">
           <span className={styles.index}>(404)</span> Page not found

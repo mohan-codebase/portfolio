@@ -3,6 +3,11 @@
   overflow: clip;
 }
 
+/* As the contact page's opening screen, clear the fixed header. */
+.page {
+  padding-block-start: calc(var(--header-h) + clamp(2.5rem, 1.5rem + 4vw, 5rem));
+}
+
 .kicker {
   margin-top: clamp(3rem, 2rem + 4vw, 6rem);
   color: var(--mute);

@@ -1,0 +1,346 @@
+/* --n (cards including the closing card) is set inline. Card width and the
+   horizontal travel are plain CSS maths, so the pinned scroll needs no script. */
+.reel {
+  --gap: var(--col-gap);
+  --card: min(34vw, (100svh - 20rem) * 1.2);
+  --distance: calc(var(--n) * var(--card) + (var(--n) - 1) * var(--gap) + 2 * var(--gutter) - 100vw);
+
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.sticky {
+  padding-block: var(--section-y);
+}
+
+/* ------------------------------------------------------------------------
+   Head
+   ------------------------------------------------------------------------ */
+
+.head {
+  display: grid;
+  gap: clamp(1.75rem, 3svh, 2.75rem);
+}
+
+.headRow {
+  display: grid;
+  gap: 1.25rem;
+  align-items: end;
+}
+
+.title {
+  font-size: var(--fs-display);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.title :global(.serif) {
+  font-size: 1.1em;
+  line-height: 0.8;
+}
+
+.count {
+  margin-inline-start: 0.12em;
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: max(0.13em, 0.75rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  vertical-align: top;
+}
+
+.intro {
+  max-width: 36ch;
+  color: var(--mute);
+  font-size: 1.0625rem;
+  line-height: 1.45;
+}
+
+@media (min-width: 1024px) {
+  .headRow {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--col-gap);
+  }
+
+  .title {
+    grid-column: 1 / span 8;
+    font-size: var(--fs-h2);
+  }
+
+  .intro {
+    grid-column: 9 / -1;
+    padding-bottom: 0.4em;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Track — by default a native, snapping swipe carousel.
+   ------------------------------------------------------------------------ */
+
+/* position: relative keeps absolutely positioned bits (screen-reader labels) inside the
+   scroller; otherwise they escape it and widen the whole page on phones. */
+.viewport {
+  position: relative;
+  margin-top: clamp(2rem, 4svh, 3.5rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.track {
+  display: flex;
+  gap: var(--gap);
+  width: max-content;
+  padding-inline: var(--gutter);
+}
+
+.card {
+  flex: none;
+  width: min(78vw, 26rem);
+  scroll-snap-align: start;
+}
+
+@media (min-width: 1024px) {
+  .card {
+    width: var(--card);
+  }
+}
+
+.link {
+  display: grid;
+  gap: 1rem;
+}
+
+.frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 11;
+  border-radius: 2px;
+  background: var(--raised);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: scale 1.2s var(--ease-out);
+}
+
+.caption {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    'number name kind'
+    'number meta kind';
+  align-items: baseline;
+  gap: 0.2rem 1rem;
+}
+
+.number {
+  grid-area: number;
+  color: var(--accent-ink);
+}
+
+.name {
+  grid-area: name;
+  font-size: clamp(1.5rem, 1rem + 1.6vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.meta {
+  grid-area: meta;
+  color: var(--mute);
+}
+
+.kind {
+  grid-area: kind;
+  align-self: start;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--mute);
+  white-space: nowrap;
+}
+
+/* The closing card: straight to the full index. */
+.end {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 16 / 11;
+  padding: clamp(1.1rem, 2vw, 1.75rem);
+  border: 1px solid var(--fg);
+  background: var(--fg);
+  color: var(--bg);
+  transition:
+    background-color 500ms var(--ease-out),
+    border-color 500ms var(--ease-out),
+    color 500ms var(--ease-out);
+}
+
+.endTitle {
+  font-size: clamp(2.75rem, 1.5rem + 3.5vw, 5.5rem);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.endTitle :global(.serif) {
+  font-size: 1.1em;
+}
+
+.endArrow {
+  align-self: flex-end;
+  font-size: clamp(1.75rem, 1rem + 1.5vw, 2.75rem);
+  transition: translate 600ms var(--ease-out);
+}
+
+@media (hover: hover) {
+  .link:hover .image {
+    scale: 1.045;
+  }
+
+  .end:hover {
+    border-color: var(--signal);
+    background: var(--signal);
+    color: var(--ink);
+  }
+
+  .end:hover .endArrow {
+    translate: 0.4rem 0;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Foot: hint and progress
+   ------------------------------------------------------------------------ */
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  color: var(--mute);
+}
+
+.hint::before {
+  content: 'Swipe';
+}
+
+.progress {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.progress::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--fg);
+  transform: scaleX(0.08);
+  transform-origin: left center;
+}
+
+/* Swiping fills the progress line (a scroll timeline on the carousel). */
+@supports (animation-timeline: scroll()) {
+  .reel {
+    timeline-scope: --swipe;
+  }
+
+  .viewport {
+    scroll-timeline: --swipe inline;
+  }
+
+  .progress::after {
+    animation: grow linear both;
+    animation-timeline: --swipe;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Desktop: pin the section and let vertical scroll drive the track.
+   ------------------------------------------------------------------------ */
+
+@supports (animation-timeline: view()) {
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .reel {
+      height: calc(100svh + var(--distance));
+      view-timeline: --reel block;
+    }
+
+    /* minmax(0, 1fr): the long track must not widen the column (it would push the head off-centre). */
+    .sticky {
+      position: sticky;
+      top: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto 1fr auto;
+      height: 100svh;
+      overflow: clip;
+      padding-block: calc(var(--header-h) + 1.5rem) 1.75rem;
+    }
+
+    .viewport {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      margin-top: 0;
+      overflow: visible;
+    }
+
+    .track {
+      will-change: transform;
+      animation: slide linear both;
+      animation-timeline: --reel;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .foot {
+      margin-top: 0;
+    }
+
+    .hint::before {
+      content: 'Scroll';
+    }
+
+    .progress::after {
+      animation: grow linear both;
+      animation-timeline: --reel;
+      animation-range: contain 0% contain 100%;
+    }
+  }
+}
+
+@keyframes slide {
+  to {
+    transform: translate3d(calc(var(--distance) * -1), 0, 0);
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0.08);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

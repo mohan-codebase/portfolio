@@ -1,13 +1,13 @@
 import type { CSSProperties } from 'react';
 
+import { TransitionLink } from '@/components/transition/TransitionLink';
 import { Arrow } from '@/components/ui/Arrow';
 import { mailto, site, socials } from '@/data/site';
 
+import { BackToTop } from './BackToTop';
 import styles from './Footer.module.css';
 
-const index = [...site.nav, { label: 'Contact', href: '#contact' }];
-
-/** Revealed from underneath the page as the contact section scrolls away. */
+/** Revealed from underneath the page as the last section scrolls away. */
 export function Footer() {
   return (
     <footer className={styles.footer} data-theme="light">
@@ -28,11 +28,11 @@ export function Footer() {
           <nav className={styles.column} aria-label="Footer">
             <p className="label mute">Index</p>
             <ul>
-              {index.map((item) => (
-                <li key={item.href}>
-                  <a href={item.href} className={styles.link}>
-                    {item.label}
-                  </a>
+              {site.pages.map((page) => (
+                <li key={page.href}>
+                  <TransitionLink href={page.href} className={styles.link}>
+                    {page.label}
+                  </TransitionLink>
                 </li>
               ))}
             </ul>
@@ -57,9 +57,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <a href="#top" className={styles.back}>
-            Back to top <Arrow direction="up" />
-          </a>
+          <BackToTop className={styles.back} />
         </div>
 
         <div className={styles.bottom}>
@@ -68,7 +66,7 @@ export function Footer() {
           </p>
           <p className="label mute">Designed &amp; built by {site.name} with Next.js</p>
           <p className={`label mute ${styles.hint}`}>
-            Press <kbd>G</kbd> to see the grid
+            Press <kbd>G</kbd> for the grid · <kbd>⌘K</kbd> to jump anywhere
           </p>
         </div>
 

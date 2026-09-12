@@ -1,4 +1,4 @@
-export type ArrowDirection = 'up-right' | 'right' | 'down-right' | 'down' | 'up';
+export type ArrowDirection = 'up-right' | 'right' | 'down-right' | 'down' | 'up' | 'left';
 
 const rotation: Record<ArrowDirection, number> = {
   'up-right': -45,
@@ -6,6 +6,7 @@ const rotation: Record<ArrowDirection, number> = {
   'down-right': 45,
   down: 90,
   up: -90,
+  left: 180,
 };
 
 /** A hairline arrow drawn to sit on the text baseline at 1em. */

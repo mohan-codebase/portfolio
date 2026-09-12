@@ -1,67 +1,72 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from 'react';
+import { useEffect, useEffectEvent, useRef, useState, type CSSProperties } from 'react';
 
+import { TransitionLink } from '@/components/transition/TransitionLink';
 import { Arrow } from '@/components/ui/Arrow';
+import { LocalTime } from '@/components/ui/LocalTime';
 import { mailto, site, socials } from '@/data/site';
+import { lockScroll } from '@/lib/scroll';
 
 import styles from './MobileMenu.module.css';
-
-const items = [...site.nav, { label: 'Contact', href: '#contact' }];
 
 /**
  * Full-screen menu for small screens, built on a native modal <dialog>:
  * focus is trapped, the page is inert and Escape closes it for free.
- * We only add the open/close choreography.
+ * Picking a page closes the menu while the page curtain rises underneath.
  */
 export function MobileMenu() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const timerRef = useRef(0);
+  const releaseRef = useRef<(() => void) | null>(null);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  // Off the home page, links route home (and are not intercepted by `navigate`).
-  const to = (hash: string) => (pathname === '/' ? hash : `/${hash}`);
+  const isCurrent = (href: string) => (href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`));
 
-  const close = (then?: () => void) => {
+  const finish = () => {
     const dialog = dialogRef.current;
-    if (!dialog?.open) return;
+    if (dialog?.open) dialog.close();
+    if (dialog) dialog.dataset.state = 'closed';
+    releaseRef.current?.();
+    releaseRef.current = null;
+    setOpen(false);
+  };
+
+  const close = () => {
+    const dialog = dialogRef.current;
+    if (!dialog?.open || dialog.dataset.state === 'closing') return;
     dialog.dataset.state = 'closing';
-    const delay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 520;
     window.clearTimeout(timerRef.current);
-    timerRef.current = window.setTimeout(() => {
-      dialog.close();
-      dialog.dataset.state = 'closed';
-      setOpen(false);
-      then?.();
-    }, delay);
+    timerRef.current = window.setTimeout(finish, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 520);
   };
 
   const show = () => {
     const dialog = dialogRef.current;
     if (!dialog || dialog.open) return;
     dialog.showModal();
+    releaseRef.current = lockScroll();
     setOpen(true);
     requestAnimationFrame(() => {
       dialog.dataset.state = 'open';
     });
   };
 
+  const onCancel = useEffectEvent((event: Event) => {
+    event.preventDefault();
+    close();
+  });
+  const onDesktop = useEffectEvent(() => {
+    if (dialogRef.current?.open) finish();
+  });
+
   // Close with the animation on Escape, and drop the menu if the viewport grows to desktop.
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
-    const onCancel = (event: Event) => {
-      event.preventDefault();
-      close();
-    };
     const desktop = window.matchMedia('(min-width: 1024px)');
     const onChange = () => {
-      if (desktop.matches && dialog.open) {
-        dialog.close();
-        dialog.dataset.state = 'closed';
-        setOpen(false);
-      }
+      if (desktop.matches) onDesktop();
     };
     dialog.addEventListener('cancel', onCancel);
     desktop.addEventListener('change', onChange);
@@ -71,20 +76,6 @@ export function MobileMenu() {
       window.clearTimeout(timerRef.current);
     };
   }, []);
-
-  const navigate = (event: MouseEvent<HTMLAnchorElement>) => {
-    const href = event.currentTarget.getAttribute('href');
-    if (!href?.startsWith('#')) return;
-    event.preventDefault();
-    close(() => {
-      const target = document.querySelector<HTMLElement>(href);
-      if (!target) return;
-      history.pushState(null, '', href);
-      target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-      target.setAttribute('tabindex', '-1');
-      target.focus({ preventScroll: true });
-    });
-  };
 
   return (
     <>
@@ -100,13 +91,21 @@ export function MobileMenu() {
         <span className={styles.bars} aria-hidden="true" />
       </button>
 
-      <dialog id="site-menu" ref={dialogRef} className={styles.menu} aria-label="Menu" data-theme="dark" data-state="closed">
+      <dialog
+        id="site-menu"
+        ref={dialogRef}
+        className={styles.menu}
+        aria-label="Menu"
+        data-theme="dark"
+        data-state="closed"
+        data-lenis-prevent
+      >
         <div className={`container ${styles.top}`}>
-          <a href={to('#top')} className={styles.brand} onClick={navigate}>
+          <TransitionLink href="/" className={styles.brand} onClick={close}>
             {site.name}
             <span className="stop">.</span>
-          </a>
-          <button type="button" className={styles.close} onClick={() => close()}>
+          </TransitionLink>
+          <button type="button" className={styles.close} onClick={close}>
             Close
             <span className={styles.cross} aria-hidden="true" />
           </button>
@@ -114,12 +113,13 @@ export function MobileMenu() {
 
         <nav className={`container ${styles.nav}`} aria-label="Menu">
           <ol className={styles.list}>
-            {items.map((item, index) => (
-              <li key={item.href} style={{ '--i': index } as CSSProperties}>
-                <a href={to(item.href)} onClick={navigate}>
+            {site.pages.map((page, index) => (
+              <li key={page.href} style={{ '--i': index } as CSSProperties}>
+                <TransitionLink href={page.href} onClick={close} aria-current={isCurrent(page.href) ? 'page' : undefined}>
                   <span className={`label ${styles.index}`}>0{index + 1}</span>
-                  <span className={styles.word}>{item.label}</span>
-                </a>
+                  <span className={styles.word}>{page.label}</span>
+                  <Arrow className={styles.go} direction="right" />
+                </TransitionLink>
               </li>
             ))}
           </ol>
@@ -142,12 +142,15 @@ export function MobileMenu() {
               </li>
             ))}
           </ul>
-          {site.availability ? (
-            <p className={`label ${styles.status}`}>
-              <span className="pulse" aria-hidden="true" />
-              {site.availability}
-            </p>
-          ) : null}
+          <p className={`label ${styles.status}`}>
+            {site.availability ? (
+              <>
+                <span className="pulse" aria-hidden="true" />
+                {site.availability} ·
+              </>
+            ) : null}{' '}
+            {site.location.city} <LocalTime timeZone={site.location.timeZone} /> {site.location.timeZoneLabel}
+          </p>
         </div>
       </dialog>
     </>

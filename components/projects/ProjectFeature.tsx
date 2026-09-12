@@ -68,6 +68,34 @@ function Composition({ project }: { project: FeaturedProject }) {
   }
 }
 
+/**
+ * The project's artboard: its screens framed on the project's own colour,
+ * with pointer-driven depth. Links to the case study, or to the live site
+ * when `external` (as on the case study page itself).
+ */
+export function ProjectArtboard({ project, number, external = false }: { project: FeaturedProject; number: string; external?: boolean }) {
+  return (
+    <ProjectMedia
+      href={external ? project.links.live : `/work/${project.slug}`}
+      external={external}
+      label={external ? `Visit ${project.title}` : `${project.title} case study`}
+      cursorLabel={external ? 'Visit' : 'Case study'}
+      className={cx(styles.media, styles[project.layout])}
+      style={{ '--tone': project.tone.background } as CSSProperties}
+    >
+      <div className={styles.artboard} data-theme={project.tone.theme} data-reveal="curtain" aria-hidden="true">
+        <div className={styles.stage}>
+          <Composition project={project} />
+        </div>
+        <p className={cx('label', styles.caption)}>
+          Fig. {number} — {project.caption}
+        </p>
+        {project.scrollable ? <p className={cx('label', styles.hint)}>Hover to scroll</p> : null}
+      </div>
+    </ProjectMedia>
+  );
+}
+
 export function ProjectFeature({ project, index }: { project: FeaturedProject; index: number }) {
   const number = String(index + 1).padStart(2, '0');
   const titleId = `${project.slug}-title`;
@@ -81,26 +109,7 @@ export function ProjectFeature({ project, index }: { project: FeaturedProject; i
         <span className="label mute">{project.year}</span>
       </div>
 
-      <ProjectMedia
-        href={project.links.live}
-        label={`Visit ${project.title}`}
-        className={styles.media}
-        style={{ '--tone': project.tone.background } as CSSProperties}
-      >
-        <div className={styles.artboard} data-theme={project.tone.theme} data-reveal="curtain" aria-hidden="true">
-          <div className={styles.stage}>
-            <Composition project={project} />
-          </div>
-          <p className={cx('label', styles.caption)}>
-            Fig. {number} — {project.caption}
-          </p>
-          {project.scrollable ? (
-            <p className={cx('label', styles.hint)} aria-hidden="true">
-              Hover to scroll
-            </p>
-          ) : null}
-        </div>
-      </ProjectMedia>
+      <ProjectArtboard project={project} number={number} />
 
       <div className={styles.info}>
         <h3 id={titleId} className={styles.title} data-reveal>
@@ -128,9 +137,13 @@ export function ProjectFeature({ project, index }: { project: FeaturedProject; i
           </div>
         </dl>
         <div className={styles.links} data-reveal style={{ '--delay': 240 } as CSSProperties}>
-          <Button href={project.links.live} external>
-            View project
+          <Button href={`/work/${project.slug}`} arrow="right">
+            Case study
           </Button>
+          <a className={styles.code} href={project.links.live} target="_blank" rel="noopener noreferrer">
+            Live site <Arrow />
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
           {project.links.code ? (
             <a className={styles.code} href={project.links.code} target="_blank" rel="noopener noreferrer">
               Source code <Arrow />

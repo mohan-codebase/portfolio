@@ -1,3 +1,4 @@
+import { TransitionLink } from '@/components/transition/TransitionLink';
 import { Arrow } from '@/components/ui/Arrow';
 import { Emphasis } from '@/components/ui/Emphasis';
 import { Lines } from '@/components/ui/Lines';
@@ -6,18 +7,37 @@ import { Magnetic } from '@/components/ui/Magnetic';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { contact } from '@/data/content';
 import { mailto, site, socials } from '@/data/site';
+import { cx } from '@/lib/cx';
 
 import styles from './Contact.module.css';
 import { CopyEmail } from './CopyEmail';
 
-export function Contact() {
+/**
+ * "Let's make it real." As the closing call to action on other pages, the big
+ * circle leads to the contact page; on the contact page itself it is the
+ * opening screen and the circle writes an email straight away.
+ */
+export function Contact({ variant = 'cta', index = '04' }: { variant?: 'cta' | 'page'; index?: string }) {
   const lastLine = contact.headline.length - 1;
+  const page = variant === 'page';
+  const Heading = page ? 'h1' : 'h2';
+  const circle = (
+    <>
+      <span className={styles.circleLabel}>{page ? 'Write to me' : 'Get in touch'}</span>
+      <Arrow className={styles.circleArrow} />
+    </>
+  );
 
   return (
-    <section id="contact" className={`section ${styles.contact}`} data-theme="dark" aria-labelledby="contact-title">
+    <section
+      id="contact"
+      className={cx('section', styles.contact, page && styles.page)}
+      data-theme="dark"
+      aria-labelledby="contact-title"
+    >
       <div className="container">
         <SectionHeader
-          index="07"
+          index={index}
           title="Contact"
           meta={
             <>
@@ -27,30 +47,35 @@ export function Contact() {
           }
         />
 
-        <p className={`serif ${styles.kicker}`} data-reveal>
+        <p className={cx('serif', styles.kicker, page && 'enter-fade')} data-reveal={page ? undefined : ''}>
           {contact.kicker}
         </p>
 
         <div className={styles.stage}>
-          <h2 id="contact-title" className={styles.title} data-reveal="lines">
+          <Heading id="contact-title" className={cx(styles.title, page && 'enter-lines')} data-reveal={page ? undefined : 'lines'}>
             <Lines
               indents={[0, 2, 5]}
-              lines={contact.headline.map((line, index) => (
+              lines={contact.headline.map((line, position) => (
                 <>
                   <Emphasis text={line} />
-                  {index === lastLine ? <span className="stop">.</span> : null}
+                  {position === lastLine ? <span className="stop">.</span> : null}
                 </>
               ))}
             />
-          </h2>
+          </Heading>
 
-          <div className={styles.cta} data-reveal>
+          <div className={cx(styles.cta, page && 'enter-fade')} data-reveal={page ? undefined : ''}>
             <p className={styles.body}>{contact.body}</p>
             <Magnetic strength={0.35} className={styles.magnet}>
-              <a href={mailto} className={styles.circle} data-cursor="hide">
-                <span className={styles.circleLabel}>Get in touch</span>
-                <Arrow className={styles.circleArrow} />
-              </a>
+              {page ? (
+                <a href={mailto} className={styles.circle} data-cursor="hide">
+                  {circle}
+                </a>
+              ) : (
+                <TransitionLink href="/contact" className={styles.circle} data-cursor="hide">
+                  {circle}
+                </TransitionLink>
+              )}
             </Magnetic>
           </div>
         </div>

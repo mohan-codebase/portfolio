@@ -50,7 +50,12 @@
   --dur-fast: 220ms;
   --dur-base: 500ms;
   --dur-slow: 1100ms;
-  --intro-delay: 1.35s;
+
+  /* When page headlines start to rise: just after the preloader's columns begin to lift. */
+  --intro-delay: 2.55s;
+  /* How far they rise. On a first visit they sit almost in place under the preloader, so
+     the headline is painted straight away (a fast LCP) and only settles upward. */
+  --rise-from: 18%;
 }
 
 @media (min-width: 768px) {
@@ -66,9 +71,16 @@
   }
 }
 
-/* Set before first paint by the boot script when the intro is skipped. */
+/* Set before first paint by the boot script when the preloader is skipped,
+   and by the page curtain for client-side navigations. */
 html[data-intro='skip'] {
   --intro-delay: 0.1s;
+  --rise-from: 115%;
+}
+
+html[data-intro='nav'] {
+  --intro-delay: 0.2s;
+  --rise-from: 115%;
 }
 
 /* Each section declares its theme; components read these tokens. */
@@ -92,7 +104,7 @@ html[data-intro='skip'] {
   color-scheme: light;
 }
 
-/* Three-digit counters (000–100) for the intro and the scroll readout. */
+/* Three-digit counters (000–100) for the scroll readout. */
 @counter-style pad3 {
   system: numeric;
   symbols: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
@@ -116,17 +128,30 @@ html[data-intro='skip'] {
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Lock page scroll while the full-screen menu dialog is open. */
+/* Lock page scroll while a modal (menu, palette, lightbox) is open. */
 html:has(dialog[open]) {
   overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+/* Lenis smooth scrolling — see components/scroll/SmoothScroll.tsx. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
 
 body {
@@ -140,6 +165,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
+}
+
+/* Every page's <main> sits above the footer, which is uncovered at the end. */
+#main {
+  position: relative;
+  z-index: 1;
+  outline: none;
 }
 
 img,
@@ -324,6 +356,17 @@ body::after {
   }
 }
 
+/* Touch feedback: cards and buttons give a little under the finger. */
+@media (hover: none) {
+  .press {
+    transition: scale 300ms var(--ease-out);
+  }
+
+  .press:active {
+    scale: 0.985;
+  }
+}
+
 /* ==========================================================================
    Reveal system — hidden states apply only once JS is confirmed (html.js),
    so content is always visible without JavaScript.
@@ -406,6 +449,34 @@ body::after {
 
 .js [data-reveal='rule'][data-in] {
   transform: none;
+}
+
+/* ==========================================================================
+   Page entrance — first-screen headlines rise as the preloader or the page
+   curtain opens, timed by --intro-delay. Pure CSS, so it needs no script.
+   ========================================================================== */
+
+.enter-lines .line > span {
+  animation: enter-rise 1.3s var(--ease-out) both;
+  animation-delay: calc(var(--intro-delay) + var(--i, 0) * 110ms);
+}
+
+.enter-fade {
+  animation: enter-fade 1s var(--ease-out) both;
+  animation-delay: calc(var(--intro-delay) + var(--enter, 450) * 1ms);
+}
+
+@keyframes enter-rise {
+  from {
+    transform: translate3d(0, var(--rise-from), 0);
+  }
+}
+
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

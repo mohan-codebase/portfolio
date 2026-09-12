@@ -1,6 +1,9 @@
-/* The light sheet that slides over the sticky hero. */
 .about {
   z-index: 1;
+}
+
+/* Home: the light sheet that slides over the sticky hero. */
+.sheet {
   padding-block-start: clamp(4.5rem, 3rem + 6vw, 9rem);
   box-shadow: 0 -2.5rem 5rem -2rem rgb(0 0 0 / 0.45);
 }
@@ -50,6 +53,10 @@
   letter-spacing: -0.025em;
 }
 
+.more {
+  margin-top: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
 .principles {
   margin-top: clamp(4.5rem, 3rem + 6vw, 9rem);
   row-gap: 2.75rem;
@@ -95,6 +102,11 @@
 
   .intro {
     grid-column: 5 / span 8;
+  }
+
+  /* Lines up with the intro column. */
+  .more {
+    margin-inline-start: calc((100% + var(--col-gap)) / 12 * 4);
   }
 
   .principle {

@@ -1,45 +1,30 @@
-.work {
+.cases {
   z-index: 1;
-}
-
-.head {
-  align-items: end;
-  row-gap: 2rem;
-  margin-block: clamp(3rem, 2rem + 4vw, 6rem) clamp(4rem, 3rem + 6vw, 9rem);
-}
-
-.title {
-  grid-column: 1 / -1;
-  font-size: var(--fs-mega);
-  font-weight: 800;
-  line-height: 0.84;
-  letter-spacing: var(--tracking-display);
-  text-transform: uppercase;
-}
-
-.count {
-  margin-inline-start: 0.12em;
-  color: var(--accent-ink);
-  font-family: var(--font-mono);
-  font-size: max(0.13em, 0.75rem);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  vertical-align: top;
-  line-height: 1;
-}
-
-.intro {
-  grid-column: 1 / -1;
-  max-width: 36ch;
-  font-size: var(--fs-lead);
-  line-height: 1.35;
-  letter-spacing: -0.015em;
 }
 
 .projects {
   display: grid;
   gap: clamp(6rem, 4rem + 8vw, 12rem);
-  margin-bottom: clamp(6rem, 4rem + 8vw, 12rem);
+  margin-top: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+.all {
+  z-index: 1;
+  padding-block-start: 0;
+}
+
+.title {
+  margin-block: clamp(3rem, 2rem + 4vw, 6rem) clamp(2.5rem, 2rem + 3vw, 4.5rem);
+  font-size: var(--fs-display);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.title :global(.serif) {
+  font-size: 1.12em;
+  line-height: 0.8;
 }
 
 .more {
@@ -48,21 +33,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  margin-top: clamp(3rem, 2rem + 3vw, 5rem);
+  margin-top: clamp(4rem, 3rem + 4vw, 7rem);
 }
 
 .moreText {
   max-width: 34ch;
   color: var(--mute);
-}
-
-@media (min-width: 1024px) {
-  .title {
-    grid-column: 1 / span 9;
-  }
-
-  .intro {
-    grid-column: 10 / -1;
-    padding-bottom: 0.6em;
-  }
 }

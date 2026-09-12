@@ -1,5 +1,6 @@
 import type { ComponentProps, ReactNode } from 'react';
 
+import { TransitionLink } from '@/components/transition/TransitionLink';
 import { cx } from '@/lib/cx';
 
 import { Arrow, type ArrowDirection } from './Arrow';
@@ -17,7 +18,8 @@ type ButtonProps = Omit<ComponentProps<'a'>, 'children'> & {
 /**
  * The one button of the site: strong type, a hairline frame and an arrow cell.
  * On hover the fill rises from the baseline and the arrow is swapped for a
- * fresh one travelling in the same direction.
+ * fresh one travelling in the same direction. Internal pages go through the
+ * page curtain; anchors and external links stay plain links.
  */
 export function Button({
   href,
@@ -28,14 +30,9 @@ export function Button({
   className,
   ...rest
 }: ButtonProps) {
-  return (
-    <a
-      href={href}
-      className={cx(styles.button, styles[variant], className)}
-      data-arrow={arrow}
-      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      {...rest}
-    >
+  const classes = cx(styles.button, styles[variant], 'press', className);
+  const content = (
+    <>
       <span className={styles.text}>{children}</span>
       <span className={styles.icon} aria-hidden="true">
         <span className={styles.arrows}>
@@ -44,6 +41,26 @@ export function Button({
         </span>
       </span>
       {external ? <span className="sr-only"> (opens in a new tab)</span> : null}
+    </>
+  );
+
+  if (href.startsWith('/') && !external) {
+    return (
+      <TransitionLink href={href} className={classes} data-arrow={arrow} {...rest}>
+        {content}
+      </TransitionLink>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      className={classes}
+      data-arrow={arrow}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      {...rest}
+    >
+      {content}
     </a>
   );
 }

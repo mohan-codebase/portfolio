@@ -2,20 +2,27 @@
 
 import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 
+import { TransitionLink } from '@/components/transition/TransitionLink';
+
 /**
  * The artboard link. On fine pointers it exposes an eased pointer offset
  * (`--mx` / `--my`, -0.5…0.5) that the frames use for depth, and a
- * `data-hover` flag that starts the in-frame scroll preview.
+ * `data-hover` flag that starts the in-frame scroll preview. Internal links
+ * go through the page curtain; external ones open in a new tab.
  */
 export function ProjectMedia({
   href,
   label,
+  cursorLabel,
+  external = false,
   className,
   style,
   children,
 }: {
   href: string;
   label: string;
+  cursorLabel: string;
+  external?: boolean;
   className?: string;
   style?: CSSProperties;
   children: ReactNode;
@@ -69,19 +76,37 @@ export function ProjectMedia({
     };
   }, []);
 
+  if (external) {
+    return (
+      <a
+        ref={ref}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        style={style}
+        data-cursor="view"
+        data-cursor-label={cursorLabel}
+        data-hover="false"
+      >
+        {children}
+        <span className="sr-only">{label} (opens in a new tab)</span>
+      </a>
+    );
+  }
+
   return (
-    <a
+    <TransitionLink
       ref={ref}
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
       className={className}
       style={style}
       data-cursor="view"
+      data-cursor-label={cursorLabel}
       data-hover="false"
     >
       {children}
-      <span className="sr-only">{label} (opens in a new tab)</span>
-    </a>
+      <span className="sr-only">{label}</span>
+    </TransitionLink>
   );
 }

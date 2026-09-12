@@ -6,12 +6,12 @@ import { currently } from '@/data/currently';
 import styles from './Currently.module.css';
 
 /** A small live status board that makes the portfolio feel current. */
-export function Currently() {
+export function Currently({ index = '06' }: { index?: string }) {
   return (
     <section id="currently" className={`section ${styles.currently}`} data-theme="light" aria-labelledby="currently-title">
       <div className="container">
         <SectionHeader
-          index="06"
+          index={index}
           title="Currently"
           meta={
             <>
@@ -25,10 +25,10 @@ export function Currently() {
         </h2>
 
         <ul className={styles.board}>
-          {currently.items.map((item, index) => (
-            <li key={item.verb} className={styles.cell} data-reveal style={{ '--delay': index * 90 } as CSSProperties}>
+          {currently.items.map((item, position) => (
+            <li key={item.verb} className={styles.cell} data-reveal style={{ '--delay': position * 90 } as CSSProperties}>
               <p className={`label ${styles.verb}`}>
-                <span className={styles.index}>0{index + 1}</span>
+                <span className={styles.index}>0{position + 1}</span>
                 {item.verb}
               </p>
               <p className={styles.value}>{item.value}</p>

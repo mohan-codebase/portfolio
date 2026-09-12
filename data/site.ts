@@ -32,10 +32,17 @@ export const site = {
     // TODO: add your LinkedIn URL — the link appears everywhere automatically once `href` is set.
     { label: 'LinkedIn', href: '', handle: '' },
   ],
+  /** Every page, in order. The menu, the footer index and the ⌘K palette list these. */
+  pages: [
+    { label: 'Home', href: '/' },
+    { label: 'Work', href: '/work' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+  ],
+  /** Header links. Contact has its own button beside them. */
   nav: [
-    { label: 'Work', href: '#work' },
-    { label: 'About', href: '#about' },
-    { label: 'Experience', href: '#experience' },
+    { label: 'Work', href: '/work' },
+    { label: 'About', href: '/about' },
   ],
 };
 

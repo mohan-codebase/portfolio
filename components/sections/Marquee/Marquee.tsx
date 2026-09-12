@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import { marquee } from '@/data/content';
 
 import styles from './Marquee.module.css';
+import { VelocityTrack } from './VelocityTrack';
 
 function Asterisk() {
   return (
@@ -12,7 +13,7 @@ function Asterisk() {
   );
 }
 
-/** A slow band of moving type between the manifesto and the work. Decorative only. */
+/** A band of moving type that reacts to the speed and direction of your scroll. Decorative only. */
 export function Marquee() {
   const group = (
     <div className={styles.group}>
@@ -27,10 +28,10 @@ export function Marquee() {
 
   return (
     <div className={styles.marquee} data-theme="light" data-observe aria-hidden="true">
-      <div className={styles.track}>
+      <VelocityTrack className={styles.track}>
         {group}
         {group}
-      </div>
+      </VelocityTrack>
     </div>
   );
 }

@@ -3,9 +3,13 @@
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
+import { whenPageVisible } from '@/lib/stage';
+
 /**
  * One observer for the whole page instead of a client wrapper per element:
  * - `[data-reveal]` gets `data-in` once, the first time it scrolls into view.
+ *   Observation waits until the page is visible (preloader or page curtain
+ *   gone), so reveals never play behind an overlay.
  * - `[data-observe]` gets `data-visible` toggled continuously (used to pause
  *   decorative loops while they are off-screen).
  */
@@ -28,10 +32,13 @@ export function RevealObserver() {
       for (const entry of entries) entry.target.toggleAttribute('data-visible', entry.isIntersecting);
     });
 
-    document.querySelectorAll('[data-reveal]:not([data-in])').forEach((element) => reveal.observe(element));
     document.querySelectorAll('[data-observe]').forEach((element) => visibility.observe(element));
+    const cancel = whenPageVisible(() => {
+      document.querySelectorAll('[data-reveal]:not([data-in])').forEach((element) => reveal.observe(element));
+    });
 
     return () => {
+      cancel();
       reveal.disconnect();
       visibility.disconnect();
     };

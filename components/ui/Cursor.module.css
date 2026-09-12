@@ -1,4 +1,10 @@
+/* Sizes are variables so a state can resize the ring and a stuck element can
+   override them inline; the ring morphs between them. */
 .cursor {
+  --w: 38px;
+  --h: 38px;
+  --r: 50%;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -20,44 +26,106 @@
   opacity: 1;
 }
 
-/* Drawn at its largest size and scaled down, so every state stays crisp. */
-.disc {
+/* Scripts move .ring and .pin; their children own the state transitions,
+   so the two kinds of transform never fight. */
+.ring,
+.pin {
   position: absolute;
-  top: -48px;
-  left: -48px;
-  width: 96px;
-  height: 96px;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--w);
+  height: var(--h);
+  margin: calc(var(--h) / -2) 0 0 calc(var(--w) / -2);
+  border: 1.5px solid #fff;
+  border-radius: var(--r);
+  transition:
+    width 450ms var(--ease-out),
+    height 450ms var(--ease-out),
+    margin 450ms var(--ease-out),
+    border-radius 450ms var(--ease-out),
+    border-color 300ms ease,
+    background-color 300ms ease;
+}
+
+/* A spinning arc while the page curtain is loading the next page. */
+.shape::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border: 1.5px solid transparent;
+  border-top-color: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  animation: spin 0.8s linear infinite paused;
+}
+
+:global(html[data-curtain]) .shape::after {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
   border-radius: 50%;
   background: #fff;
-  transform: scale(0.09);
-  transition:
-    transform 500ms var(--ease-out),
-    background-color 250ms ease;
+  transition: scale 350ms var(--ease-out);
 }
 
-.cursor[data-state='link'] .disc {
-  transform: scale(0.5);
+/* ------------------------------------------------------------------------
+   States
+   ------------------------------------------------------------------------ */
+
+.cursor[data-state='link'] {
+  --w: 68px;
+  --h: 68px;
 }
 
-.cursor[data-state='hide'] .disc {
-  transform: scale(0);
+.cursor[data-state='text'] {
+  --w: 2px;
+  --h: 28px;
+  --r: 1px;
 }
 
-.cursor[data-state='view'] {
+.cursor[data-state='view'],
+.cursor[data-state='drag'] {
+  --w: 108px;
+  --h: 108px;
   mix-blend-mode: normal;
 }
 
-.cursor[data-state='view'] .disc {
+.cursor[data-state='hide'] {
+  --w: 0px;
+  --h: 0px;
+}
+
+/* Filled states invert whatever is underneath (difference blend). A stuck ring stays an
+   outline around its element, so the element's own hover colour is never inverted. */
+.cursor:is([data-state='link'], [data-state='text']) .shape {
+  background: #fff;
+}
+
+.cursor:is([data-state='view'], [data-state='drag']) .shape {
+  border-color: var(--signal);
   background: var(--signal);
-  transform: scale(1);
 }
 
-.cursor[data-pressed] .disc {
-  transform: scale(0.07);
+.cursor[data-state='hide'] .shape {
+  border-width: 0;
 }
 
-.cursor[data-pressed][data-state='view'] .disc {
-  transform: scale(0.9);
+.cursor:not([data-state='default']) .dot {
+  scale: 0;
 }
 
 .label {
@@ -77,11 +145,17 @@
     transform 500ms var(--ease-out);
 }
 
-.label:not(:empty)::after {
+.cursor[data-state='view'] .label::after {
   content: ' ↗';
 }
 
-.cursor[data-state='view'] .label {
+.cursor:is([data-state='view'], [data-state='drag']) .label {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  to {
+    rotate: 1turn;
+  }
 }

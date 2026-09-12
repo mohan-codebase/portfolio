@@ -1,6 +1,7 @@
 /**
- * Editorial copy for each section. Headline arrays are rendered one line per
- * item; the closing full stop is added by the design (it is the accent colour).
+ * Editorial copy for each page and section. Headline arrays are rendered one
+ * line per item; the closing full stop is added by the design (it is the
+ * accent colour). Wrap a word in *asterisks* to set it in the italic serif.
  */
 
 export const hero = {
@@ -34,11 +35,23 @@ export const about = {
   ],
 };
 
+export const aboutPage = {
+  headline: ['Hello —', "I'm *Mohan*"],
+};
+
 export const marquee = ['Fullstack', 'design', 'Development', 'interaction'];
 
 export const work = {
   intro:
     'Real projects, from my first landing page to multi-page React builds. Each one taught me something the last one couldn’t.',
+  more: 'Everything else — experiments, clones and works in progress — lives on GitHub.',
+};
+
+export const caseStudy = {
+  overview: 'Overview',
+  highlights: 'Highlights',
+  screens: 'Screens',
+  next: 'Next project',
 };
 
 export const toolkit = {
@@ -49,4 +62,22 @@ export const contact = {
   kicker: 'Have an idea?',
   headline: ["Let's", 'make it', '*real*'],
   body: 'Got a project, a role or a question? My inbox is open.',
+};
+
+/** The fill-in-the-blanks brief on the contact page. It drafts an email; nothing is sent from the site. */
+export const composer = {
+  intro: 'Fill in the blanks and it drafts an email in your own mail app — nothing is sent until you press send.',
+  /** `phrase` finishes the sentence "I'd like help with …". */
+  services: [
+    { label: 'Website', phrase: 'a website' },
+    { label: 'Web app', phrase: 'a web app' },
+    { label: 'Landing page', phrase: 'a landing page' },
+    { label: 'Figma to website', phrase: 'turning a Figma design into a website' },
+    { label: 'Something else', phrase: 'something else' },
+  ],
+  timelines: [
+    { label: 'As soon as possible', phrase: 'as soon as possible' },
+    { label: 'In a month or two', phrase: 'in a month or two' },
+    { label: 'Just exploring', phrase: 'no fixed date yet — just exploring' },
+  ],
 };

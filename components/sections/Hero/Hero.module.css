@@ -115,9 +115,9 @@
     color-mix(in srgb, #6366f1 12%, transparent) 45%,
     transparent 100%
   );
+  /* The radial gradient is soft on its own; a blur filter here cost a full-screen repaint. */
   transform: translate3d(calc(var(--px) * 100vw), calc(var(--py) * 100svh), 0);
   will-change: transform;
-  filter: blur(30px);
 }
 
 /* ------------------------------------------------------------------------
@@ -177,17 +177,9 @@
   gap: 2rem;
 }
 
-/* First visit: the intro panel lifts to reveal the hero, so the headline is
-   already painted beneath it (a fast LCP) and only settles upward. Repeat
-   visits skip the intro, and the lines rise all the way out of their masks. */
-.row {
-  --rise-from: 18%;
-}
-
-:global(html[data-intro='skip']) .row {
-  --rise-from: 115%;
-}
-
+/* The rise distance is --rise-from (globals.css): on a first visit the headline
+   is already painted under the preloader (a fast LCP) and only settles upward;
+   otherwise the lines rise all the way out of their masks. */
 .row .line > span {
   animation: rise 1.3s var(--ease-out) both;
   animation-delay: calc(var(--intro-delay) + var(--i) * 110ms);

@@ -1,0 +1,502 @@
+/* ==========================================================================
+   Timeline (seconds from first paint). Keep --intro-delay in globals.css a
+   touch after --t-lift, so page headlines rise as the columns pass.
+   ========================================================================== */
+
+.preloader {
+  --t-count: 0.25s;
+  --t-count-dur: 1.75s;
+  --t-out: 2.15s;
+  --t-lift: 2.4s;
+
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  color: var(--paper);
+  pointer-events: none;
+  animation: hide 1ms linear 3.9s forwards;
+}
+
+/* Any intro state ('skip' for repeat visits, 'nav' after a page transition) means the preloader
+   is done. Showing it again would restart every one of its animations. */
+:global(html[data-intro]) .preloader {
+  display: none;
+}
+
+/* Finishes as the columns start to lift; scripts wait on it (see lib/stage.ts). */
+.marker {
+  position: absolute;
+  animation: hide 1ms linear var(--t-lift) both;
+}
+
+/* ------------------------------------------------------------------------
+   Columns — solid ink, six on phones and twelve from tablet up.
+   ------------------------------------------------------------------------ */
+
+.panels {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.panel {
+  position: relative;
+  margin-inline: -0.5px;
+  background: var(--ink);
+  pointer-events: auto;
+  will-change: transform;
+  animation: lift 0.9s var(--ease-in-out) calc(var(--t-lift) + var(--i) * 45ms) forwards;
+}
+
+.panel:nth-child(n + 7) {
+  display: none;
+}
+
+/* Grid lines draw down the screen as the page lays itself out. */
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 1px;
+  background: color-mix(in srgb, var(--paper) 7%, transparent);
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: drawY 1.1s var(--ease-out) calc(0.05s + var(--i) * 45ms) forwards;
+}
+
+.panel:first-child::before {
+  display: none;
+}
+
+/* The trailing edge glows as each column lifts away. */
+.panel::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: var(--signal);
+  box-shadow: 0 0 18px 1px color-mix(in srgb, var(--signal) 65%, transparent);
+  animation: fadeIn 0.3s linear calc(var(--t-lift) + var(--i) * 45ms) both;
+}
+
+@media (min-width: 768px) {
+  .panels {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .panel:nth-child(n + 7) {
+    display: block;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Heads-up display
+   ------------------------------------------------------------------------ */
+
+.hud {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  padding-block: 1.6rem 1.5rem;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--mute-dark);
+}
+
+.top > *,
+.font,
+.percent,
+.place {
+  animation:
+    fadeIn 0.8s var(--ease-out) 0.15s both,
+    fadeOut 0.35s var(--ease-in-out) var(--t-out) forwards;
+}
+
+.status {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .status {
+    display: block;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Specimen: glyph cells between cap-height and baseline guides
+   ------------------------------------------------------------------------ */
+
+.specimen {
+  align-self: center;
+  display: grid;
+  gap: clamp(1.75rem, 4svh, 2.75rem);
+}
+
+.font {
+  color: var(--mute-dark);
+}
+
+.glyphs {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  font-size: min(19vw, 17svh);
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: 0;
+}
+
+@media (min-width: 1024px) {
+  .glyphs {
+    font-size: min(14vw, 30svh, 15rem);
+  }
+}
+
+.guide {
+  position: absolute;
+  left: calc(var(--gutter) * -1);
+  right: calc(var(--gutter) * -1);
+  height: 1px;
+  background: color-mix(in srgb, var(--paper) 14%, transparent);
+  transform: scaleX(0);
+  animation:
+    drawX 1.2s var(--ease-out) 0.15s forwards,
+    fadeOut 0.3s linear var(--t-out) forwards;
+}
+
+.guide[data-guide='cap'] {
+  top: 0;
+  transform-origin: left center;
+}
+
+.guide[data-guide='base'] {
+  bottom: 0;
+  transform-origin: right center;
+}
+
+.glyph {
+  position: relative;
+  display: grid;
+  justify-items: center;
+}
+
+.code {
+  position: absolute;
+  bottom: calc(100% + 0.75rem);
+  left: 50%;
+  translate: -50% 0;
+  color: var(--mute-dark);
+  white-space: nowrap;
+  animation:
+    fadeIn 0.6s var(--ease-out) calc(0.55s + var(--i) * 70ms) both,
+    fadeOut 0.3s linear var(--t-out) forwards;
+}
+
+.box {
+  position: absolute;
+  inset: 0 -0.05em;
+  border: 1px dashed color-mix(in srgb, var(--paper) 17%, transparent);
+  animation:
+    boxIn 0.7s var(--ease-out) calc(0.2s + var(--i) * 70ms) both,
+    fadeOut 0.3s linear var(--t-out) forwards;
+}
+
+.mask {
+  display: block;
+  overflow-y: clip;
+  padding-block: 0.05em;
+}
+
+.letter {
+  display: block;
+  will-change: transform;
+  animation:
+    rise 0.95s var(--ease-out) calc(0.3s + var(--i) * 70ms) both,
+    riseOut 0.55s var(--ease-in-out) calc(var(--t-out) + var(--i) * 40ms) forwards;
+}
+
+/* Desktop only: the width axis sweeps while loading, like a font being calibrated.
+   (Animating font axes relays out text every frame, so phones keep the static cut.) */
+@media (min-width: 1024px) and (hover: hover) {
+  .letter {
+    animation:
+      rise 0.95s var(--ease-out) calc(0.3s + var(--i) * 70ms) both,
+      calibrate 1.9s var(--ease-in-out) 0.3s both,
+      riseOut 0.55s var(--ease-in-out) calc(var(--t-out) + var(--i) * 40ms) forwards;
+  }
+}
+
+/* Dimension line under the name; its fill tracks the counter. */
+.measure {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 0.75rem;
+  border-inline: 1px solid var(--signal);
+  color: var(--signal);
+  animation:
+    fadeIn 0.6s var(--ease-out) 0.35s both,
+    fadeOut 0.3s linear var(--t-out) forwards;
+}
+
+.measure::before,
+.measure::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.measure::before {
+  background: color-mix(in srgb, var(--signal) 28%, transparent);
+}
+
+.measure::after {
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: progress var(--t-count-dur) var(--ease-out) var(--t-count) both;
+}
+
+.measure > span {
+  position: relative;
+  z-index: 1;
+  padding-inline: 0.75rem;
+  background: var(--ink);
+  line-height: 0.75rem;
+}
+
+/* ------------------------------------------------------------------------
+   Odometer
+   ------------------------------------------------------------------------ */
+
+.bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.counter {
+  display: flex;
+  align-items: flex-start;
+  font-size: clamp(3.5rem, 1rem + 13vw, 9.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.digit {
+  display: block;
+  height: 1em;
+  overflow: clip;
+}
+
+.slide {
+  display: block;
+  animation: slideOut 0.55s var(--ease-in-out) calc(var(--t-out) + var(--d) * 50ms) forwards;
+}
+
+.reel {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  animation: var(--t-count-dur) var(--ease-out) var(--t-count) both;
+}
+
+.reel > span {
+  display: block;
+  height: 1em;
+}
+
+.digit[data-place='0'] .reel {
+  animation-name: reelHundreds;
+}
+
+.digit[data-place='1'] .reel {
+  animation-name: reelTens;
+}
+
+.digit[data-place='2'] .reel {
+  animation-name: reelOnes;
+}
+
+.percent {
+  margin: 0.35em 0 0 0.5rem;
+  color: var(--mute-dark);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.place {
+  color: var(--mute-dark);
+  text-align: right;
+}
+
+/* ------------------------------------------------------------------------
+   Keyframes. The counter stops at 027, 061, 084 and 100: each step rolls
+   for most of its slot, then holds, like a real load arriving in chunks.
+   ------------------------------------------------------------------------ */
+
+@keyframes reelHundreds {
+  0%,
+  77.1% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -1em, 0);
+  }
+}
+
+@keyframes reelTens {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  18%,
+  25.7% {
+    transform: translate3d(0, -2em, 0);
+  }
+  43.7%,
+  51.4% {
+    transform: translate3d(0, -6em, 0);
+  }
+  69.4%,
+  77.1% {
+    transform: translate3d(0, -8em, 0);
+  }
+  100% {
+    transform: translate3d(0, -10em, 0);
+  }
+}
+
+@keyframes reelOnes {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  18%,
+  25.7% {
+    transform: translate3d(0, -7em, 0);
+  }
+  43.7%,
+  51.4% {
+    transform: translate3d(0, -11em, 0);
+  }
+  69.4%,
+  77.1% {
+    transform: translate3d(0, -14em, 0);
+  }
+  100% {
+    transform: translate3d(0, -20em, 0);
+  }
+}
+
+@keyframes progress {
+  0% {
+    transform: scaleX(0);
+  }
+  18%,
+  25.7% {
+    transform: scaleX(0.27);
+  }
+  43.7%,
+  51.4% {
+    transform: scaleX(0.61);
+  }
+  69.4%,
+  77.1% {
+    transform: scaleX(0.84);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes calibrate {
+  0% {
+    font-variation-settings: 'wdth' 125;
+  }
+  50% {
+    font-variation-settings: 'wdth' 75;
+  }
+  100% {
+    font-variation-settings: 'wdth' 100;
+  }
+}
+
+@keyframes lift {
+  to {
+    transform: translate3d(0, -101%, 0);
+  }
+}
+
+@keyframes drawY {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes drawX {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translate3d(0, 108%, 0);
+  }
+}
+
+@keyframes riseOut {
+  to {
+    transform: translate3d(0, -108%, 0);
+  }
+}
+
+@keyframes slideOut {
+  to {
+    transform: translate3d(0, -1.1em, 0);
+  }
+}
+
+@keyframes boxIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader {
+    display: none;
+  }
+}
