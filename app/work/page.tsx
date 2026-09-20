@@ -8,7 +8,7 @@ import { projects } from '@/data/projects';
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Explore modern Framer templates and software engineering projects designed for conversion, clarity, and scale.',
+    'Explore modern web development projects and digital experiences designed for performance, clarity, and scale.',
 };
 
 export default function WorkPage() {
@@ -23,7 +23,7 @@ export default function WorkPage() {
           My Brightest Creations
         </h1>
         <p className="text-base sm:text-lg text-[#111111]/70 leading-relaxed font-normal">
-          A showcase of high-end Framer templates, bespoke client websites, and SaaS product interfaces engineered with precision.
+          A showcase of modern web applications, bespoke client websites, and digital products engineered with precision.
         </p>
       </div>
 

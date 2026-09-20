@@ -32,11 +32,11 @@ export const blogs: BlogPost[] = [
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
@@ -102,11 +102,11 @@ export const blogs: BlogPost[] = [
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
@@ -172,11 +172,11 @@ export const blogs: BlogPost[] = [
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
@@ -242,11 +242,11 @@ export const blogs: BlogPost[] = [
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
@@ -312,11 +312,11 @@ export const blogs: BlogPost[] = [
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
@@ -382,11 +382,11 @@ export const blogs: BlogPost[] = [
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
@@ -452,11 +452,11 @@ export const blogs: BlogPost[] = [
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",
-        "text": "Majd"
+        "text": "Mohan"
       },
       {
         "tag": "p",

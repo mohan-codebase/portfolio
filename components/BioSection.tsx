@@ -17,31 +17,25 @@ export default function BioSection() {
             Hey!
           </h2>
           <p className="text-xl sm:text-2xl md:text-3xl font-normal leading-snug text-[#111111] tracking-tight">
-            I’m Majd, a builder based in Syria, currently working on{' '}
-            <span className="font-semibold underline decoration-black/30 underline-offset-4">
-              Templyo
-            </span>
-            , a platform for high-quality Framer templates.
+            I’m Mohan, a web developer based in Chennai, India, crafting high-performance web applications and digital experiences.
           </p>
         </div>
 
         {/* Right Column: Narrative & CTA */}
         <div className="lg:col-span-6 space-y-6 lg:pt-3">
           <p className="text-base sm:text-lg text-[#111111]/80 leading-relaxed font-normal">
-            I’m a software engineer and Framer creator with a strong focus on building modern, scalable, and conversion-driven web experiences.
+            I specialize in building modern, accessible, and conversion-driven web applications with clean architecture and fluid interactions.
           </p>
           <p className="text-base sm:text-lg text-[#111111]/80 leading-relaxed font-normal">
-            Over the years, I’ve created and shipped multiple SaaS products and Framer templates used by global customers, helping them launch faster.
+            Over the years, I’ve engineered and shipped full-stack web products, bespoke client websites, and scalable frontend architectures.
           </p>
 
           <div className="pt-4">
             <a
-              href="https://framer.link/nnhGcWR"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-[#111111] text-[#faf7f3] text-sm font-medium group hover:bg-black/85 transition-all shadow-sm"
             >
-              <RollingText text="Get Started" />
+              <RollingText text="Get In Touch" />
               <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#faf7f3]" />
               </div>

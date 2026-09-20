@@ -30,22 +30,20 @@ export default function Navbar() {
       {/* Top Banner Actions */}
       <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 pt-4 pb-2 flex items-center justify-between relative z-30 text-sm">
         <a
-          href="https://framer.link/bsFvFjY"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="mailto:mohanavenkatesh.work@gmail.com"
           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#111111] text-[#faf7f3] font-medium text-xs sm:text-sm tracking-tight hover:opacity-90 transition-opacity"
         >
-          <RollingText text="Use for Free" />
+          <RollingText text="Hire Me" />
           <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
         </a>
 
         <a
-          href="https://framer.link/5Wi1vkP"
+          href="https://github.com/mohan-codebase"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-black/10 bg-white/40 backdrop-blur-sm text-[#111111] font-medium text-xs sm:text-sm tracking-tight hover:bg-black/5 transition-colors"
         >
-          <RollingText text="More Templates" />
+          <RollingText text="GitHub" />
           <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
         </a>
       </div>
@@ -63,7 +61,7 @@ export default function Navbar() {
             className="text-base font-bold tracking-tight text-[#111111] flex items-center gap-1.5 group"
           >
             <span className="w-2 h-2 rounded-full bg-[#111111] group-hover:scale-125 transition-transform" />
-            <span className="font-semibold text-lg tracking-tight">Majd</span>
+            <span className="font-semibold text-lg tracking-tight">Mohan</span>
           </Link>
 
           {/* Desktop Nav Links */}

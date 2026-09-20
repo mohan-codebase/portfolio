@@ -15,10 +15,10 @@ export default function Footer() {
   ];
 
   const socials = [
+    { label: 'GitHub', href: 'https://github.com/mohan-codebase' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
     { label: 'X (Twitter)', href: 'https://x.com/' },
     { label: 'Instagram', href: 'https://www.instagram.com/' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-    { label: 'YouTube', href: 'https://www.youtube.com/' },
   ];
 
   return (
@@ -27,9 +27,9 @@ export default function Footer() {
         {/* Top Tagline */}
         <div className="mb-16 sm:mb-24">
           <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#faf7f3] leading-[1.05]">
-            Scaling
+            Building
             <br />
-            Start-ups for Growth.
+            Modern Web Experiences.
           </h2>
         </div>
 
@@ -61,15 +61,15 @@ export default function Footer() {
             </h4>
             <div>
               <a
-                href="mailto:mejed@templyo.io"
-                className="text-base sm:text-lg text-[#faf7f3] hover:underline underline-offset-4 inline-flex items-center gap-1.5 font-medium"
+                href="mailto:mohanavenkatesh.work@gmail.com"
+                className="text-base sm:text-lg text-[#faf7f3] hover:underline underline-offset-4 inline-flex items-center gap-1.5 font-medium break-all"
               >
-                Mejed@Templyo.io
-                <ArrowUpRight className="w-4 h-4 opacity-70" />
+                mohanavenkatesh.work@gmail.com
+                <ArrowUpRight className="w-4 h-4 opacity-70 shrink-0" />
               </a>
             </div>
             <p className="text-xs text-[#faf7f3]/50 max-w-xs pt-2">
-              Available for freelance engagements, template customizations, and strategic design advisory.
+              Available for freelance engagements, full-stack web applications, and frontend development.
             </p>
           </div>
 
@@ -95,33 +95,31 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Giant Watermark MAJD */}
+        {/* Giant Watermark MOHAN */}
         <div className="py-12 sm:py-20 text-center select-none overflow-hidden">
           <span className="text-[20vw] sm:text-[22vw] font-black tracking-tighter uppercase text-white/[0.04] leading-none block">
-            MAJD
+            MOHAN
           </span>
         </div>
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#faf7f3]/50 pt-4">
-          <p>© 2026 Majd. All rights reserved.</p>
+          <p>© 2026 Mohan. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a
-              href="https://www.framer.com"
+              href="https://github.com/mohan-codebase"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#faf7f3] transition-colors"
             >
-              Created with Framer
+              GitHub
             </a>
-            <a
-              href="https://framer.link/bsFvFjY"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/#contact"
               className="hover:text-[#faf7f3] transition-colors"
             >
-              Use for Free
-            </a>
+              Let&apos;s talk
+            </Link>
           </div>
         </div>
       </div>

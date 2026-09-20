@@ -33,7 +33,7 @@ export default function ContactSection() {
             Let’s talk.
           </h2>
           <p className="text-base sm:text-lg text-[#111111]/70 leading-relaxed font-normal pt-2">
-            Have a project or need help? Fill out the form, and we&apos;ll get back to you soon.
+            Have a project or need help? Fill out the form, and I&apos;ll get back to you soon.
           </p>
 
           <div className="pt-6 space-y-2">
@@ -41,11 +41,11 @@ export default function ContactSection() {
               Direct Contact
             </p>
             <a
-              href="mailto:mejed@templyo.io"
-              className="text-lg font-medium text-[#111111] hover:underline underline-offset-4 inline-flex items-center gap-1.5"
+              href="mailto:mohanavenkatesh.work@gmail.com"
+              className="text-lg font-medium text-[#111111] hover:underline underline-offset-4 inline-flex items-center gap-1.5 break-all"
             >
-              Mejed@Templyo.io
-              <ArrowUpRight className="w-4 h-4 opacity-60" />
+              mohanavenkatesh.work@gmail.com
+              <ArrowUpRight className="w-4 h-4 opacity-60 shrink-0" />
             </a>
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function ContactSection() {
                 Thank you! Message sent.
               </h3>
               <p className="text-sm text-[#111111]/70 max-w-sm">
-                We received your message and will reply as soon as possible.
+                I received your message and will reply as soon as possible.
               </p>
               <button
                 onClick={() => {

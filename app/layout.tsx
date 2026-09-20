@@ -21,17 +21,17 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Majd',
-    template: '%s - Majd',
+    default: 'Mohan - Web Developer',
+    template: '%s - Mohan',
   },
   description:
-    'Software engineer and Framer creator with a strong focus on building modern, scalable, and conversion-driven web experiences.',
+    'Web developer crafting modern, high-performance web applications and digital experiences.',
   openGraph: {
-    title: 'Majd',
+    title: 'Mohan - Web Developer',
     description:
-      'Software engineer and Framer creator with a strong focus on building modern, scalable, and conversion-driven web experiences.',
-    url: 'https://majd-portfolio.framer.website/',
-    siteName: 'Majd',
+      'Web developer crafting modern, high-performance web applications and digital experiences.',
+    url: 'https://mohan-portfolio.vercel.app',
+    siteName: 'Mohan',
     images: [
       {
         url: 'https://framerusercontent.com/images/ue9IClg37SpZ5YcBTAPeavvDUNo.png',

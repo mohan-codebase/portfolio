@@ -36,11 +36,11 @@ export default function Hero() {
       <div className="my-auto py-12 sm:py-20 text-center relative z-20 flex flex-col items-center justify-center">
         <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight sm:tracking-tighter text-[#111111] uppercase select-none leading-none">
           <span className="inline-block transition-transform hover:scale-[1.02] duration-300">
-            SOFTWARE
+            WEB
           </span>
           <br className="hidden sm:inline" />{' '}
           <span className="inline-block transition-transform hover:scale-[1.02] duration-300">
-            ENGINEER
+            DEVELOPER
           </span>
         </h1>
       </div>
@@ -52,7 +52,7 @@ export default function Hero() {
         </div>
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-          <span>/CREATING SINCE 2020</span>
+          <span>/CREATING SINCE 2024</span>
         </div>
       </div>
     </section>
