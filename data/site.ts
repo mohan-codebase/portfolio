@@ -38,6 +38,7 @@ export const site = {
     { label: 'Work', href: '/work' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
+    { label: 'Privacy Policy', href: '/privacy' },
   ],
   /** Header links. Contact has its own button beside them. */
   nav: [

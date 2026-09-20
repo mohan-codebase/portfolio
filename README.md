@@ -14,6 +14,7 @@ The personal portfolio of Mohan, a fullstack developer in Chennai. Editorial and
 | `/work/[slug]` | A case study for each featured project: a hero set on the project's colour, an overview, every screen (select one to expand) and the next project |
 | `/about` | The manifesto, principles, toolkit, timeline and the "currently" board |
 | `/contact` | Email, socials and a fill-in-the-blanks brief that drafts the email for you |
+| `/privacy` | Data collection, cookie transparency, server logs and privacy rights |
 
 ## Getting started
 
@@ -62,7 +63,7 @@ Capture desktop screenshots at 1440×900 @2x. For the hover-scroll preview, crop
 
 ```text
 app/                 layout (fonts, metadata, boot script) and the pages: /, /work, /work/[slug], /about,
-                     /contact and the 404, plus the OG image, robots and sitemap
+                     /contact, /privacy and the 404, plus the OG image, robots and sitemap
 components/
   preloader/         the CSS-only first-visit preloader
   transition/        the page curtain and TransitionLink
