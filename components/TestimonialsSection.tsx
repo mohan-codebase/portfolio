@@ -64,6 +64,7 @@ export default function TestimonialsSection() {
                   src={t.logo}
                   alt={`${t.name}'s company logo`}
                   fill
+                  sizes="112px"
                   className="object-contain object-left"
                 />
               </div>
@@ -76,11 +77,12 @@ export default function TestimonialsSection() {
 
             {/* Author Meta */}
             <div className="flex items-center gap-3.5 pt-6 border-t border-white/10">
-              <div className="w-12 h-12 rounded-full overflow-relative overflow-hidden bg-white/10 relative flex-shrink-0 border border-white/20">
+              <div className="w-12 h-12 rounded-full overflow-hidden bg-white/10 relative flex-shrink-0 border border-white/20">
                 <Image
                   src={t.avatar}
                   alt={t.name}
                   fill
+                  sizes="48px"
                   className="object-cover"
                 />
               </div>
@@ -88,7 +90,7 @@ export default function TestimonialsSection() {
                 <h4 className="text-base font-semibold text-[#faf7f3]">
                   {t.name}
                 </h4>
-                <p className="text-xs sm:text-sm text-[#faf7f3]/60">
+                <p className="text-xs text-[#faf7f3]/50 font-medium mt-0.5">
                   {t.role}
                 </p>
               </div>
