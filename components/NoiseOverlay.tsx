@@ -1,0 +1,18 @@
+'use client';
+
+import React from 'react';
+
+export default function NoiseOverlay() {
+  return (
+    <div
+      aria-hidden="true"
+      className="fixed inset-0 pointer-events-none z-50 select-none"
+      style={{
+        backgroundImage: "url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png')",
+        backgroundRepeat: 'repeat',
+        backgroundSize: '161px',
+        opacity: 0.045,
+      }}
+    />
+  );
+}

@@ -1,192 +1,220 @@
-import type { StaticImageData } from 'next/image';
-
-import biteDesktop from '@/assets/work/bite-desktop.webp';
-import biteMobile from '@/assets/work/bite-mobile.webp';
-import biteShopMobile from '@/assets/work/bite-shop-mobile.webp';
-import botanical from '@/assets/work/botanical.webp';
-import medical from '@/assets/work/medical.webp';
-import presentsirDarkDesktop from '@/assets/work/presentsir-dark-desktop.webp';
-import presentsirDarkMobile from '@/assets/work/presentsir-dark-mobile.webp';
-import presentsirDesktop from '@/assets/work/presentsir-desktop.webp';
-import presentsirMobile from '@/assets/work/presentsir-mobile.webp';
-import spotify from '@/assets/work/spotify.webp';
-
-export type Shot = { src: StaticImageData; alt: string };
-
-export type FeaturedProject = {
+export interface Project {
   slug: string;
   title: string;
-  year: string;
   category: string;
-  role: string;
-  summary: string;
-  /** Short points restated from the summary, listed on the case study page. */
-  highlights: string[];
-  /** Who else worked on it, for team projects. */
-  team?: string;
-  stack: string[];
-  links: { live: string; code?: string };
-  /** Hostname printed in the browser frame's address bar. */
-  domain: string;
-  /** Editorial caption printed on the artboard. */
-  caption: string;
-  /** Artboard colour behind the screenshots, and whether it reads as dark or light. */
-  tone: { background: string; theme: 'dark' | 'light' };
-  /** Each project gets its own artboard composition. */
-  layout: 'wide' | 'duo' | 'crop';
-  shots: { desktop: Shot; desktopAlt?: Shot; mobile: Shot; mobileAlt?: Shot };
-  /** `desktop` is a full-page capture that scrolls inside its frame on hover. */
-  scrollable?: boolean;
-};
-
-export type ArchiveProject = {
-  title: string;
-  type: string;
-  stack: string[];
+  badge: string;
   year: string;
-  href: string;
-  image?: Shot;
-  /** Links to this very site. */
-  current?: boolean;
-};
-
-const github = 'https://github.com/mohan-codebase';
-
-/** Featured projects each get a case study at /work/[slug]. */
-export const featured: FeaturedProject[] = [
-  {
-    slug: 'presentsir',
-    title: 'PresentSir',
-    year: '2025',
-    category: 'Web app — team project',
-    role: 'Developer in a student team',
-    summary:
-      'Attendance management for institutes — track classes, mark attendance and generate reports. Built by a team of UI/UX designers, graphic designers, content creators and developers from Schools of Techies.',
-    highlights: ['Track classes', 'Mark attendance', 'Generate reports', 'Light and dark themes'],
-    team: 'UI/UX designers, graphic designers, content creators and developers from Schools of Techies',
-    stack: ['React', 'Bootstrap', 'Express', 'MongoDB'],
-    links: { live: 'https://attendance-app-black-omega.vercel.app', code: `${github}/attendance-app` },
-    domain: 'attendance-app-black-omega.vercel.app',
-    caption: 'Landing page — light & dark themes',
-    tone: { background: '#dcd7e5', theme: 'light' },
-    layout: 'duo',
-    shots: {
-      desktop: { src: presentsirDesktop, alt: 'PresentSir landing page in light mode: “Smart attendance for hassle-free mentoring”.' },
-      desktopAlt: { src: presentsirDarkDesktop, alt: 'The same PresentSir landing page in dark mode.' },
-      mobile: { src: presentsirMobile, alt: 'PresentSir on a phone in light mode.' },
-      mobileAlt: { src: presentsirDarkMobile, alt: 'PresentSir on a phone in dark mode.' },
-    },
-  },
-  {
-    slug: 'bite',
-    title: 'Bite',
-    year: '2024',
-    category: 'Storefront study',
-    role: 'Design & build',
-    summary:
-      'A six-page storefront study for a plastic-free toothpaste brand — home, shop, about, sign-up, login and payment — built with Bootstrap 5 to practise responsive layouts and reusable UI patterns.',
-    highlights: ['Six pages: home, shop, about, sign-up, login and payment', 'Responsive layouts', 'Reusable UI patterns'],
-    stack: ['HTML', 'CSS', 'Bootstrap 5'],
-    links: { live: 'https://bitepaste.netlify.app/', code: `${github}/bite-paste` },
-    domain: 'bitepaste.netlify.app',
-    caption: 'Home & shop — desktop and mobile',
-    tone: { background: '#e4dacb', theme: 'light' },
-    layout: 'crop',
-    scrollable: true,
-    shots: {
-      desktop: { src: biteDesktop, alt: 'Bite homepage on desktop: “It’s time to brush better.” over a photo of toothpaste tablets.' },
-      mobile: { src: biteMobile, alt: 'Bite homepage on a phone.' },
-      mobileAlt: { src: biteShopMobile, alt: 'Bite shop page on a phone, with category filters.' },
-    },
-  },
-];
-
-export const archive: ArchiveProject[] = [
-  {
-    title: 'Spotify Premium',
-    type: 'Page clone',
-    stack: ['HTML', 'CSS'],
-    year: '2024',
-    href: 'https://spotify-project-clone.netlify.app/',
-    image: { src: spotify, alt: 'Spotify Premium page clone.' },
-  },
-  {
-    title: 'Botanical',
-    type: 'Plant store UI',
-    stack: ['HTML', 'Bootstrap'],
-    year: '2024',
-    href: 'https://plant-shop-website1.netlify.app/',
-    image: { src: botanical, alt: 'Botanical plant store homepage.' },
-  },
-  {
-    title: 'Medical & Treatment',
-    type: 'First project',
-    stack: ['HTML', 'CSS'],
-    year: '2024',
-    href: 'https://medical-treatment.netlify.app/',
-    image: { src: medical, alt: 'Medical & Treatment landing page.' },
-  },
-  {
-    title: 'Portfolio',
-    type: 'This website',
-    stack: ['Next.js', 'TypeScript'],
-    year: '2026',
-    href: '/',
-    current: true,
-  },
-];
-
-/** Every project as one card, for the work index and the home reel. */
-export type ProjectCard = {
-  id: string;
-  title: string;
-  type: string;
-  year: string;
-  stack: string[];
-  image?: Shot;
-  href: string;
-  /** Opens a case study on this site rather than the live demo. */
-  caseStudy: boolean;
-  current?: boolean;
-};
-
-export const projectCards: ProjectCard[] = [
-  ...featured.map((project) => ({
-    id: project.slug,
-    title: project.title,
-    type: project.category,
-    year: project.year,
-    stack: project.stack,
-    image: project.shots.desktop,
-    href: `/work/${project.slug}`,
-    caseStudy: true,
-  })),
-  ...archive.map((project) => ({
-    id: project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-    title: project.title,
-    type: project.type,
-    year: project.year,
-    stack: project.stack,
-    image: project.image,
-    href: project.href,
-    caseStudy: false,
-    current: project.current,
-  })),
-];
-
-/** Close variants share a filter: "Bootstrap 5" is Bootstrap, and HTML and CSS go together. */
-const stackGroups: Record<string, string> = { HTML: 'HTML & CSS', CSS: 'HTML & CSS', 'Bootstrap 5': 'Bootstrap' };
-
-export const stackGroup = (tech: string) => stackGroups[tech] ?? tech;
-
-/** Filters offered on the work page, in this order. */
-export const stackFilters = ['React', 'Next.js', 'Bootstrap', 'HTML & CSS'];
-
-export const getCase = (slug: string) => featured.find((project) => project.slug === slug);
-
-export function nextCase(slug: string) {
-  const index = featured.findIndex((project) => project.slug === slug);
-  return featured[(index + 1) % featured.length];
+  image: string;
+  description: string;
+  liveUrl: string;
+  overview: string;
+  gallery: string[];
+  features: { title: string; description: string }[];
 }
 
-export const githubProfile = github;
+export const projects: Project[] = [
+  {
+    "slug": "damas",
+    "title": "Damas",
+    "category": "Agency Framer Template",
+    "badge": "Free Framer Template",
+    "year": "2025",
+    "image": "https://framerusercontent.com/images/VNXQLcPHw9VbVzy6BDpZ8pUsaU.png?width=1160&height=800",
+    "description": "Damas is a modern creative agency template built for bold visuals, smooth interactions, and standout storytelling. Perfect for agencies, studios, and creators who want a polished, high impact online presence without starting from scratch.",
+    "liveUrl": "https://framer.link/damas",
+    "overview": "Damas is designed from the ground up for modern creative agencies that prioritize aesthetics and dynamic storytelling. Every section is thoughtfully composed to elevate portfolio showcases, client case studies, and brand identities.",
+    "gallery": [
+      "https://framerusercontent.com/images/173P7WbvHMc1Z9lNpSNy6GIYif8.png?width=1066&height=800",
+      "https://framerusercontent.com/images/UmXfpYfVhYqoqb1DnbFpIC98OIo.png?width=1066&height=800",
+      "https://framerusercontent.com/images/rRp1KaDwStpJ6Pxo05Doj1IjSU.png?width=1066&height=800"
+    ],
+    "features": [
+      {
+        "title": "Visual Language",
+        "description": "Bold typography paired with ample whitespace and subtle micro-animations to highlight your work."
+      },
+      {
+        "title": "Structured Storytelling",
+        "description": "Clean content hierarchy that guides prospective clients through your agency’s capabilities and case studies."
+      },
+      {
+        "title": "Built for Real Use",
+        "description": "Fully responsive, production-ready components optimized for performance and conversion."
+      },
+      {
+        "title": "Clarity that Scales",
+        "description": "Modular design system allowing easy expansion as your agency grows."
+      }
+    ]
+  },
+  {
+    "slug": "najm",
+    "title": "Najm",
+    "category": "SaaS Framer Template",
+    "badge": "Free Framer Template",
+    "year": "2025",
+    "image": "https://framerusercontent.com/images/WgEHVRrQs62rgxlzrnXJJ8rr4.png?width=1160&height=800",
+    "description": "A beautifully crafted Framer website template perfect for AI SaaS businesses looking to showcase their innovative products and services.",
+    "liveUrl": "https://framer.link/najm",
+    "overview": "Najm delivers high-converting SaaS landing page architecture tailored for next-generation AI startups. Packed with interactive feature sections, pricing tables, and social proof components.",
+    "gallery": [
+      "https://framerusercontent.com/images/ujTNOAyihWs0g4ns3ZEmKQBW6M.jpeg",
+      "https://framerusercontent.com/images/v1SmiICbdgfuSlTYmhS054D8sI.jpeg",
+      "https://framerusercontent.com/images/ixj3l3ntKSbk66sf6KZmqHxXWi0.jpeg"
+    ],
+    "features": [
+      {
+        "title": "Conversion Focused",
+        "description": "Hero section, feature grids, and call-to-action blocks tailored for trial signups and MRR growth."
+      },
+      {
+        "title": "Modern Dark Mode",
+        "description": "Sleek dark theme with refined lighting accents and glowing gradient cards."
+      },
+      {
+        "title": "Interactive Demos",
+        "description": "Showcase software workflows and dashboards with intuitive component slots."
+      },
+      {
+        "title": "Lightning Fast",
+        "description": "Optimized assets and minimal layout shifts for top tier Core Web Vitals."
+      }
+    ]
+  },
+  {
+    "slug": "kavi",
+    "title": "Kavi",
+    "category": "AI Framer Template",
+    "badge": "Free Framer Template",
+    "year": "2025",
+    "image": "https://framerusercontent.com/images/I3azeVtkvdKBGl9TX38tUdXEb0.png?width=1160&height=800",
+    "description": "Kavi is a bold and modern website template made for SaaS and AI startups looking to launch fast and scale smarter with clean design and intuitive customization.",
+    "liveUrl": "https://framer.link/kavi",
+    "overview": "Kavi balances futuristic aesthetic touches with uncompromising usability. Specially built for developer tools, AI productivity apps, and cutting-edge startups needing credibility.",
+    "gallery": [
+      "https://framerusercontent.com/images/J0VwtYHHXMhL1FV3jH8iWEtAVk.webp",
+      "https://framerusercontent.com/images/8UEzK68Cuo7xH5PuKC44uAV0ckY.webp",
+      "https://framerusercontent.com/images/Ks48TT9awwpT9gdcWgZd8ev1WY.webp"
+    ],
+    "features": [
+      {
+        "title": "AI-Native Layout",
+        "description": "Engineered specifically to demonstrate prompt engineering, LLM interfaces, and API integrations."
+      },
+      {
+        "title": "Component Library",
+        "description": "Over 20+ responsive components ready to drag and drop into any Framer or React project."
+      },
+      {
+        "title": "Intuitive Navigation",
+        "description": "Clean sticky navigation with instant jump links to pricing, features, and docs."
+      },
+      {
+        "title": "Customizable Themes",
+        "description": "Easily update color tokens and typography to match your proprietary brand guide."
+      }
+    ]
+  },
+  {
+    "slug": "sham",
+    "title": "Sham",
+    "category": "Studio Framer Template",
+    "badge": "Free Framer Template",
+    "year": "2025",
+    "image": "https://framerusercontent.com/images/e3DxUGJWqt7CIVVQIA0VZoy09FQ.png?width=1160&height=800",
+    "description": "A clean, modern Framer template designed for creative studios and businesses. Built with flexible sections, smooth interactions, and fully editable components so you can launch a professional agency site quickly and for free.",
+    "liveUrl": "https://framer.link/sham",
+    "overview": "Sham provides an understated, editorial canvas for independent design studios, photographers, and architects who demand refined typography and effortless presentation.",
+    "gallery": [
+      "https://framerusercontent.com/images/TYjXSgMIzqcCLynoQQYhbF7aeM.webp",
+      "https://framerusercontent.com/images/AmqdjgheRojNIWusBddw5GXHErc.webp",
+      "https://framerusercontent.com/images/Kwfcsb5AKYGhAjNC9ZFvtVn7cU.webp"
+    ],
+    "features": [
+      {
+        "title": "Editorial Aesthetics",
+        "description": "Harmonious type scales and editorial image grids reminiscent of print monographs."
+      },
+      {
+        "title": "Interactive Showcase",
+        "description": "Silky smooth hover reveals and fluid transition states that delight viewers."
+      },
+      {
+        "title": "Client Proofing",
+        "description": "Pre-formatted client testimonial ribbons and award recognition callouts."
+      },
+      {
+        "title": "Zero Friction",
+        "description": "Lightweight code structure allowing effortless deployment in seconds."
+      }
+    ]
+  },
+  {
+    "slug": "abjad",
+    "title": "Abjad",
+    "category": "AI Framer Template",
+    "badge": "Free Framer Template",
+    "year": "2025",
+    "image": "https://framerusercontent.com/images/l08IN6OxWS7DxFD28fNZXjCT4.png?width=1160&height=800",
+    "description": "Olive Living is a slow-living lifestyle brand that creates products for mindful homes. Their philosophy centers on intentional living, warm textures, and everyday rituals that bring comfort and clarity.",
+    "liveUrl": "https://framer.link/abjad",
+    "overview": "Abjad offers an earthy, serene aesthetic crafted for thoughtful brands, lifestyle products, and design-led eCommerce ventures emphasizing tactile quality and longevity.",
+    "gallery": [
+      "https://framerusercontent.com/images/N7dtL6bcw7MBEpYrA8GCYU1bIY.webp",
+      "https://framerusercontent.com/images/HGArSkPIhysxjkfAUbQ7UBw5EcQ.webp",
+      "https://framerusercontent.com/images/f5mIs8ybPXTLDkmTnN1bJL3xaU.webp"
+    ],
+    "features": [
+      {
+        "title": "Warm Earthy Palette",
+        "description": "Soothing organic tones with delicate borders and tactile typography."
+      },
+      {
+        "title": "Product Storytelling",
+        "description": "Deep-dive product detail modules highlighting artisanal craftsmanship."
+      },
+      {
+        "title": "Responsive Flexibility",
+        "description": "Flawlessly optimized for handheld mobile screens, tablets, and massive displays."
+      },
+      {
+        "title": "SEO Optimized",
+        "description": "Pre-configured semantic HTML tags and structured meta elements for maximum discoverability."
+      }
+    ]
+  },
+  {
+    "slug": "fasselh",
+    "title": "Faseelh",
+    "category": "Environmental Framer Template",
+    "badge": "Free Framer Template",
+    "year": "2025",
+    "image": "https://framerusercontent.com/images/IBHqRDPghoZPLzWsGC2SWmPo.png?width=1160&height=800",
+    "description": "Faseelh is a sleek, nature-inspired Framer template built for environmental projects, nonprofits, and sustainability-driven brands. It features immersive visuals, smooth animations, and flexible sections that make storytelling effortless.",
+    "liveUrl": "https://framer.link/fasselh",
+    "overview": "Faseelh brings climate initiatives, conservation foundations, and green enterprises into the modern digital spotlight with engaging data narratives and clean visual hierarchy.",
+    "gallery": [
+      "https://framerusercontent.com/images/YT4HqGR2CJLRQpCrIlsUf8crU.webp",
+      "https://framerusercontent.com/images/lSXxeEVPppxwb724jqEYgrTtv8.webp",
+      "https://framerusercontent.com/images/iTQWsWIUAn02uPq2Xa9LxHOoZY.webp"
+    ],
+    "features": [
+      {
+        "title": "Impact Metrics",
+        "description": "Visual counters and progress bars to display real-world climate action."
+      },
+      {
+        "title": "Story-Driven Sections",
+        "description": "Longform reading sections complemented by full-bleed imagery and captioning."
+      },
+      {
+        "title": "Accessible Color Palette",
+        "description": "High-contrast botanical hues that comply with WCAG AAA accessibility rules."
+      },
+      {
+        "title": "Seamless Donations",
+        "description": "Built-in call-to-action cards and partner sponsorship badge ribbons."
+      }
+    ]
+  }
+];

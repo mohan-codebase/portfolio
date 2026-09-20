@@ -1,93 +1,66 @@
-import type { Metadata, Viewport } from 'next';
-import { Instrument_Serif, JetBrains_Mono, Mona_Sans } from 'next/font/google';
-
-import { CommandPalette } from '@/components/navigation/CommandPalette';
-import { Header } from '@/components/navigation/Header';
-import { Preloader } from '@/components/preloader/Preloader';
-import { SmoothScroll } from '@/components/scroll/SmoothScroll';
-import { Footer } from '@/components/sections/Footer/Footer';
-import { Curtain } from '@/components/transition/Curtain';
-import { Cursor } from '@/components/ui/Cursor';
-import { GridOverlay } from '@/components/ui/GridOverlay';
-import { RevealObserver } from '@/components/ui/RevealObserver';
-import { featured } from '@/data/projects';
-import { site } from '@/data/site';
-import { siteDescription as description } from '@/lib/metadata';
-
+import type { Metadata } from 'next';
+import { Archivo, Inter } from 'next/font/google';
 import './globals.css';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import NoiseOverlay from '@/components/NoiseOverlay';
+import SmoothScroll from '@/components/SmoothScroll';
 
-const mona = Mona_Sans({
+const archivo = Archivo({
   subsets: ['latin'],
-  axes: ['wdth'],
-  variable: '--font-mona',
+  variable: '--font-archivo',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
   display: 'swap',
 });
 
-const instrument = Instrument_Serif({
-  subsets: ['latin'],
-  weight: '400',
-  style: 'italic',
-  variable: '--font-instrument',
-  display: 'swap',
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-jetbrains',
-  display: 'swap',
-});
-
-const title = `${site.name} — ${site.role}`;
-
-// Each page sets its own canonical URL and social card through `pageMetadata`.
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: { default: title, template: `%s — ${site.name}` },
-  description,
-  authors: [{ name: site.name, url: site.url }],
-  openGraph: { type: 'website', siteName: site.name, title, description, locale: 'en_US' },
-  twitter: { card: 'summary_large_image', title, description },
+  title: {
+    default: 'Majd',
+    template: '%s - Majd',
+  },
+  description:
+    'Software engineer and Framer creator with a strong focus on building modern, scalable, and conversion-driven web experiences.',
+  openGraph: {
+    title: 'Majd',
+    description:
+      'Software engineer and Framer creator with a strong focus on building modern, scalable, and conversion-driven web experiences.',
+    url: 'https://majd-portfolio.framer.website/',
+    siteName: 'Majd',
+    images: [
+      {
+        url: 'https://framerusercontent.com/images/ue9IClg37SpZ5YcBTAPeavvDUNo.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  icons: {
+    icon: 'https://framerusercontent.com/images/ue9IClg37SpZ5YcBTAPeavvDUNo.png',
+  },
 };
 
-export const viewport: Viewport = {
-  themeColor: '#08060b',
-  colorScheme: 'dark',
-};
-
-/** The name the page curtain shows on its way to each route. */
-const routeLabels = Object.fromEntries([
-  ...site.pages.map((page) => [page.href, page.label] as const),
-  ...featured.map((project) => [`/work/${project.slug}`, project.title] as const),
-]);
-
-/**
- * Runs before first paint. Flags that JS is available (reveal states only hide
- * content when it is), and skips the preloader for repeat visits in the same
- * session or when the visitor prefers reduced motion.
- */
-const boot = `(function(){var d=document.documentElement;d.classList.add('js');try{if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('intro-seen')){d.setAttribute('data-intro','skip')}else{sessionStorage.setItem('intro-seen','1')}}catch(e){d.setAttribute('data-intro','skip')}})();`;
-
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en" className={`${mona.variable} ${instrument.variable} ${jetbrains.variable}`} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: boot }} />
-      </head>
-      <body>
-        <a className="skip-link" href="#main">
-          Skip to content
-        </a>
-        <Preloader />
-        <Header />
-        {children}
-        <Footer />
-        <Curtain labels={routeLabels} />
-        <Cursor />
-        <GridOverlay />
-        <CommandPalette />
-        <RevealObserver />
-        <SmoothScroll />
+    <html lang="en" className={`${archivo.variable} ${inter.variable}`}>
+      <body className="bg-[#faf7f3] text-[#111111] antialiased selection:bg-[#111111] selection:text-[#faf7f3]">
+        <SmoothScroll>
+          <NoiseOverlay />
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );
