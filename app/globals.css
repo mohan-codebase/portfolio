@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --background: #faf7f3;
@@ -8,26 +10,38 @@
     --card-dark-foreground: #faf7f3;
   }
 
+  .dark {
+    --background: #0d0d0e;
+    --foreground: #f4f4f6;
+    --card-dark: #161619;
+    --card-dark-foreground: #f4f4f6;
+  }
+
   html {
-    background-color: #faf7f3;
-    color: #111111;
-    scroll-behavior: smooth;
+    background-color: var(--background);
+    color: var(--foreground);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background-color: #faf7f3;
-    color: #111111;
+    background-color: var(--background);
+    color: var(--foreground);
     min-height: 100vh;
     overflow-x: hidden;
     font-family: var(--font-archivo), var(--font-inter), system-ui, -apple-system, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   ::selection {
     background-color: #111111;
     color: #faf7f3;
+  }
+
+  .dark ::selection {
+    background-color: #f4f4f6;
+    color: #0d0d0e;
   }
 }
 

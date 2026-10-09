@@ -21,28 +21,28 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-16 sm:py-28 px-5 sm:px-8 max-w-[1400px] mx-auto border-t border-black/10"
+      className="py-16 sm:py-28 px-5 sm:px-8 max-w-[1400px] mx-auto border-t border-black/10 dark:border-white/10 transition-colors duration-300"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
         {/* Left Column: Title & Subtitle */}
         <div className="lg:col-span-5 space-y-4">
-          <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#111111]/50 block">
+          <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#111111]/50 dark:text-[#f4f4f6]/50 block">
             /Get In Touch
           </span>
-          <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-[#111111]">
+          <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-[#111111] dark:text-[#f4f4f6]">
             Let’s talk.
           </h2>
-          <p className="text-base sm:text-lg text-[#111111]/70 leading-relaxed font-normal pt-2">
+          <p className="text-base sm:text-lg text-[#111111]/70 dark:text-[#f4f4f6]/70 leading-relaxed font-normal pt-2">
             Have a project or need help? Fill out the form, and I&apos;ll get back to you soon.
           </p>
 
           <div className="pt-6 space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#111111]/40">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[#111111]/40 dark:text-[#f4f4f6]/40">
               Direct Contact
             </p>
             <a
               href="mailto:mohanavenkatesh.work@gmail.com"
-              className="text-lg font-medium text-[#111111] hover:underline underline-offset-4 inline-flex items-center gap-1.5 break-all"
+              className="text-lg font-medium text-[#111111] dark:text-[#f4f4f6] hover:underline underline-offset-4 inline-flex items-center gap-1.5 break-all"
             >
               mohanavenkatesh.work@gmail.com
               <ArrowUpRight className="w-4 h-4 opacity-60 shrink-0" />
@@ -53,12 +53,12 @@ export default function ContactSection() {
         {/* Right Column: Contact Form */}
         <div className="lg:col-span-7">
           {submitted ? (
-            <div className="p-8 sm:p-12 rounded-3xl bg-white/70 border border-black/10 flex flex-col items-center justify-center text-center space-y-4">
-              <CheckCircle2 className="w-12 h-12 text-emerald-600 animate-bounce" />
-              <h3 className="text-2xl font-bold text-[#111111]">
+            <div className="p-8 sm:p-12 rounded-3xl bg-white/70 dark:bg-[#141416] border border-black/10 dark:border-white/15 flex flex-col items-center justify-center text-center space-y-4 shadow-sm">
+              <CheckCircle2 className="w-12 h-12 text-emerald-500 animate-bounce" />
+              <h3 className="text-2xl font-bold text-[#111111] dark:text-[#f4f4f6]">
                 Thank you! Message sent.
               </h3>
-              <p className="text-sm text-[#111111]/70 max-w-sm">
+              <p className="text-sm text-[#111111]/70 dark:text-[#f4f4f6]/70 max-w-sm">
                 I received your message and will reply as soon as possible.
               </p>
               <button
@@ -66,7 +66,7 @@ export default function ContactSection() {
                   setSubmitted(false);
                   setFormState({ name: '', email: '', project: '' });
                 }}
-                className="mt-4 px-5 py-2 text-xs font-semibold rounded-full bg-black/5 hover:bg-black/10 transition-colors"
+                className="mt-4 px-5 py-2 text-xs font-semibold rounded-full bg-black/5 dark:bg-white/10 text-[#111111] dark:text-[#f4f4f6] hover:bg-black/10 dark:hover:bg-white/15 transition-colors"
               >
                 Send another message
               </button>
@@ -74,12 +74,12 @@ export default function ContactSection() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="p-8 sm:p-12 rounded-3xl bg-white/50 backdrop-blur-sm border border-black/10 space-y-6 shadow-sm"
+              className="p-8 sm:p-12 rounded-3xl bg-white/50 dark:bg-white/[0.03] backdrop-blur-sm border border-black/10 dark:border-white/10 space-y-6 shadow-sm"
             >
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-xs font-semibold uppercase tracking-wider text-[#111111]/60 mb-2"
+                  className="block text-xs font-semibold uppercase tracking-wider text-[#111111]/60 dark:text-[#f4f4f6]/60 mb-2"
                 >
                   Name
                 </label>
@@ -90,14 +90,14 @@ export default function ContactSection() {
                   placeholder="Your full name"
                   value={formState.name}
                   onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                  className="w-full px-4 py-3.5 rounded-2xl bg-white/80 border border-black/10 text-sm text-[#111111] placeholder:text-[#111111]/30 focus:outline-none focus:ring-2 focus:ring-[#111111]/20 transition-all"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-white/80 dark:bg-white/5 border border-black/10 dark:border-white/15 text-sm text-[#111111] dark:text-[#f4f4f6] placeholder:text-[#111111]/30 dark:placeholder:text-[#f4f4f6]/30 focus:outline-none focus:ring-2 focus:ring-[#111111]/20 dark:focus:ring-white/20 transition-all"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-xs font-semibold uppercase tracking-wider text-[#111111]/60 mb-2"
+                  className="block text-xs font-semibold uppercase tracking-wider text-[#111111]/60 dark:text-[#f4f4f6]/60 mb-2"
                 >
                   Email
                 </label>
@@ -108,14 +108,14 @@ export default function ContactSection() {
                   placeholder="hello@example.com"
                   value={formState.email}
                   onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                  className="w-full px-4 py-3.5 rounded-2xl bg-white/80 border border-black/10 text-sm text-[#111111] placeholder:text-[#111111]/30 focus:outline-none focus:ring-2 focus:ring-[#111111]/20 transition-all"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-white/80 dark:bg-white/5 border border-black/10 dark:border-white/15 text-sm text-[#111111] dark:text-[#f4f4f6] placeholder:text-[#111111]/30 dark:placeholder:text-[#f4f4f6]/30 focus:outline-none focus:ring-2 focus:ring-[#111111]/20 dark:focus:ring-white/20 transition-all"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="project"
-                  className="block text-xs font-semibold uppercase tracking-wider text-[#111111]/60 mb-2"
+                  className="block text-xs font-semibold uppercase tracking-wider text-[#111111]/60 dark:text-[#f4f4f6]/60 mb-2"
                 >
                   Your Project
                 </label>
@@ -126,18 +126,18 @@ export default function ContactSection() {
                   placeholder="Tell us about your project, timeline, and budget..."
                   value={formState.project}
                   onChange={(e) => setFormState({ ...formState, project: e.target.value })}
-                  className="w-full px-4 py-3.5 rounded-2xl bg-white/80 border border-black/10 text-sm text-[#111111] placeholder:text-[#111111]/30 focus:outline-none focus:ring-2 focus:ring-[#111111]/20 transition-all resize-none"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-white/80 dark:bg-white/5 border border-black/10 dark:border-white/15 text-sm text-[#111111] dark:text-[#f4f4f6] placeholder:text-[#111111]/30 dark:placeholder:text-[#f4f4f6]/30 focus:outline-none focus:ring-2 focus:ring-[#111111]/20 dark:focus:ring-white/20 transition-all resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#111111] text-[#faf7f3] text-sm font-medium hover:bg-black/85 disabled:opacity-50 transition-all shadow-md group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#111111] text-[#faf7f3] dark:bg-[#f4f4f6] dark:text-[#111111] text-sm font-medium hover:bg-black/85 dark:hover:bg-white disabled:opacity-50 transition-all shadow-md group"
               >
                 <RollingText text={loading ? 'Sending...' : 'Submit'} />
-                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#faf7f3]" />
+                <div className="w-6 h-6 rounded-full bg-white/20 dark:bg-black/10 flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#faf7f3] dark:text-[#111111]" />
                 </div>
               </button>
             </form>

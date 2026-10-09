@@ -22,7 +22,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#111111] text-[#faf7f3] pt-20 sm:pt-32 pb-12 px-5 sm:px-8 mt-16 rounded-t-[2.5rem] sm:rounded-t-[3.5rem] relative overflow-hidden">
+    <footer className="bg-[#111111] dark:bg-[#141416] dark:border-t dark:border-white/10 text-[#faf7f3] pt-20 sm:pt-32 pb-12 px-5 sm:px-8 mt-16 rounded-t-[2.5rem] sm:rounded-t-[3.5rem] relative overflow-hidden transition-colors duration-300">
       <div className="max-w-[1400px] mx-auto">
         {/* Top Tagline */}
         <div className="mb-16 sm:mb-24">

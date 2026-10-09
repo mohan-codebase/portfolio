@@ -11,23 +11,23 @@ export default function ThoughtsSection() {
   const recentBlogs = blogs.slice(0, 3);
 
   return (
-    <section className="py-16 sm:py-28 px-5 sm:px-8 max-w-[1400px] mx-auto border-t border-black/10">
+    <section className="py-16 sm:py-28 px-5 sm:px-8 max-w-[1400px] mx-auto border-t border-black/10 dark:border-white/10 transition-colors duration-300">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
         <div>
-          <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#111111]/50 block mb-2">
+          <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#111111]/50 dark:text-[#f4f4f6]/50 block mb-2">
             /Articles & Insights
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#111111]">
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#111111] dark:text-[#f4f4f6]">
             Thoughts
           </h2>
-          <p className="text-sm sm:text-base text-[#111111]/60 font-normal mt-2 max-w-xl">
+          <p className="text-sm sm:text-base text-[#111111]/60 dark:text-[#f4f4f6]/60 font-normal mt-2 max-w-xl">
             See how we shape brands with clarity and craft — explore our blog.
           </p>
         </div>
 
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/15 bg-white/50 backdrop-blur-sm text-sm font-medium text-[#111111] hover:bg-black hover:text-[#faf7f3] transition-all group w-fit"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/15 bg-white/50 backdrop-blur-sm text-sm font-medium text-[#111111] hover:bg-black hover:text-[#faf7f3] dark:border-white/15 dark:bg-white/5 dark:text-[#f4f4f6] dark:hover:bg-white dark:hover:text-[#111111] transition-all group w-fit"
         >
           <RollingText text="Explore All" />
           <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" />
@@ -42,7 +42,7 @@ export default function ThoughtsSection() {
             className="group block"
           >
             {/* Thumbnail */}
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl bg-[#e5dfd7] border border-black/5 mb-5">
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl bg-[#e5dfd7] dark:bg-[#18181b] border border-black/5 dark:border-white/10 mb-5 shadow-sm">
               <Image
                 src={post.image}
                 alt={post.title}
@@ -59,10 +59,10 @@ export default function ThoughtsSection() {
 
             {/* Info */}
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#111111] tracking-tight group-hover:underline underline-offset-4 decoration-black/20 mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#111111] dark:text-[#f4f4f6] tracking-tight group-hover:underline underline-offset-4 decoration-black/20 dark:decoration-white/20 mb-2">
                 {post.title}
               </h3>
-              <p className="text-sm text-[#111111]/70 line-clamp-2 leading-relaxed font-normal">
+              <p className="text-sm text-[#111111]/70 dark:text-[#f4f4f6]/70 line-clamp-2 leading-relaxed font-normal">
                 {post.excerpt}
               </p>
             </div>

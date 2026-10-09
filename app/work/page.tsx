@@ -16,13 +16,13 @@ export default function WorkPage() {
     <div className="pt-28 sm:pt-40 pb-20 px-5 sm:px-8 max-w-[1400px] mx-auto">
       {/* Header */}
       <div className="mb-14 sm:mb-20 max-w-2xl">
-        <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#111111]/50 block mb-3">
+        <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#111111]/50 dark:text-[#f4f4f6]/50 block mb-3">
           /Selected Works
         </span>
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#111111] leading-tight mb-4">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#111111] dark:text-[#f4f4f6] leading-tight mb-4">
           My Brightest Creations
         </h1>
-        <p className="text-base sm:text-lg text-[#111111]/70 leading-relaxed font-normal">
+        <p className="text-base sm:text-lg text-[#111111]/70 dark:text-[#f4f4f6]/70 leading-relaxed font-normal">
           A showcase of modern web applications, bespoke client websites, and digital products engineered with precision.
         </p>
       </div>
@@ -35,7 +35,7 @@ export default function WorkPage() {
             href={`/work/${project.slug}`}
             className="group block"
           >
-            <div className="relative aspect-[16/11] w-full overflow-hidden rounded-3xl bg-[#e5dfd7] border border-black/5 shadow-sm">
+            <div className="relative aspect-[16/11] w-full overflow-hidden rounded-3xl bg-[#e5dfd7] dark:bg-[#18181b] border border-black/5 dark:border-white/10 shadow-sm">
               <Image
                 src={project.image}
                 alt={project.title}
@@ -43,22 +43,22 @@ export default function WorkPage() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-              <div className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#111111] opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md">
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-white/5 transition-colors duration-300" />
+              <div className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/90 dark:bg-[#141416]/90 backdrop-blur-sm flex items-center justify-center text-[#111111] dark:text-[#f4f4f6] opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md">
                 <ArrowUpRight className="w-5 h-5" />
               </div>
             </div>
 
             <div className="pt-6 flex items-baseline justify-between">
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#111111] tracking-tight group-hover:underline underline-offset-4 decoration-black/20">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#111111] dark:text-[#f4f4f6] tracking-tight group-hover:underline underline-offset-4 decoration-black/20 dark:decoration-white/20">
                   {project.title}
                 </h2>
-                <p className="text-sm sm:text-base text-[#111111]/60 font-medium mt-1">
+                <p className="text-sm sm:text-base text-[#111111]/60 dark:text-[#f4f4f6]/60 font-medium mt-1">
                   {project.category}
                 </p>
               </div>
-              <span className="text-xs font-mono font-medium text-[#111111]/40 border border-black/10 px-3 py-1 rounded-full">
+              <span className="text-xs font-mono font-medium text-[#111111]/40 border border-black/10 dark:text-[#f4f4f6]/40 dark:border-white/15 px-3 py-1 rounded-full">
                 {project.year}
               </span>
             </div>

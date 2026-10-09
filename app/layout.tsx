@@ -4,7 +4,8 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import NoiseOverlay from '@/components/NoiseOverlay';
-import SmoothScroll from '@/components/SmoothScroll';
+import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -47,20 +48,45 @@ export const metadata: Metadata = {
   },
 };
 
+const themeScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (stored === 'dark' || (!stored && prefersDark)) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.style.colorScheme = 'light';
+    }
+  } catch (e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${inter.variable}`}>
-      <body className="bg-[#faf7f3] text-[#111111] antialiased selection:bg-[#111111] selection:text-[#faf7f3]">
-        <SmoothScroll>
-          <NoiseOverlay />
-          <Navbar />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-        </SmoothScroll>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${archivo.variable} ${inter.variable}`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="bg-[#faf7f3] text-[#111111] dark:bg-[#0d0d0e] dark:text-[#f4f4f6] antialiased selection:bg-[#111111] selection:text-[#faf7f3] dark:selection:bg-[#f4f4f6] dark:selection:text-[#0d0d0e] transition-colors duration-300">
+        <ThemeProvider>
+          <SmoothScrollProvider>
+            <NoiseOverlay />
+            <Navbar />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+          </SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

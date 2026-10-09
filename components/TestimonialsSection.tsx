@@ -16,7 +16,7 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="py-20 sm:py-32 px-5 sm:px-8 bg-[#111111] text-[#faf7f3] rounded-[2.5rem] sm:rounded-[3.5rem] my-12 max-w-[1400px] mx-auto overflow-hidden relative">
+    <section className="py-20 sm:py-32 px-5 sm:px-8 bg-[#111111] dark:bg-[#141416] dark:border dark:border-white/10 text-[#faf7f3] rounded-[2.5rem] sm:rounded-[3.5rem] my-12 max-w-[1400px] mx-auto overflow-hidden relative">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
         <div>
           <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#faf7f3]/50 block mb-2">
