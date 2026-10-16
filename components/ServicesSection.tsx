@@ -9,11 +9,11 @@ export default function ServicesSection() {
       id="services"
       className="py-16 sm:py-28 px-5 sm:px-8 max-w-[1400px] mx-auto border-t border-black/10 dark:border-white/10 transition-colors duration-300"
     >
-      <div className="flex items-center justify-between mb-12 sm:mb-16">
-        <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#111111] dark:text-[#f4f4f6]">
-          Services
+      <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center justify-between mb-12 sm:mb-16">
+        <h2 className="section-title text-3xl sm:text-5xl font-bold tracking-tight text-[#111111] dark:text-[#f4f4f6]">
+          How I can help.
         </h2>
-        <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#111111]/50 dark:text-[#f4f4f6]/50">
+        <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#111111]/70 dark:text-[#f4f4f6]/70">
           /What I Offer
         </span>
       </div>

@@ -1,31 +1,19 @@
+import StructuredData from '@/components/StructuredData';
+import PageIntro from '@/components/PageIntro';
 import React from 'react';
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { projects } from '@/data/projects';
 
-export const metadata: Metadata = {
-  title: 'Projects',
-  description:
-    'Explore modern web development projects and digital experiences designed for performance, clarity, and scale.',
-};
+export const metadata = pageMetadata('Projects', 'Explore Mohan’s projects, from responsive interfaces to MV Habits, a Next.js and Supabase application.', '/work');
 
 export default function WorkPage() {
   return (
     <div className="pt-28 sm:pt-40 pb-20 px-5 sm:px-8 max-w-[1400px] mx-auto">
-      {/* Header */}
-      <div className="mb-14 sm:mb-20 max-w-2xl">
-        <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#111111]/50 dark:text-[#f4f4f6]/50 block mb-3">
-          /Selected Works
-        </span>
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#111111] dark:text-[#f4f4f6] leading-tight mb-4">
-          My Brightest Creations
-        </h1>
-        <p className="text-base sm:text-lg text-[#111111]/70 dark:text-[#f4f4f6]/70 leading-relaxed font-normal">
-          A showcase of modern web applications, bespoke client websites, and digital products engineered with precision.
-        </p>
-      </div>
+      <StructuredData title="Projects" path="/work" />
+      <PageIntro eyebrow="Projects & experiments" title="Selected work" description="Websites, interfaces, and digital products. A selection of work where considered design meets thoughtful development." count={`${projects.length.toString().padStart(2, "0")} projects`} />
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12">
@@ -33,7 +21,7 @@ export default function WorkPage() {
           <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group block"
+            className="portfolio-card group block"
           >
             <div className="relative aspect-[16/11] w-full overflow-hidden rounded-3xl bg-[#e5dfd7] dark:bg-[#18181b] border border-black/5 dark:border-white/10 shadow-sm">
               <Image

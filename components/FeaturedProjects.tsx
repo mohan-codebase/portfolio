@@ -16,23 +16,26 @@ export default function FeaturedProjects() {
   useGsapContext(sectionRef, () => {
     const cards = gridRef.current?.children;
     if (!cards || cards.length === 0) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    gsap.fromTo(
-      cards,
-      { y: 40, opacity: 0 },
+    Array.from(cards).filter((card) => card.getBoundingClientRect().top >= window.innerHeight * 0.75).forEach((card) => gsap.fromTo(
+      card,
+      { y: 28, opacity: 0.2 },
       {
         y: 0,
         opacity: 1,
         duration: 0.8,
         stagger: 0.15,
-        ease: 'power3.out',
+        ease: 'none',
         scrollTrigger: {
-          trigger: gridRef.current,
-          start: 'top 85%',
-          once: true,
+          trigger: card,
+          start: 'clamp(top 98%)',
+          end: 'clamp(top 75%)',
+          scrub: 0.2,
+          invalidateOnRefresh: true,
         },
       }
-    );
+    ));
   });
 
   return (
@@ -42,11 +45,11 @@ export default function FeaturedProjects() {
     >
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
         <div>
-          <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#111111]/50 dark:text-[#f4f4f6]/50 block mb-2">
+          <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#111111]/70 dark:text-[#f4f4f6]/70 block mb-2">
             /Portfolio
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#111111] dark:text-[#f4f4f6]">
-            Featured Projects
+          <h2 className="section-title text-3xl sm:text-5xl font-bold tracking-tight text-[#111111] dark:text-[#f4f4f6]">
+            Selected work.
           </h2>
         </div>
 
@@ -59,7 +62,7 @@ export default function FeaturedProjects() {
         </Link>
       </div>
 
-      <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+      <div data-reveal-managed ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
         {featured.map((project) => (
           <Link
             key={project.slug}

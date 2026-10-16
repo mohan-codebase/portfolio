@@ -1,7 +1,14 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+import { siteUrl, siteTitle, siteDescription, isPreview } from '@/lib/metadata';
 import { Archivo, Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import Navbar from '@/components/Navbar';
+import SectionAnimations from '@/components/SectionAnimations';
+import ContactPopup from '@/components/ContactPopup';
+import BackToTop from '@/components/BackToTop';
+import ThemeToggle from '@/components/ThemeToggle';
+import CustomCursor from '@/components/CustomCursor';
 import Footer from '@/components/Footer';
 import NoiseOverlay from '@/components/NoiseOverlay';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
@@ -20,32 +27,20 @@ const inter = Inter({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
+
 export const metadata: Metadata = {
-  title: {
-    default: 'Mohan - Web Developer',
-    template: '%s - Mohan',
-  },
-  description:
-    'Web developer crafting modern, high-performance web applications and digital experiences.',
-  openGraph: {
-    title: 'Mohan - Web Developer',
-    description:
-      'Web developer crafting modern, high-performance web applications and digital experiences.',
-    url: 'https://mohan-portfolio.vercel.app',
-    siteName: 'Mohan',
-    images: [
-      {
-        url: 'https://framerusercontent.com/images/ue9IClg37SpZ5YcBTAPeavvDUNo.png',
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  icons: {
-    icon: 'https://framerusercontent.com/images/ue9IClg37SpZ5YcBTAPeavvDUNo.png',
-  },
+  metadataBase: new URL(siteUrl),
+  title: { default: siteTitle, template: '%s — Mohan' },
+  description: siteDescription,
+  applicationName: 'Mohan Portfolio',
+  authors: [{ name: 'Mohan', url: siteUrl }],
+  creator: 'Mohan',
+  robots: isPreview ? { index: false, follow: false } : { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 } },
 };
 
 const themeScript = `
@@ -82,11 +77,26 @@ export default function RootLayout({
         <ThemeProvider>
           <SmoothScrollProvider>
             <NoiseOverlay />
+            <SectionAnimations />
+            <CustomCursor />
             <Navbar />
+            <ContactPopup />
             <main className="min-h-screen">{children}</main>
             <Footer />
+            <BackToTop />
+            <div className="fixed bottom-[env(safe-area-inset-bottom)] left-[env(safe-area-inset-left)] z-40 mix-blend-difference">
+              <ThemeToggle className="h-12 w-12" />
+            </div>
           </SmoothScrollProvider>
         </ThemeProvider>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@graph': [
+            { '@type': 'Person', '@id': `${siteUrl}/#person`, name: 'Mohan', url: siteUrl, jobTitle: 'UI Designer & Full-Stack Developer', sameAs: ['https://github.com/mohan-codebase'] },
+            { '@type': 'WebSite', '@id': `${siteUrl}/#website`, url: siteUrl, name: 'Mohan Portfolio', inLanguage: 'en', publisher: { '@id': `${siteUrl}/#person` } },
+          ],
+        }).replace(/</g, '\\u003c') }} />
+        <Analytics />
       </body>
     </html>
   );

@@ -7,213 +7,165 @@ export interface Project {
   image: string;
   description: string;
   liveUrl: string;
+  repositoryUrl: string;
+  hasDemo: boolean;
   overview: string;
   gallery: string[];
   features: { title: string; description: string }[];
 }
 
+// Public GitHub metadata and README snapshot, retrieved 2026-10-16.
+// Source: https://github.com/mohan-codebase?tab=repositories
 export const projects: Project[] = [
   {
-    "slug": "damas",
-    "title": "Damas",
-    "category": "Agency Framer Template",
-    "badge": "Free Framer Template",
-    "year": "2025",
-    "image": "https://framerusercontent.com/images/VNXQLcPHw9VbVzy6BDpZ8pUsaU.png?width=1160&height=800",
-    "description": "Damas is a modern creative agency template built for bold visuals, smooth interactions, and standout storytelling. Perfect for agencies, studios, and creators who want a polished, high impact online presence without starting from scratch.",
-    "liveUrl": "https://framer.link/damas",
-    "overview": "Damas is designed from the ground up for modern creative agencies that prioritize aesthetics and dynamic storytelling. Every section is thoughtfully composed to elevate portfolio showcases, client case studies, and brand identities.",
-    "gallery": [
-      "https://framerusercontent.com/images/173P7WbvHMc1Z9lNpSNy6GIYif8.png?width=1066&height=800",
-      "https://framerusercontent.com/images/UmXfpYfVhYqoqb1DnbFpIC98OIo.png?width=1066&height=800",
-      "https://framerusercontent.com/images/rRp1KaDwStpJ6Pxo05Doj1IjSU.png?width=1066&height=800"
-    ],
+    "slug": "mv-habbits",
+    "title": "MV Habits",
+    "category": "Full-stack habit tracker",
+    "badge": "Public repository",
+    "year": "2026",
+    "image": "/projects/mv-habbits.svg",
+    "description": "A habit tracker for routines, streaks, and personal growth, built with Next.js, Supabase, and Tailwind CSS.",
+    "liveUrl": "https://github.com/mohan-codebase/mv-habbits",
+    "repositoryUrl": "https://github.com/mohan-codebase/mv-habbits",
+    "hasDemo": false,
+    "overview": "A habit tracker for routines, streaks, and personal growth, built with Next.js, Supabase, and Tailwind CSS.",
+    "gallery": [],
     "features": [
       {
-        "title": "Visual Language",
-        "description": "Bold typography paired with ample whitespace and subtle micro-animations to highlight your work."
+        "title": "Realtime habits",
+        "description": "Supabase Realtime sync and optimistic habit updates, as documented in the repository."
       },
       {
-        "title": "Structured Storytelling",
-        "description": "Clean content hierarchy that guides prospective clients through your agency’s capabilities and case studies."
+        "title": "Progress insights",
+        "description": "Heatmaps, category analytics, and streak achievements."
       },
       {
-        "title": "Built for Real Use",
-        "description": "Fully responsive, production-ready components optimized for performance and conversion."
+        "title": "Reminders & portability",
+        "description": "Timezone-aware push reminders and JSON/CSV backup support."
       },
       {
-        "title": "Clarity that Scales",
-        "description": "Modular design system allowing easy expansion as your agency grows."
+        "title": "Stack",
+        "description": "Next.js 16, React 19, Supabase, Tailwind CSS v4, and TypeScript."
       }
     ]
   },
   {
-    "slug": "najm",
-    "title": "Najm",
-    "category": "SaaS Framer Template",
-    "badge": "Free Framer Template",
+    "slug": "attendance-app",
+    "title": "Attendance App",
+    "category": "Collaborative web application",
+    "badge": "Public repository",
     "year": "2025",
-    "image": "https://framerusercontent.com/images/WgEHVRrQs62rgxlzrnXJJ8rr4.png?width=1160&height=800",
-    "description": "A beautifully crafted Framer website template perfect for AI SaaS businesses looking to showcase their innovative products and services.",
-    "liveUrl": "https://framer.link/najm",
-    "overview": "Najm delivers high-converting SaaS landing page architecture tailored for next-generation AI startups. Packed with interactive feature sections, pricing tables, and social proof components.",
-    "gallery": [
-      "https://framerusercontent.com/images/ujTNOAyihWs0g4ns3ZEmKQBW6M.jpeg",
-      "https://framerusercontent.com/images/v1SmiICbdgfuSlTYmhS054D8sI.jpeg",
-      "https://framerusercontent.com/images/ixj3l3ntKSbk66sf6KZmqHxXWi0.jpeg"
-    ],
+    "image": "/projects/attendance-app.svg",
+    "description": "A collaborative attendance-tracking application built by students of Schools of Techies, bringing together designers, content creators, and developers.",
+    "liveUrl": "https://attendance-app-black-omega.vercel.app",
+    "repositoryUrl": "https://github.com/mohan-codebase/attendance-app",
+    "hasDemo": true,
+    "overview": "A collaborative attendance-tracking application built by students of Schools of Techies, bringing together designers, content creators, and developers.",
+    "gallery": [],
     "features": [
       {
-        "title": "Conversion Focused",
-        "description": "Hero section, feature grids, and call-to-action blocks tailored for trial signups and MRR growth."
+        "title": "Primary language",
+        "description": "JavaScript"
       },
       {
-        "title": "Modern Dark Mode",
-        "description": "Sleek dark theme with refined lighting accents and glowing gradient cards."
-      },
-      {
-        "title": "Interactive Demos",
-        "description": "Showcase software workflows and dashboards with intuitive component slots."
-      },
-      {
-        "title": "Lightning Fast",
-        "description": "Optimized assets and minimal layout shifts for top tier Core Web Vitals."
+        "title": "Project context",
+        "description": "Collaborative web application"
       }
     ]
   },
   {
-    "slug": "kavi",
-    "title": "Kavi",
-    "category": "AI Framer Template",
-    "badge": "Free Framer Template",
-    "year": "2025",
-    "image": "https://framerusercontent.com/images/I3azeVtkvdKBGl9TX38tUdXEb0.png?width=1160&height=800",
-    "description": "Kavi is a bold and modern website template made for SaaS and AI startups looking to launch fast and scale smarter with clean design and intuitive customization.",
-    "liveUrl": "https://framer.link/kavi",
-    "overview": "Kavi balances futuristic aesthetic touches with uncompromising usability. Specially built for developer tools, AI productivity apps, and cutting-edge startups needing credibility.",
-    "gallery": [
-      "https://framerusercontent.com/images/J0VwtYHHXMhL1FV3jH8iWEtAVk.webp",
-      "https://framerusercontent.com/images/8UEzK68Cuo7xH5PuKC44uAV0ckY.webp",
-      "https://framerusercontent.com/images/Ks48TT9awwpT9gdcWgZd8ev1WY.webp"
-    ],
+    "slug": "bite-paste",
+    "title": "Bite Paste",
+    "category": "Bootstrap multipage website",
+    "badge": "Public repository",
+    "year": "2024",
+    "image": "/projects/bite-paste.svg",
+    "description": "A responsive multipage website built with Bootstrap, structured layouts, and reusable interface components.",
+    "liveUrl": "https://bitepaste.netlify.app/",
+    "repositoryUrl": "https://github.com/mohan-codebase/bite-paste",
+    "hasDemo": true,
+    "overview": "A responsive multipage website built with Bootstrap, structured layouts, and reusable interface components.",
+    "gallery": [],
     "features": [
       {
-        "title": "AI-Native Layout",
-        "description": "Engineered specifically to demonstrate prompt engineering, LLM interfaces, and API integrations."
+        "title": "Primary language",
+        "description": "HTML"
       },
       {
-        "title": "Component Library",
-        "description": "Over 20+ responsive components ready to drag and drop into any Framer or React project."
-      },
-      {
-        "title": "Intuitive Navigation",
-        "description": "Clean sticky navigation with instant jump links to pricing, features, and docs."
-      },
-      {
-        "title": "Customizable Themes",
-        "description": "Easily update color tokens and typography to match your proprietary brand guide."
+        "title": "Project context",
+        "description": "Bootstrap multipage website"
       }
     ]
   },
   {
-    "slug": "sham",
-    "title": "Sham",
-    "category": "Studio Framer Template",
-    "badge": "Free Framer Template",
-    "year": "2025",
-    "image": "https://framerusercontent.com/images/e3DxUGJWqt7CIVVQIA0VZoy09FQ.png?width=1160&height=800",
-    "description": "A clean, modern Framer template designed for creative studios and businesses. Built with flexible sections, smooth interactions, and fully editable components so you can launch a professional agency site quickly and for free.",
-    "liveUrl": "https://framer.link/sham",
-    "overview": "Sham provides an understated, editorial canvas for independent design studios, photographers, and architects who demand refined typography and effortless presentation.",
-    "gallery": [
-      "https://framerusercontent.com/images/TYjXSgMIzqcCLynoQQYhbF7aeM.webp",
-      "https://framerusercontent.com/images/AmqdjgheRojNIWusBddw5GXHErc.webp",
-      "https://framerusercontent.com/images/Kwfcsb5AKYGhAjNC9ZFvtVn7cU.webp"
-    ],
+    "slug": "spotify-clone",
+    "title": "Spotify Clone",
+    "category": "HTML & CSS interface study",
+    "badge": "Public repository",
+    "year": "2024",
+    "image": "/projects/spotify-clone.svg",
+    "description": "A Spotify homepage interface study built with HTML and CSS, focused on layout and responsive styling.",
+    "liveUrl": "https://spotify-project-clone.netlify.app/",
+    "repositoryUrl": "https://github.com/mohan-codebase/spotify-clone",
+    "hasDemo": true,
+    "overview": "A Spotify homepage interface study built with HTML and CSS, focused on layout and responsive styling.",
+    "gallery": [],
     "features": [
       {
-        "title": "Editorial Aesthetics",
-        "description": "Harmonious type scales and editorial image grids reminiscent of print monographs."
+        "title": "Primary language",
+        "description": "HTML"
       },
       {
-        "title": "Interactive Showcase",
-        "description": "Silky smooth hover reveals and fluid transition states that delight viewers."
-      },
-      {
-        "title": "Client Proofing",
-        "description": "Pre-formatted client testimonial ribbons and award recognition callouts."
-      },
-      {
-        "title": "Zero Friction",
-        "description": "Lightweight code structure allowing effortless deployment in seconds."
+        "title": "Project context",
+        "description": "HTML & CSS interface study"
       }
     ]
   },
   {
-    "slug": "abjad",
-    "title": "Abjad",
-    "category": "AI Framer Template",
-    "badge": "Free Framer Template",
-    "year": "2025",
-    "image": "https://framerusercontent.com/images/l08IN6OxWS7DxFD28fNZXjCT4.png?width=1160&height=800",
-    "description": "Olive Living is a slow-living lifestyle brand that creates products for mindful homes. Their philosophy centers on intentional living, warm textures, and everyday rituals that bring comfort and clarity.",
-    "liveUrl": "https://framer.link/abjad",
-    "overview": "Abjad offers an earthy, serene aesthetic crafted for thoughtful brands, lifestyle products, and design-led eCommerce ventures emphasizing tactile quality and longevity.",
-    "gallery": [
-      "https://framerusercontent.com/images/N7dtL6bcw7MBEpYrA8GCYU1bIY.webp",
-      "https://framerusercontent.com/images/HGArSkPIhysxjkfAUbQ7UBw5EcQ.webp",
-      "https://framerusercontent.com/images/f5mIs8ybPXTLDkmTnN1bJL3xaU.webp"
-    ],
+    "slug": "medical-treatment",
+    "title": "Medical Treatment",
+    "category": "CSS landing page",
+    "badge": "Public repository",
+    "year": "2024",
+    "image": "/projects/medical-treatment.svg",
+    "description": "A single-page medical landing page focused on CSS layouts, typography, and clear section structure.",
+    "liveUrl": "https://medical-treatment.netlify.app/",
+    "repositoryUrl": "https://github.com/mohan-codebase/medical-treatment",
+    "hasDemo": true,
+    "overview": "A single-page medical landing page focused on CSS layouts, typography, and clear section structure.",
+    "gallery": [],
     "features": [
       {
-        "title": "Warm Earthy Palette",
-        "description": "Soothing organic tones with delicate borders and tactile typography."
+        "title": "Primary language",
+        "description": "CSS"
       },
       {
-        "title": "Product Storytelling",
-        "description": "Deep-dive product detail modules highlighting artisanal craftsmanship."
-      },
-      {
-        "title": "Responsive Flexibility",
-        "description": "Flawlessly optimized for handheld mobile screens, tablets, and massive displays."
-      },
-      {
-        "title": "SEO Optimized",
-        "description": "Pre-configured semantic HTML tags and structured meta elements for maximum discoverability."
+        "title": "Project context",
+        "description": "CSS landing page"
       }
     ]
   },
   {
-    "slug": "fasselh",
-    "title": "Faseelh",
-    "category": "Environmental Framer Template",
-    "badge": "Free Framer Template",
-    "year": "2025",
-    "image": "https://framerusercontent.com/images/IBHqRDPghoZPLzWsGC2SWmPo.png?width=1160&height=800",
-    "description": "Faseelh is a sleek, nature-inspired Framer template built for environmental projects, nonprofits, and sustainability-driven brands. It features immersive visuals, smooth animations, and flexible sections that make storytelling effortless.",
-    "liveUrl": "https://framer.link/fasselh",
-    "overview": "Faseelh brings climate initiatives, conservation foundations, and green enterprises into the modern digital spotlight with engaging data narratives and clean visual hierarchy.",
-    "gallery": [
-      "https://framerusercontent.com/images/YT4HqGR2CJLRQpCrIlsUf8crU.webp",
-      "https://framerusercontent.com/images/lSXxeEVPppxwb724jqEYgrTtv8.webp",
-      "https://framerusercontent.com/images/iTQWsWIUAn02uPq2Xa9LxHOoZY.webp"
-    ],
+    "slug": "botanical-store",
+    "title": "Botanical Store",
+    "category": "HTML storefront interface",
+    "badge": "Public repository",
+    "year": "2024",
+    "image": "/projects/botanical-store.svg",
+    "description": "A plant-store interface built with HTML, featuring product sections, a hero layout, and responsive content organization.",
+    "liveUrl": "https://plant-shop-website1.netlify.app/",
+    "repositoryUrl": "https://github.com/mohan-codebase/botanical-store",
+    "hasDemo": true,
+    "overview": "A plant-store interface built with HTML, featuring product sections, a hero layout, and responsive content organization.",
+    "gallery": [],
     "features": [
       {
-        "title": "Impact Metrics",
-        "description": "Visual counters and progress bars to display real-world climate action."
+        "title": "Primary language",
+        "description": "HTML"
       },
       {
-        "title": "Story-Driven Sections",
-        "description": "Longform reading sections complemented by full-bleed imagery and captioning."
-      },
-      {
-        "title": "Accessible Color Palette",
-        "description": "High-contrast botanical hues that comply with WCAG AAA accessibility rules."
-      },
-      {
-        "title": "Seamless Donations",
-        "description": "Built-in call-to-action cards and partner sponsorship badge ribbons."
+        "title": "Project context",
+        "description": "HTML storefront interface"
       }
     ]
   }

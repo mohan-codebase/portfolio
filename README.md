@@ -19,12 +19,12 @@ The personal portfolio of Mohan, a fullstack developer in Chennai. Editorial and
 ## Getting started
 
 ```bash
-npm install
-npm run dev        # http://localhost:3000
-npm run build      # production build
-npm start          # serve the production build
-npm run lint
-npm run typecheck
+pnpm install
+pnpm dev        # http://localhost:3000
+pnpm build      # production build
+pnpm start          # serve the production build
+pnpm lint
+pnpm typecheck
 ```
 
 ## Before you publish: replace the placeholders
