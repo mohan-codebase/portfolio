@@ -1,0 +1,32 @@
+{
+  "name": "portfolio",
+  "framework": "nextjs",
+  "nodeVersion": "24.x",
+  "ssoProtection": {
+    "deploymentType": "all_except_custom_domains"
+  },
+  "deploymentExpiration": {
+    "expirationDays": 30,
+    "expirationDaysProduction": 30,
+    "expirationDaysCanceled": 30,
+    "expirationDaysErrored": 30,
+    "deploymentsToKeep": 10
+  },
+  "directoryListing": false,
+  "autoExposeSystemEnvs": true,
+  "gitForkProtection": true,
+  "gitLFS": false,
+  "resourceConfig": {
+    "fluid": true,
+    "functionDefaultRegions": [
+      "iad1"
+    ],
+    "buildMachineType": "basic",
+    "buildMachineSelection": "fixed"
+  },
+  "productionAliases": [
+    "mohan-portfolio-nextjs.vercel.app",
+    "portfolio-mohanavenkateshs-projects.vercel.app",
+    "portfolio-git-main-mohanavenkateshs-projects.vercel.app"
+  ]
+}

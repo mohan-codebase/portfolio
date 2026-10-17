@@ -159,11 +159,6 @@ section[id] { scroll-margin-top: 7rem; }
 }
 .hero-name-dot { opacity: 0.35; }
 
-/* Monochrome project artwork follows the site's selected theme. */
-:root:not(.dark) img[src^="/projects/"][src$=".svg"] {
-  filter: invert(1) sepia(0.08);
-}
-
 /* Keep long project names within narrow phone viewports. */
 .detail-title, .display-title { overflow-wrap: anywhere; }
 @media (max-width: 639px) {

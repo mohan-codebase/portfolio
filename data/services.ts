@@ -38,6 +38,16 @@ export const services: Service[] = [
   },
   {
     "id": "04",
+    "title": "Fullstack Development",
+    "tags": [
+      "Next.js",
+      "API Development",
+      "Database Integration"
+    ],
+    "description": "Building complete web applications with responsive interfaces, backend APIs, authentication, and connected databases—from your first idea to deployment."
+  },
+  {
+    "id": "05",
     "title": "Product Consulting",
     "tags": [
       "Product Direction",

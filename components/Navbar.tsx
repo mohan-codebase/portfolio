@@ -54,7 +54,7 @@ export default function Navbar() {
     { label: 'About Me', href: '/about' },
     { label: 'Services', href: '/services' },
     { label: 'Works', href: '/work' },
-    { label: 'Contact', href: '/#contact' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   return (

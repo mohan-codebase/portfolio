@@ -1,0 +1,120 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "headers": {
+      "Accept-Ranges": "bytes",
+      "Access-Control-Allow-Origin": "*",
+      "Age": "33921",
+      "Cache-Control": "public, max-age=0, must-revalidate",
+      "Content-Disposition": "inline",
+      "Content-Length": "86733",
+      "Content-Type": "text/html; charset=utf-8",
+      "Date": "Sat, 17 Oct 2026 04:19:47 GMT",
+      "Etag": "\"5a65b9da227386862424caf47a881d50\"",
+      "Server": "Vercel",
+      "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+      "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+      "X-Matched-Path": "/",
+      "X-Nextjs-Prerender": "1",
+      "X-Nextjs-Stale-Time": "300",
+      "X-Vercel-Cache": "HIT",
+      "X-Vercel-Id": "bom1::bktm6-1792210787340-ab621eef8597",
+      "Connection": "close"
+    }
+  },
+  {
+    "path": "/about",
+    "status": 200,
+    "headers": {
+      "Accept-Ranges": "bytes",
+      "Access-Control-Allow-Origin": "*",
+      "Age": "0",
+      "Cache-Control": "public, max-age=0, must-revalidate",
+      "Content-Disposition": "inline",
+      "Content-Length": "55525",
+      "Content-Type": "text/html; charset=utf-8",
+      "Date": "Sat, 17 Oct 2026 04:19:48 GMT",
+      "Etag": "\"f6f9a27a14604a2f7ddc7666ee71bd70\"",
+      "Server": "Vercel",
+      "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+      "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+      "X-Matched-Path": "/about",
+      "X-Nextjs-Prerender": "1",
+      "X-Nextjs-Stale-Time": "300",
+      "X-Vercel-Cache": "PRERENDER",
+      "X-Vercel-Id": "bom1::2n47w-1792210787753-5f5432685d28",
+      "Connection": "close"
+    }
+  },
+  {
+    "path": "/services",
+    "status": 200,
+    "headers": {
+      "Accept-Ranges": "bytes",
+      "Access-Control-Allow-Origin": "*",
+      "Age": "0",
+      "Cache-Control": "public, max-age=0, must-revalidate",
+      "Content-Disposition": "inline",
+      "Content-Length": "55631",
+      "Content-Type": "text/html; charset=utf-8",
+      "Date": "Sat, 17 Oct 2026 04:19:49 GMT",
+      "Etag": "\"a1477b1e835e3373260c876af2c8cd65\"",
+      "Server": "Vercel",
+      "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+      "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+      "X-Matched-Path": "/services",
+      "X-Nextjs-Prerender": "1",
+      "X-Nextjs-Stale-Time": "300",
+      "X-Vercel-Cache": "PRERENDER",
+      "X-Vercel-Id": "bom1::2n47w-1792210788635-06311953231f",
+      "Connection": "close"
+    }
+  },
+  {
+    "path": "/work",
+    "status": 200,
+    "headers": {
+      "Accept-Ranges": "bytes",
+      "Access-Control-Allow-Origin": "*",
+      "Age": "0",
+      "Cache-Control": "public, max-age=0, must-revalidate",
+      "Content-Disposition": "inline",
+      "Content-Length": "68060",
+      "Content-Type": "text/html; charset=utf-8",
+      "Date": "Sat, 17 Oct 2026 04:19:49 GMT",
+      "Etag": "\"78ba8eedf751417d5f5e0b24bcb7307a\"",
+      "Server": "Vercel",
+      "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+      "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+      "X-Matched-Path": "/work",
+      "X-Nextjs-Prerender": "1",
+      "X-Nextjs-Stale-Time": "300",
+      "X-Vercel-Cache": "PRERENDER",
+      "X-Vercel-Id": "bom1::pvc77-1792210789236-5991fd4fad7c",
+      "Connection": "close"
+    }
+  },
+  {
+    "path": "/contact",
+    "status": 404,
+    "headers": {
+      "Accept-Ranges": "bytes",
+      "Access-Control-Allow-Origin": "*",
+      "Age": "0",
+      "Cache-Control": "public, max-age=0, must-revalidate",
+      "Content-Disposition": "inline; filename=\"404\"",
+      "Content-Length": "41522",
+      "Content-Type": "text/html; charset=utf-8",
+      "Date": "Sat, 17 Oct 2026 04:19:50 GMT",
+      "Etag": "\"252f9b7a0fd6671637419adb28f17975\"",
+      "Last-Modified": "Sat, 17 Oct 2026 04:19:50 GMT",
+      "Server": "Vercel",
+      "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+      "X-Matched-Path": "/404",
+      "X-Vercel-Cache": "MISS",
+      "X-Vercel-Id": "bom1::tcwtr-1792210789862-3c2fc1ff04ad",
+      "Connection": "close"
+    }
+  }
+]

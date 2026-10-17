@@ -13,29 +13,33 @@ export default function FeaturedProjects() {
   const gridRef = useRef<HTMLDivElement>(null);
   const featured = projects.slice(0, 4);
 
-  useGsapContext(sectionRef, () => {
+  useGsapContext(sectionRef, (context) => {
     const cards = gridRef.current?.children;
     if (!cards || cards.length === 0) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    Array.from(cards).filter((card) => card.getBoundingClientRect().top >= window.innerHeight * 0.75).forEach((card) => gsap.fromTo(
-      card,
-      { y: 28, opacity: 0.2 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: card,
-          start: 'clamp(top 98%)',
-          end: 'clamp(top 75%)',
-          scrub: 0.2,
-          invalidateOnRefresh: true,
-        },
-      }
-    ));
+    context.add(() => {
+      const media = gsap.matchMedia();
+      media.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
+        Array.from(cards).filter((card) => card.getBoundingClientRect().top >= window.innerHeight * 0.75).forEach((card) => gsap.fromTo(
+          card,
+          { y: 28, opacity: 0.2 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              start: 'clamp(top 98%)',
+              end: 'clamp(top 75%)',
+              scrub: 0.2,
+              invalidateOnRefresh: true,
+            },
+          }
+        ));
+      });
+      return () => media.revert();
+    });
   });
 
   return (
@@ -62,12 +66,22 @@ export default function FeaturedProjects() {
         </Link>
       </div>
 
-      <div data-reveal-managed ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+      <p id="featured-scroll-hint" className="mb-4 text-xs text-[#111111]/60 dark:text-[#f4f4f6]/60 md:hidden">Swipe to explore →</p>
+      <div
+        data-reveal-managed
+        data-lenis-prevent-touch
+        ref={gridRef}
+        role="region"
+        aria-label="Selected projects"
+        aria-describedby="featured-scroll-hint"
+        tabIndex={0}
+        className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain px-5 pb-3 scroll-px-5 sm:-mx-8 sm:px-8 sm:scroll-px-8 md:mx-0 md:grid md:grid-cols-2 md:gap-10 md:overflow-visible md:px-0 md:pb-0"
+      >
         {featured.map((project) => (
           <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group block relative"
+            className="group relative block min-w-0 basis-[88%] shrink-0 snap-start md:basis-auto"
           >
             {/* Project Image Container */}
             <div className="relative aspect-[16/11] w-full overflow-hidden rounded-3xl bg-[#e5dfd7] dark:bg-[#18181b] border border-black/5 dark:border-white/10 shadow-sm">
