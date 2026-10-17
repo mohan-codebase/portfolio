@@ -67,6 +67,12 @@ export default function Footer() {
             <a href="https://github.com/mohan-codebase" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-4 rounded-3xl border border-white/15 p-5 transition-colors hover:bg-white/5">
               <span><span className="block text-base font-medium">GitHub</span><span className="mt-1 block text-xs text-white/55">Projects, experiments & source code</span></span><ArrowUpRight aria-hidden="true" className="h-5 w-5 shrink-0" />
             </a>
+            <a href="https://www.instagram.com/mohan.code/" target="_blank" rel="noopener noreferrer" className="group mt-3 flex items-center justify-between gap-4 rounded-3xl border border-white/15 p-5 transition-colors hover:bg-white/5">
+              <span><span className="block text-base font-medium">Instagram</span><span className="mt-1 block text-xs text-white/55">@mohan.code</span></span><ArrowUpRight aria-hidden="true" className="h-5 w-5 shrink-0" />
+            </a>
+            <a href="https://www.linkedin.com/in/mohanavenkatesh" target="_blank" rel="noopener noreferrer" className="group mt-3 flex items-center justify-between gap-4 rounded-3xl border border-white/15 p-5 transition-colors hover:bg-white/5">
+              <span><span className="block text-base font-medium">LinkedIn</span><span className="mt-1 block text-xs text-white/55">Connect with me professionally</span></span><ArrowUpRight aria-hidden="true" className="h-5 w-5 shrink-0" />
+            </a>
           </div>
         </div>
         <div ref={signatureRef} aria-hidden="true" className="select-none overflow-hidden border-t border-white/10 py-8 text-center sm:py-12">
