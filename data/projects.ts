@@ -19,7 +19,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     "slug": "mv-habbits",
-    "title": "MV Habits",
+    "title": "Habits",
     "category": "Full-stack habit tracker",
     "badge": "Public repository",
     "year": "2026",
