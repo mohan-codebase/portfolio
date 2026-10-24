@@ -29,7 +29,7 @@ export default function AboutPage() {
       <section className="mt-12 rounded-3xl border border-black/10 p-8 dark:border-white/10 sm:p-12">
         <p className="section-kicker mb-4">Building in public</p>
         <h2 className="mb-5 text-3xl font-semibold tracking-tight">From frontend studies to full-stack applications.</h2>
-        <p className="max-w-3xl leading-relaxed text-black/65 dark:text-white/65">My public work includes Habits, a Next.js and Supabase habit tracker, an attendance app built collaboratively with Schools of Techies students, and responsive HTML, CSS, and Bootstrap projects.</p>
+        <p className="max-w-3xl leading-relaxed text-black/65 dark:text-white/65">My public work includes an attendance app built collaboratively with Schools of Techies students, and responsive HTML, CSS, and Bootstrap projects.</p>
         <ul className="my-6 flex flex-wrap gap-2">{githubProfile.technologies.map((technology) => <li key={technology} className="rounded-full border border-black/15 px-4 py-2 text-sm dark:border-white/15">{technology}</li>)}</ul>
         <a href={githubProfile.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Explore @{githubProfile.username} on GitHub ↗</a>
       </section>

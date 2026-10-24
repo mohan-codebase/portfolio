@@ -18,38 +18,6 @@ export interface Project {
 // Source: https://github.com/mohan-codebase?tab=repositories
 export const projects: Project[] = [
   {
-    "slug": "mv-habbits",
-    "title": "Habits",
-    "category": "Full-stack habit tracker",
-    "badge": "Public repository",
-    "year": "2026",
-    "image": "/projects/mv-habbits.svg",
-    "description": "A habit tracker for routines, streaks, and personal growth, built with Next.js, Supabase, and Tailwind CSS.",
-    "liveUrl": "https://github.com/mohan-codebase/mv-habbits",
-    "repositoryUrl": "https://github.com/mohan-codebase/mv-habbits",
-    "hasDemo": false,
-    "overview": "A habit tracker for routines, streaks, and personal growth, built with Next.js, Supabase, and Tailwind CSS.",
-    "gallery": [],
-    "features": [
-      {
-        "title": "Realtime habits",
-        "description": "Supabase Realtime sync and optimistic habit updates, as documented in the repository."
-      },
-      {
-        "title": "Progress insights",
-        "description": "Heatmaps, category analytics, and streak achievements."
-      },
-      {
-        "title": "Reminders & portability",
-        "description": "Timezone-aware push reminders and JSON/CSV backup support."
-      },
-      {
-        "title": "Stack",
-        "description": "Next.js 16, React 19, Supabase, Tailwind CSS v4, and TypeScript."
-      }
-    ]
-  },
-  {
     "slug": "attendance-app",
     "title": "Attendance App",
     "category": "Collaborative web application",

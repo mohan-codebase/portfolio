@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { projects } from '@/data/projects';
 
-export const metadata = pageMetadata('Projects', 'Explore Mohan’s projects, from responsive interfaces to Habits, a Next.js and Supabase application.', '/work');
+export const metadata = pageMetadata('Projects', 'Explore Mohan’s projects, from responsive interfaces and Bootstrap websites to a collaborative attendance application.', '/work');
 
 export default function WorkPage() {
   return (

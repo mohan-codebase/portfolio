@@ -18,16 +18,6 @@ export const services: Service[] = [
   },
   {
     "id": "02",
-    "title": "Framer Templates",
-    "tags": [
-      "Startup",
-      "Agency",
-      "SaaS"
-    ],
-    "description": "Crafting premium, modular Framer templates with clean component hierarchies and fluid micro-interactions tailored for high-growth ventures."
-  },
-  {
-    "id": "03",
     "title": "Frontend Development",
     "tags": [
       "UI Dev",
@@ -37,7 +27,7 @@ export const services: Service[] = [
     "description": "Writing clean, accessible, and lightning-fast frontend code that brings static design files to life across all devices and browsers."
   },
   {
-    "id": "04",
+    "id": "03",
     "title": "Fullstack Development",
     "tags": [
       "Next.js",
@@ -47,7 +37,7 @@ export const services: Service[] = [
     "description": "Building complete web applications with responsive interfaces, backend APIs, authentication, and connected databases—from your first idea to deployment."
   },
   {
-    "id": "05",
+    "id": "04",
     "title": "Product Consulting",
     "tags": [
       "Product Direction",
