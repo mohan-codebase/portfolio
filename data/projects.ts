@@ -18,6 +18,40 @@ export interface Project {
 // Source: https://github.com/mohan-codebase?tab=repositories
 export const projects: Project[] = [
   {
+    "slug": "ula",
+    "title": "Ula",
+    "category": "Tamil Nadu travel discovery platform",
+    "badge": "Featured project",
+    "year": "2026",
+    "image": "/projects/ula.svg",
+    "description": "An independent editorial travel discovery platform exploring Tamil Nadu’s heritage, hill stations, and coastal journeys with interactive itinerary planning.",
+    "liveUrl": "https://elsewhere-jet.vercel.app/",
+    "repositoryUrl": "https://github.com/mohan-codebase/Otium",
+    "hasDemo": true,
+    "overview": "Ula is an independent travel discovery platform celebrating the heritage, hill stations, and coastal landscapes of Tamil Nadu. It combines thoughtful editorial guides with interactive itinerary building, allowing travelers to create and download custom travel briefs directly in the browser.",
+    "gallery": [
+      "/projects/ula.png"
+    ],
+    "features": [
+      {
+        "title": "Frontend architecture",
+        "description": "Next.js App Router, React 19, TypeScript, Tailwind CSS, GSAP, and Lenis"
+      },
+      {
+        "title": "Interactive trip planner",
+        "description": "Browser-based itinerary planner with customizable routes, pace preferences, and downloadable trip briefs"
+      },
+      {
+        "title": "Curated destinations",
+        "description": "Exploration guides covering Madurai, Ooty, Mamallapuram, Kanyakumari, Rameswaram, and Thanjavur"
+      },
+      {
+        "title": "Design system",
+        "description": "Editorial typography pairing, responsive layouts, accessible contrast, and smooth transitions"
+      }
+    ]
+  },
+  {
     "slug": "attendance-app",
     "title": "Attendance App",
     "category": "Collaborative web application",
