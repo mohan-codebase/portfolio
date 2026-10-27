@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, type FormEvent } from 'react';
-import { createContactDraft, validateContact, type ContactErrors } from '@/lib/contact-validation';
+import { createWhatsAppDraft, validateContact, type ContactErrors } from '@/lib/contact-validation';
 import { ArrowUpRight, Copy, Check, Mail } from 'lucide-react';
 
 const email = 'mohanavenkatesh.work@gmail.com';
@@ -81,7 +81,7 @@ export default function ContactSection() {
       event.currentTarget.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
       return;
     }
-    setDraftUrl(createContactDraft(fields));
+    setDraftUrl(createWhatsAppDraft(fields));
     dialogRef.current?.showModal();
     setNotice('');
   }
@@ -162,8 +162,8 @@ export default function ContactSection() {
           </div>
           <div><label htmlFor="contact-project" className="mb-2 block text-xs font-medium uppercase tracking-wider">What are you thinking?</label><textarea id="contact-project" aria-invalid={Boolean(errors.project)} aria-describedby={errors.project ? "contact-project-error" : undefined} name="project" value={message} onChange={(event) => setMessage(event.target.value)} required maxLength={2000} rows={5} placeholder="What would you like to create or improve? Share your idea, timeline, or any questions." className={`${fieldStyle} resize-y`} />{errors.project && <p id="contact-project-error" className="mt-2 text-sm font-medium">{errors.project}</p>}</div>
           <div className="flex flex-wrap items-center justify-between gap-5 border-t border-black/10 pt-6 dark:border-white/10">
-            <p className="max-w-48 text-xs leading-relaxed text-black/55 dark:text-white/55">Opens a draft in your email app.<br />You review it before sending.</p>
-            <button type="submit" className="group inline-flex items-center gap-4 rounded-full bg-[#111111] px-6 py-4 text-sm font-medium text-[#faf7f3] hover:bg-black/80 dark:bg-[#f4f4f6] dark:text-[#111111] dark:hover:bg-white">Let’s talk<ArrowUpRight aria-hidden="true" className="h-4 w-4" /></button>
+            <p className="max-w-48 text-xs leading-relaxed text-black/55 dark:text-white/55">Opens your message in WhatsApp.<br />Review it, then tap Send.</p>
+            <button type="submit" className="group inline-flex items-center gap-4 rounded-full bg-[#111111] px-6 py-4 text-sm font-medium text-[#faf7f3] hover:bg-black/80 dark:bg-[#f4f4f6] dark:text-[#111111] dark:hover:bg-white">Continue to WhatsApp<ArrowUpRight aria-hidden="true" className="h-4 w-4" /></button>
           </div>
           <button type="reset" className="rounded-full px-3 py-2 text-xs text-black/60 underline underline-offset-4 hover:text-black dark:text-white/60 dark:hover:text-white">Clear everything</button>
           <p role="status" className="text-sm leading-relaxed text-black/65 empty:hidden dark:text-white/65">{notice}</p>
@@ -179,13 +179,13 @@ export default function ContactSection() {
       >
         <div className="p-6 sm:p-7">
           <h3 id="contact-dialog-title" className="text-xl font-semibold tracking-tight">Ready to say hello?</h3>
-          <p id="contact-dialog-description" className="mt-2 text-sm leading-relaxed opacity-65">Open your email app to review and send your message.</p>
+          <p id="contact-dialog-description" className="mt-2 text-sm leading-relaxed opacity-65">Open WhatsApp to review your details and send your message to Mohan.</p>
           <div className="mt-6 flex items-center justify-end gap-3">
             <button type="button" autoFocus onClick={() => dialogRef.current?.close()} className="rounded-full px-4 py-3 text-sm opacity-70 hover:opacity-100">Cancel</button>
             <a href={draftUrl || undefined} onClick={() => {
               dialogRef.current?.close();
-              setNotice('Review and send the draft in your email app. If it didn’t open, use the email address alongside.');
-            }} className="rounded-full bg-[#111111] px-5 py-3 text-sm font-medium text-[#faf7f3] dark:bg-[#f4f4f6] dark:text-[#111111]">Open email draft ↗</a>
+              setNotice('Tap Send in WhatsApp to deliver your message. If WhatsApp didn’t open, you can contact me using the email address alongside.');
+            }} className="rounded-full bg-[#111111] px-5 py-3 text-sm font-medium text-[#faf7f3] dark:bg-[#f4f4f6] dark:text-[#111111]">Open WhatsApp ↗</a>
           </div>
         </div>
       </dialog>

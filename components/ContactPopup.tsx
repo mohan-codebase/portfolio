@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { X } from 'lucide-react';
-import { createContactDraft, validateContact, type ContactErrors } from '@/lib/contact-validation';
+import { createWhatsAppDraft, validateContact, type ContactErrors } from '@/lib/contact-validation';
 
 export default function ContactPopup() {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -24,8 +24,8 @@ export default function ContactPopup() {
       event.currentTarget.querySelector<HTMLElement>(`[name="${Object.keys(errors)[0]}"]`)?.focus();
       return;
     }
-    window.location.href = createContactDraft(fields);
-    setError('Review and send the draft in your email app.');
+    window.location.href = createWhatsAppDraft(fields);
+    setError('Tap Send in WhatsApp to deliver your message.');
   }
   const field = 'block w-full rounded-2xl border border-black/15 bg-transparent px-4 py-3 text-base dark:border-white/15';
   return (
@@ -35,8 +35,8 @@ export default function ContactPopup() {
         <label className="grid gap-2 text-xs"><span>Your name</span><input aria-invalid={Boolean(fieldErrors.name)} aria-describedby={fieldErrors.name ? "quick-contact-error" : undefined} name="name" autoComplete="name" required maxLength={100} placeholder="Kavin Kumar" className={field} /></label>
         <label className="grid gap-2 text-xs"><span>Email</span><input aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? "quick-contact-error" : undefined} name="email" type="email" inputMode="email" autoCapitalize="none" spellCheck={false} autoComplete="email" required maxLength={254} placeholder="kavin@example.com" className={field} /></label>
         <label className="grid gap-2 text-xs"><span>Your idea</span><textarea aria-invalid={Boolean(fieldErrors.project)} aria-describedby={fieldErrors.project ? "quick-contact-error" : undefined} name="project" required minLength={10} maxLength={2000} rows={3} placeholder="What would you like to create?" className={field} /></label>
-        <p className="text-xs opacity-60">Opens an email draft for you to review and send.</p>
-        <button type="submit" className="w-full rounded-full bg-[#111111] px-5 py-3 text-sm text-white dark:bg-[#f4f4f6] dark:text-[#111111]">Open email draft ↗</button>
+        <p className="text-xs opacity-60">Opens your message in WhatsApp. Review it, then tap Send.</p>
+        <button type="submit" className="w-full rounded-full bg-[#111111] px-5 py-3 text-sm text-white dark:bg-[#f4f4f6] dark:text-[#111111]">Open WhatsApp ↗</button>
         {error && <p id="quick-contact-error" role="status" className="text-sm leading-relaxed">{error}</p>}
       </form>
     </dialog>

@@ -16,8 +16,8 @@ export function validateContact(input: ContactFields): ContactErrors {
   return errors;
 }
 
-export function createContactDraft(input: ContactFields): string {
+export function createWhatsAppDraft(input: ContactFields): string {
   if (Object.keys(validateContact(input)).length) throw new Error('Invalid contact details');
   const body = `Hi Mohan,\n\n${input.project.trim()}\n\nInterested in: ${input.interest}\nName: ${input.name.trim()}\nReply email: ${input.email.trim()}`;
-  return `mailto:mohanavenkatesh.work@gmail.com?subject=${encodeURIComponent(`${input.interest} enquiry`.toWellFormed())}&body=${encodeURIComponent(body.toWellFormed())}`;
+  return `https://wa.me/917200470762?text=${encodeURIComponent(body.toWellFormed())}`;
 }
