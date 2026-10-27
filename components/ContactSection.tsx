@@ -107,9 +107,6 @@ export default function ContactSection() {
 
   return (
     <section id="contact" aria-labelledby="contact-title" className="mx-auto max-w-[1400px] border-t border-black/10 px-5 py-20 dark:border-white/10 sm:px-8 sm:py-28">
-      <div className="mb-10 flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-black/55 dark:text-white/55 sm:mb-16 sm:text-xs">
-        <span>/ Start a conversation</span><span>Ideas welcome</span>
-      </div>
       <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <h2 id="contact-title" className="text-5xl font-semibold leading-[1.02] tracking-[-0.06em] sm:text-7xl">Good things<br />start with<br /><span className="text-black/45 dark:text-white/45">a hello.</span></h2>

@@ -13,7 +13,7 @@ export default function WorkPage() {
   return (
     <div className="pt-28 sm:pt-40 pb-20 px-5 sm:px-8 max-w-[1400px] mx-auto">
       <StructuredData title="Projects" path="/work" />
-      <PageIntro eyebrow="Projects & experiments" title="Selected work" description="Websites, interfaces, and digital products. A selection of work where considered design meets thoughtful development." count={`${projects.length.toString().padStart(2, "0")} projects`} />
+      <PageIntro title="Selected work" />
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12">

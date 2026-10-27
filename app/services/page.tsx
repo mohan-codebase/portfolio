@@ -10,7 +10,7 @@ export default function ServicesPage() {
   return (
     <div className="mx-auto max-w-[1400px] px-5 pb-20 pt-28 sm:px-8 sm:pt-40">
       <StructuredData title="Services" path="/services" />
-      <PageIntro eyebrow="From idea to implementation" title="Services" count={`${services.length.toString().padStart(2, '0')} ways to collaborate`} description="Whether you’re starting fresh or improving what exists, I help turn your next step into a considered web experience." />
+      <PageIntro title="Services" />
       <div>
         {services.map((service) => (
           <section key={service.id} className="grid gap-6 border-t border-black/15 py-10 dark:border-white/15 sm:py-14 lg:grid-cols-[80px_1fr_1fr] lg:gap-10">

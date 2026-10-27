@@ -16,7 +16,7 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-[1400px] px-5 pb-20 pt-28 sm:px-8 sm:pt-40">
       <StructuredData title="About Mohan" path="/about" profile />
-      <PageIntro eyebrow="Behind the work" title="About Mohan" count="Chennai, India" description="A full-stack developer with an eye for design. I turn ideas into thoughtful, accessible experiences for the web." />
+      <PageIntro title="About Mohan" />
       <section className="grid gap-8 border-b border-black/10 pb-16 dark:border-white/10 lg:grid-cols-2 lg:gap-20">
         <h2 className="section-title max-w-lg text-4xl font-semibold sm:text-6xl">Design sensibility.<br /><span className="accent-text">Developer mindset.</span></h2>
         <div className="space-y-6 text-lg leading-relaxed text-black/70 dark:text-white/70">
