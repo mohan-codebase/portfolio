@@ -52,6 +52,40 @@ export const projects: Project[] = [
     ]
   },
   {
+    "slug": "roamers",
+    "title": "Roamers",
+    "category": "Social travel & group adventure platform",
+    "badge": "Production website",
+    "year": "2025",
+    "image": "/projects/roamers.svg",
+    "description": "A social travel agency platform offering curated solo trip packages, weekend getaways, and group travel experiences across India and beyond.",
+    "liveUrl": "https://www.roamers.in/",
+    "repositoryUrl": "",
+    "hasDemo": true,
+    "overview": "Roamers is a social travel agency and adventure booking platform dedicated to bringing travelers together. Designed for solo explorers, friends, and backpacking enthusiasts, the platform simplifies trip discovery, itinerary planning, and community meetups across hill stations, coastal retreats, and Himalayan expeditions.",
+    "gallery": [
+      "/projects/roamers-1.jpg"
+    ],
+    "features": [
+      {
+        "title": "Curated group trips",
+        "description": "Explore upcoming weekend getaways, backpacking adventures, and seasonal expeditions with transparent itineraries"
+      },
+      {
+        "title": "Solo-friendly community",
+        "description": "Dedicated travel formats designed to connect solo travelers with like-minded travel buddies"
+      },
+      {
+        "title": "Responsive booking interface",
+        "description": "Mobile-first layout with smooth swipers, interactive travel cards, and streamlined inquiry flows"
+      },
+      {
+        "title": "All-inclusive packages",
+        "description": "Comprehensive travel details covering transportation, accommodations, meals, and expert guides"
+      }
+    ]
+  },
+  {
     "slug": "attendance-app",
     "title": "Attendance App",
     "category": "Collaborative web application",

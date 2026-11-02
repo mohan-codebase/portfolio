@@ -84,8 +84,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       </div>
 
       <div className="mb-6 flex flex-wrap gap-4 text-sm text-black/60 dark:text-white/60">
-        <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Source code on GitHub ↗</a>
-        <span>Project cover · repository details</span>
+        {project.repositoryUrl ? (
+          <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Source code on GitHub ↗</a>
+        ) : (
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Live website ↗</a>
+        )}
+        <span>Project cover · {project.repositoryUrl ? 'repository details' : 'live details'}</span>
       </div>
       {/* Primary Hero Image */}
       <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] bg-[#e5dfd7] dark:bg-[#18181b] border border-black/5 dark:border-white/10 shadow-md mb-16 sm:mb-24">
