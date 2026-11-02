@@ -7,14 +7,14 @@ export const socials = [
 ];
 
 export const approach = [
-  { number: '01', title: 'An eye for interfaces.', description: 'Thoughtful layouts, clear typography, and the small interactions that make a website feel right.' },
-  { number: '02', title: 'The code behind them.', description: 'Responsive frontends and full-stack applications, built with React, Next.js, and Supabase.' },
+  { number: '01', title: 'An eye for interfaces.', description: 'Clear layouts, good type, small details.' },
+  { number: '02', title: 'The code behind them.', description: 'React, Next.js and Supabase.' },
 ];
 
 export const principles = [
-  { title: 'Clarity first', description: 'Readable content, considered layouts, and straightforward interactions.' },
-  { title: 'Care in the details', description: 'Responsive layouts, accessibility, and performance from the start.' },
-  { title: 'Built to evolve', description: 'Clean components and maintainable architecture that keep improving after launch.' },
+  { title: 'Clarity first', description: 'Simple to read and use.' },
+  { title: 'Care in the details', description: 'Responsive, accessible, fast.' },
+  { title: 'Built to evolve', description: 'Clean code that is easy to grow.' },
 ];
 
 export const sections = [

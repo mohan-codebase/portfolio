@@ -25,7 +25,7 @@ export default function ContactPost() {
           <h2 className="text-[clamp(2.5rem,12vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.06em]">
             Good things start with <span className="text-white/45">a hello.</span>
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-white/70">A fresh interface, a website, or an idea you’re still figuring out. Tell me what you have in mind.</p>
+          <p className="mt-4 text-sm leading-relaxed text-white/70">Have an idea? Let’s talk.</p>
           <div className="mt-7 grid gap-2">
             <button type="button" onClick={() => window.dispatchEvent(new Event('open-contact'))} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#faf7f3] px-5 py-3.5 text-sm font-medium text-[#111111]">
               <MessageCircle aria-hidden="true" className="size-4" /> Message on WhatsApp

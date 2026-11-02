@@ -39,11 +39,11 @@ export default function ServicesPost() {
           className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain lg:grid lg:grid-cols-2 lg:gap-4 lg:overflow-visible"
         >
           {services.map((service) => (
-            <section key={service.id} aria-label={service.title} className="flex aspect-[4/5] max-h-[52svh] w-full shrink-0 snap-center flex-col justify-between bg-[#111111] p-6 text-[#faf7f3] dark:bg-[#161619] lg:aspect-auto lg:max-h-none lg:min-h-72 lg:rounded-3xl lg:border lg:border-black/10 lg:bg-white/60 lg:p-8 lg:text-[#111111] dark:lg:border-white/10 dark:lg:bg-white/[0.03] dark:lg:text-[#f4f4f6]">
+            <section key={service.id} aria-label={service.title} className="flex aspect-square max-h-[48svh] w-full shrink-0 snap-center flex-col justify-between bg-[#111111] p-6 text-[#faf7f3] dark:bg-[#161619] lg:aspect-auto lg:max-h-none lg:min-h-56 lg:rounded-3xl lg:border lg:border-black/10 lg:bg-white/60 lg:p-8 lg:text-[#111111] dark:lg:border-white/10 dark:lg:bg-white/[0.03] dark:lg:text-[#f4f4f6]">
               <span className="text-xs tabular-nums opacity-55">/{service.id}</span>
               <div>
                 <h3 className="text-3xl font-semibold tracking-[-0.05em] lg:text-3xl">{service.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed opacity-70 lg:text-base">{service.description}</p>
+                <p className="mt-3 text-sm leading-relaxed opacity-70 ">{service.description}</p>
                 <ul className="mt-5 flex flex-wrap gap-1.5" aria-label={`${service.title} focus areas`}>
                   {service.tags.map((tag) => (
                     <li key={tag} className="rounded-full border border-current/20 px-3 py-1 text-xs opacity-80">{tag}</li>
@@ -58,10 +58,6 @@ export default function ServicesPost() {
             <span key={service.id} className={`h-1.5 rounded-full transition-all ${dot === index ? 'w-4 bg-current' : 'w-1.5 bg-current/25'}`} />
           ))}
         </div>
-        <p className="px-4 pb-4 text-sm leading-relaxed lg:hidden">
-          <span className="font-semibold">mohan</span>{' '}
-          <span className="text-black/70 dark:text-white/70">Swipe through the ways I can help, from a first interface to a full product.</span>
-        </p>
       </PostCard>
     </PostSlot>
   );

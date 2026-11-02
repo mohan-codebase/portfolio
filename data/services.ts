@@ -14,7 +14,7 @@ export const services: Service[] = [
       "Optimization",
       "Framer Rebuild"
     ],
-    "description": "Seamlessly transition your existing website into a modern, responsive architecture optimized for speed, clarity, and higher conversion."
+    "description": "Move your site to a faster, modern stack."
   },
   {
     "id": "02",
@@ -24,7 +24,7 @@ export const services: Service[] = [
       "Responsive Layouts",
       "Web Performance"
     ],
-    "description": "Writing clean, accessible, and lightning-fast frontend code that brings static design files to life across all devices and browsers."
+    "description": "Designs turned into fast, accessible code."
   },
   {
     "id": "03",
@@ -34,7 +34,7 @@ export const services: Service[] = [
       "API Development",
       "Database Integration"
     ],
-    "description": "Building complete web applications with responsive interfaces, backend APIs, authentication, and connected databases—from your first idea to deployment."
+    "description": "Complete web apps, from idea to launch."
   },
   {
     "id": "04",
@@ -44,6 +44,6 @@ export const services: Service[] = [
       "Web Strategy",
       "Technical Guidance"
     ],
-    "description": "Advising founders and teams on UX structure, digital brand positioning, and technical decisions to help launch and scale with confidence."
+    "description": "Clear advice on UX and technical choices."
   }
 ];

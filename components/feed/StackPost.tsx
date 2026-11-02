@@ -18,7 +18,7 @@ export default function StackPost() {
                   <span className="text-xs tabular-nums text-black/45 dark:text-white/45">{number}</span>
                   <h3 className="text-xl font-medium tracking-tight lg:text-2xl">{title}</h3>
                 </div>
-                <p className="mt-2 pl-7 text-sm leading-6 text-black/65 dark:text-white/65 lg:text-base">{description}</p>
+                <p className="mt-2 pl-7 text-sm leading-6 text-black/65 dark:text-white/65">{description}</p>
               </div>
             ))}
             <ul className="mt-6 hidden gap-6 border-t border-black/10 pt-6 dark:border-white/10 lg:grid lg:grid-cols-3">
