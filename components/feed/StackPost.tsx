@@ -12,13 +12,12 @@ export default function StackPost() {
         <div className="grid gap-8 px-5 pb-6 pt-2 lg:grid-cols-2 lg:gap-12 lg:p-10">
           <div>
             <p className="section-kicker mb-5 hidden lg:block">/ Where design meets development</p>
-            {approach.map(({ number, title, description }, index) => (
-              <div key={number} className={index === 0 ? 'pb-5' : 'border-t border-black/10 pt-5 dark:border-white/10'}>
-                <div className="flex items-baseline gap-3">
-                  <span className="text-xs tabular-nums text-black/45 dark:text-white/45">{number}</span>
+            {approach.map(({ title, description }, index) => (
+              <div key={title} className={index === 0 ? 'pb-5' : 'border-t border-black/10 pt-5 dark:border-white/10'}>
+                <div>
                   <h3 className="text-xl font-medium tracking-tight lg:text-2xl">{title}</h3>
                 </div>
-                <p className="mt-2 pl-7 text-sm leading-6 text-black/65 dark:text-white/65">{description}</p>
+                <p className="mt-2 text-sm leading-6 text-black/65 dark:text-white/65">{description}</p>
               </div>
             ))}
             <ul className="mt-6 hidden gap-6 border-t border-black/10 pt-6 dark:border-white/10 lg:grid lg:grid-cols-3">

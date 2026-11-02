@@ -19,7 +19,7 @@ function readLikes(): string[] {
 }
 
 /** A project as a feed post: full-screen on mobile, a grid card on desktop. */
-export default function ProjectPost({ project, position, total }: { project: Project; position: number; total: number }) {
+export default function ProjectPost({ project }: { project: Project }) {
   const [liked, setLiked] = useState(false);
   const [burst, setBurst] = useState(0);
   const [notice, setNotice] = useState('');
@@ -70,7 +70,6 @@ export default function ProjectPost({ project, position, total }: { project: Pro
       <PostCard className="group/post lg:h-full">
         <PostHeader
           subtitle={project.category}
-          aside={<span className="rounded-full border border-black/10 px-2.5 py-1 text-xs tabular-nums text-black/60 dark:border-white/15 dark:text-white/60">{project.year}</span>}
         />
         <div
           onPointerUp={onMediaPointer}
@@ -84,9 +83,6 @@ export default function ProjectPost({ project, position, total }: { project: Pro
             draggable={false}
             className="object-cover transition-transform duration-700 ease-out lg:group-hover/post:scale-[1.03]"
           />
-          <span className="absolute right-3 top-3 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
-            {position}/{total}
-          </span>
           {burst > 0 && (
             <Heart key={burst} aria-hidden="true" className="like-burst pointer-events-none absolute left-1/2 top-1/2 size-24 fill-white text-white drop-shadow-lg" />
           )}

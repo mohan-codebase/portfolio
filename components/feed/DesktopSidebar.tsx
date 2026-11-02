@@ -1,9 +1,6 @@
 'use client';
 
 import { ArrowUpRight, MapPin } from 'lucide-react';
-import { projects } from '@/data/projects';
-import { services } from '@/data/services';
-import { githubProfile } from '@/data/github';
 import ThemeToggle from '@/components/ThemeToggle';
 import RollingText from '@/components/RollingText';
 import Avatar from './Avatar';
@@ -13,12 +10,6 @@ import { useActiveSection } from './useActiveSection';
 /** Sticky profile column for large screens. */
 export default function DesktopSidebar() {
   const active = useActiveSection();
-  const stats = [
-    { value: projects.length, label: 'Projects' },
-    { value: services.length, label: 'Services' },
-    { value: githubProfile.technologies.length, label: 'Tools' },
-  ];
-
   return (
     <aside className="sticky top-0 hidden h-svh flex-col justify-between overflow-y-auto border-r border-black/10 py-10 pl-10 pr-8 dark:border-white/10 lg:flex xl:pl-12">
       <div>
@@ -34,23 +25,14 @@ export default function DesktopSidebar() {
           <MapPin aria-hidden="true" className="size-3.5" /> Chennai, India
         </p>
 
-        <dl className="mt-8 grid grid-cols-3 gap-2 border-y border-black/10 py-4 dark:border-white/10">
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col-reverse">
-              <dt className="text-xs text-black/55 dark:text-white/55">{stat.label}</dt>
-              <dd className="text-2xl font-bold tabular-nums tracking-tight">{stat.value}</dd>
-            </div>
-          ))}
-        </dl>
 
-        <nav aria-label="Sections" className="mt-8">
+        <nav aria-label="Sections" className="mt-10 border-t border-black/10 pt-8 dark:border-white/10">
           <ul className="space-y-1">
             {sections.map((section) => {
               const current = active === section.id;
               return (
                 <li key={section.id}>
                   <a href={`#${section.id}`} aria-current={current ? 'true' : undefined} className={`group flex items-center gap-4 py-2 text-sm font-medium transition-colors ${current ? '' : 'text-black/50 hover:text-black dark:text-white/50 dark:hover:text-white'}`}>
-                    <span className="text-xs tabular-nums">{section.number}</span>
                     <span className={`h-px bg-current transition-all duration-300 ${current ? 'w-14' : 'w-6 group-hover:w-10'}`} />
                     <RollingText text={section.label} />
                   </a>

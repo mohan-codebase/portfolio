@@ -7,8 +7,8 @@ export const socials = [
 ];
 
 export const approach = [
-  { number: '01', title: 'An eye for interfaces.', description: 'Clear layouts, good type, small details.' },
-  { number: '02', title: 'The code behind them.', description: 'React, Next.js and Supabase.' },
+  { title: 'An eye for interfaces.', description: 'Clear layouts, good type, small details.' },
+  { title: 'The code behind them.', description: 'React, Next.js and Supabase.' },
 ];
 
 export const principles = [
@@ -18,9 +18,9 @@ export const principles = [
 ];
 
 export const sections = [
-  { id: 'about', label: 'About', number: '01' },
-  { id: 'work', label: 'Work', number: '02' },
-  { id: 'contact', label: 'Contact', number: '03' },
+  { id: 'about', label: 'About' },
+  { id: 'work', label: 'Work' },
+  { id: 'contact', label: 'Contact' },
 ] as const;
 
 export type SectionId = (typeof sections)[number]['id'];

@@ -1,7 +1,4 @@
 import { MapPin } from 'lucide-react';
-import { projects } from '@/data/projects';
-import { services } from '@/data/services';
-import { githubProfile } from '@/data/github';
 import Avatar from './Avatar';
 import OpenContactButton from './OpenContactButton';
 import { PostSlot } from './Post';
@@ -9,7 +6,7 @@ import { contactEmail } from './content';
 
 const highlights = [
   { label: 'About', href: '#about-story', glyph: 'Hi' },
-  { label: 'Services', href: '#services', glyph: '04' },
+  { label: 'Services', href: '#services', glyph: '✦' },
   { label: 'Work', href: '#work', glyph: '↗' },
   { label: 'Stack', href: '#stack', glyph: '</>' },
   { label: 'Contact', href: '#contact', glyph: '@' },
@@ -17,25 +14,15 @@ const highlights = [
 
 /** Mobile-only profile header that opens the feed, Instagram-profile style. */
 export default function ProfilePost() {
-  const stats = [
-    { value: projects.length, label: 'projects' },
-    { value: services.length, label: 'services' },
-    { value: githubProfile.technologies.length, label: 'tools' },
-  ];
-
   return (
     <PostSlot className="lg:hidden">
       <div className="hero-reveal">
         <div className="flex items-center gap-6 px-2">
           <Avatar size="lg" ring />
-          <dl className="grid flex-1 grid-cols-3 text-center">
-            {stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col-reverse">
-                <dt className="text-xs text-black/55 dark:text-white/55">{stat.label}</dt>
-                <dd className="text-xl font-bold tabular-nums tracking-tight">{stat.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="min-w-0 leading-tight">
+            <p className="text-base font-semibold">mohan-codebase</p>
+            <p className="mt-1 text-sm text-black/55 dark:text-white/55">Designer &amp; developer</p>
+          </div>
         </div>
 
         <div className="mt-5 px-2">
