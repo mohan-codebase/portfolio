@@ -39,12 +39,11 @@ export default function Home() {
                 <p className="section-kicker mb-3">/ Selected work</p>
                 <h2 id="work-title" className="section-title text-5xl font-semibold">Things I’ve designed and built.</h2>
               </div>
-              <p className="section-kicker">{projects.length} projects</p>
             </div>
             <h2 className="sr-only lg:hidden">Selected work</h2>
             <div className="lg:grid lg:grid-cols-2 lg:gap-6 2xl:grid-cols-3">
-              {projects.map((project, index) => (
-                <ProjectPost key={project.slug} project={project} position={index + 1} total={projects.length} />
+              {projects.map((project) => (
+                <ProjectPost key={project.slug} project={project} />
               ))}
             </div>
           </section>

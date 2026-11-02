@@ -53,9 +53,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             <span className="text-xs font-semibold uppercase tracking-wider text-[#111111]/60 dark:text-[#f4f4f6]/70 px-3 py-1 rounded-full bg-black/5 dark:bg-white/10">
               {project.category}
             </span>
-            <span className="text-xs font-mono font-medium text-[#111111]/40 border border-black/10 dark:text-[#f4f4f6]/40 dark:border-white/15 px-2.5 py-0.5 rounded-full">
-              {project.year}
-            </span>
           </div>
 
           <h1 className="detail-title">

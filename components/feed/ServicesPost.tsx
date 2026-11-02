@@ -21,7 +21,6 @@ export default function ServicesPost() {
         <PostHeader
           subtitle="What I do"
           className="lg:hidden"
-          aside={<span className="rounded-full border border-black/10 px-2.5 py-1 text-xs tabular-nums dark:border-white/15">{index + 1}/{services.length}</span>}
         />
         <div className="mb-8 hidden items-end justify-between lg:flex">
           <div>
@@ -39,8 +38,7 @@ export default function ServicesPost() {
           className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain lg:grid lg:grid-cols-2 lg:gap-4 lg:overflow-visible"
         >
           {services.map((service) => (
-            <section key={service.id} aria-label={service.title} className="flex aspect-square max-h-[48svh] w-full shrink-0 snap-center flex-col justify-between bg-[#111111] p-6 text-[#faf7f3] dark:bg-[#161619] lg:aspect-auto lg:max-h-none lg:min-h-56 lg:rounded-3xl lg:border lg:border-black/10 lg:bg-white/60 lg:p-8 lg:text-[#111111] dark:lg:border-white/10 dark:lg:bg-white/[0.03] dark:lg:text-[#f4f4f6]">
-              <span className="text-xs tabular-nums opacity-55">/{service.id}</span>
+            <section key={service.id} aria-label={service.title} className="flex aspect-square max-h-[48svh] w-full shrink-0 snap-center flex-col justify-end bg-[#111111] p-6 text-[#faf7f3] dark:bg-[#161619] lg:aspect-auto lg:max-h-none lg:rounded-3xl lg:border lg:border-black/10 lg:bg-white/60 lg:p-8 lg:text-[#111111] dark:lg:border-white/10 dark:lg:bg-white/[0.03] dark:lg:text-[#f4f4f6]">
               <div>
                 <h3 className="text-3xl font-semibold tracking-[-0.05em] lg:text-3xl">{service.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed opacity-70 ">{service.description}</p>
