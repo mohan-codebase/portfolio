@@ -51,6 +51,17 @@ export function SmoothScrollProvider({
   const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const pathname = usePathname();
+  // The mobile home feed relies on native CSS scroll snapping, which Lenis would fight.
+  const [compact, setCompact] = useState(false);
+  const feedMode = pathname === '/' && compact;
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 1023px)');
+    const update = () => setCompact(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
 
   const finalDuration = options?.duration ?? duration;
   const finalEasing = options?.easing ?? easing;
@@ -60,6 +71,7 @@ export function SmoothScrollProvider({
   const finalSyncTouch = options?.syncTouch ?? syncTouch;
 
   useEffect(() => {
+    if (feedMode) return;
     // Respect user's motion preferences
     const prefersReducedMotion =
       typeof window !== 'undefined' &&
@@ -118,7 +130,7 @@ export function SmoothScrollProvider({
           if (targetElement) {
             e.preventDefault();
             lenis.scrollTo(targetElement as HTMLElement, {
-              offset: -80,
+              offset: currentPath === '/' ? 0 : -80,
               duration: prefersReducedMotion ? 0.01 : finalDuration,
             });
             window.history.pushState(null, '', hash);
@@ -145,6 +157,7 @@ export function SmoothScrollProvider({
     finalLerp,
     finalSyncTouch,
     options,
+    feedMode,
   ]);
 
   // Recalculate and reset scroll smoothly on route navigation

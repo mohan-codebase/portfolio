@@ -39,7 +39,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <StructuredData title={project.title} path={`/work/${project.slug}`} />
       {/* Back button */}
       <Link
-        href="/work"
+        href="/#work"
         className="inline-flex items-center gap-2 text-sm font-medium text-[#111111]/70 dark:text-[#f4f4f6]/70 hover:text-[#111111] dark:hover:text-[#f4f4f6] transition-colors mb-8 group"
       >
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
@@ -172,7 +172,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             Keep exploring.
           </h2>
           <Link
-            href="/work"
+            href="/#work"
             className="text-sm font-semibold text-[#111111] dark:text-[#f4f4f6] hover:underline underline-offset-4"
           >
             View All
