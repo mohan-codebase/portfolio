@@ -11,7 +11,8 @@ import { useActiveSection } from './useActiveSection';
 export default function DesktopSidebar() {
   const active = useActiveSection();
   return (
-    <aside className="sticky top-0 hidden h-svh flex-col justify-between overflow-y-auto border-r border-black/10 py-10 pl-10 pr-8 dark:border-white/10 lg:flex xl:pl-12">
+    <aside className="sticky top-0 hidden h-svh py-5 pl-5 lg:block xl:py-6 xl:pl-6">
+      <div className="flex h-full flex-col justify-between overflow-y-auto rounded-[2.5rem] border border-black/10 bg-white/70 p-8 shadow-[0_18px_50px_rgb(0_0_0/8%)] backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.04] dark:shadow-[0_18px_50px_rgb(0_0_0/40%)] xl:p-10">
       <div>
         <a href="#top" aria-label="Back to top" className="inline-block"><Avatar size="md" ring /></a>
         <h1 className="mt-7 text-[clamp(3rem,4.6vw,4.5rem)] font-black uppercase leading-[0.8] tracking-[-0.085em]">
@@ -60,6 +61,7 @@ export default function DesktopSidebar() {
           </ul>
           <ThemeToggle className="size-11 shrink-0 text-current!" />
         </div>
+      </div>
       </div>
     </aside>
   );
