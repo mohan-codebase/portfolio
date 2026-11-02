@@ -9,6 +9,8 @@ export default function SectionAnimations() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // The single-page feed manages its own motion.
+    if (pathname === '/') return;
     const media = gsap.matchMedia();
     const frame = requestAnimationFrame(() => {
       media.add('(prefers-reduced-motion: no-preference)', () => {
