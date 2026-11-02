@@ -13,14 +13,10 @@ export default function StatementPost() {
             Drawn to design.<br />
             <span className="text-black/45 dark:text-white/45">Driven to build.</span>
           </h2>
-          <p className="relative mt-6 max-w-xl text-base leading-relaxed text-black/70 dark:text-white/70 lg:mt-10 lg:text-xl">
-            My interest starts with UI: how a page looks, moves, and feels. Full-stack development lets me bring those ideas to life, from the first screen to the systems behind it.
+          <p className="relative mt-6 max-w-xl text-base leading-relaxed text-black/70 dark:text-white/70 lg:mt-8 lg:text-lg">
+            I design interfaces and build the code behind them.
           </p>
         </div>
-        <p className="px-4 py-4 text-sm leading-relaxed lg:hidden">
-          <span className="font-semibold">mohan</span>{' '}
-          <span className="text-black/70 dark:text-white/70">Based in Chennai, working across responsive interfaces, web applications, and the systems that support them.</span>
-        </p>
       </PostCard>
     </PostSlot>
   );

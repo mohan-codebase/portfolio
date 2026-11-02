@@ -115,7 +115,7 @@ export default function ProjectPost({ project, position, total }: { project: Pro
           <h3 className="text-2xl font-bold tracking-[-0.04em]">
             <Link href={caseStudy} className="hover:underline hover:decoration-black/25 hover:underline-offset-4 dark:hover:decoration-white/25">{project.title}</Link>
           </h3>
-          <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed">
+          <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed">
             <span className="font-semibold">mohan</span>{' '}
             <span className="text-black/70 dark:text-white/70">{project.description}</span>
           </p>
