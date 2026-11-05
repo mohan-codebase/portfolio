@@ -3,10 +3,13 @@ import { siteUrl, siteTitle, siteDescription, isPreview } from '@/lib/metadata';
 import { Archivo, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
+import Navbar from '@/components/Navbar';
 import SectionAnimations from '@/components/SectionAnimations';
 import ContactPopup from '@/components/ContactPopup';
+import BackToTop from '@/components/BackToTop';
+import ThemeToggle from '@/components/ThemeToggle';
 import CustomCursor from '@/components/CustomCursor';
-import { TopChrome, BottomChrome } from '@/components/RouteChrome';
+import Footer from '@/components/Footer';
 import NoiseOverlay from '@/components/NoiseOverlay';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
@@ -76,10 +79,14 @@ export default function RootLayout({
             <NoiseOverlay />
             <SectionAnimations />
             <CustomCursor />
-            <TopChrome />
+            <Navbar />
             <ContactPopup />
             <main className="min-h-screen">{children}</main>
-            <BottomChrome />
+            <Footer />
+            <BackToTop />
+            <div className="fixed bottom-[env(safe-area-inset-bottom)] left-[env(safe-area-inset-left)] z-40 mix-blend-difference">
+              <ThemeToggle className="h-12 w-12" />
+            </div>
           </SmoothScrollProvider>
         </ThemeProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({

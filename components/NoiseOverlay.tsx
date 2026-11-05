@@ -8,7 +8,7 @@ export default function NoiseOverlay() {
       aria-hidden="true"
       className="fixed inset-0 pointer-events-none z-50 select-none opacity-[0.045] dark:opacity-[0.03] transition-opacity duration-300"
       style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+        backgroundImage: "url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png')",
         backgroundRepeat: 'repeat',
         backgroundSize: '161px',
       }}

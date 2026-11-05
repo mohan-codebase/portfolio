@@ -39,7 +39,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <StructuredData title={project.title} path={`/work/${project.slug}`} />
       {/* Back button */}
       <Link
-        href="/#work"
+        href="/work"
         className="inline-flex items-center gap-2 text-sm font-medium text-[#111111]/70 dark:text-[#f4f4f6]/70 hover:text-[#111111] dark:hover:text-[#f4f4f6] transition-colors mb-8 group"
       >
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
@@ -52,6 +52,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#111111]/60 dark:text-[#f4f4f6]/70 px-3 py-1 rounded-full bg-black/5 dark:bg-white/10">
               {project.category}
+            </span>
+            <span className="text-xs font-mono font-medium text-[#111111]/40 border border-black/10 dark:text-[#f4f4f6]/40 dark:border-white/15 px-2.5 py-0.5 rounded-full">
+              {project.year}
             </span>
           </div>
 
@@ -169,7 +172,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             Keep exploring.
           </h2>
           <Link
-            href="/#work"
+            href="/work"
             className="text-sm font-semibold text-[#111111] dark:text-[#f4f4f6] hover:underline underline-offset-4"
           >
             View All

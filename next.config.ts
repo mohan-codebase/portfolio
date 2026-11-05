@@ -20,15 +20,6 @@ const contentSecurityPolicy = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   devIndicators: false,
-  // The portfolio is a single page now; keep old section URLs working.
-  async redirects() {
-    return [
-      { source: '/about', destination: '/#about', permanent: false },
-      { source: '/services', destination: '/#services', permanent: false },
-      { source: '/work', destination: '/#work', permanent: false },
-      { source: '/contact', destination: '/#contact', permanent: false },
-    ];
-  },
   async headers() {
     return [{
       source: '/:path*',

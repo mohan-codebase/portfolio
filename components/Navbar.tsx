@@ -50,10 +50,11 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/#about' },
-    { label: 'Work', href: '/#work' },
-    { label: 'Contact', href: '/#contact' },
+    { label: 'Home', href: '/#hero-section' },
+    { label: 'About Me', href: '/about' },
+    { label: 'Services', href: '/services' },
+    { label: 'Works', href: '/work' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -66,7 +67,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             onClick={() => setMobileMenuOpen(false)}
-            href="/"
+            href="/#hero-section"
             className="text-base font-bold tracking-tight text-[#111111] dark:text-[#f4f4f6] flex items-center gap-1.5 group"
           >
             <span className="font-semibold text-lg tracking-tight">Mohan</span>

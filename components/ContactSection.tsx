@@ -59,7 +59,7 @@ Next step: [suggest how we can connect]` },
 
 const fieldStyle = 'w-full rounded-2xl border border-black/10 bg-white/70 px-4 py-4 text-base placeholder:text-black/40 dark:border-white/15 dark:bg-white/5 dark:placeholder:text-white/40';
 
-export default function ContactSection({ className = 'mx-auto max-w-[1400px] border-t border-black/10 px-5 py-20 dark:border-white/10 sm:px-8 sm:py-28' }: { className?: string }) {
+export default function ContactSection() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [draftUrl, setDraftUrl] = useState('');
   const [errors, setErrors] = useState<ContactErrors>({});
@@ -106,11 +106,11 @@ export default function ContactSection({ className = 'mx-auto max-w-[1400px] bor
   }
 
   return (
-    <div className={className}>
+    <section id="contact" aria-labelledby="contact-title" className="mx-auto max-w-[1400px] border-t border-black/10 px-5 py-20 dark:border-white/10 sm:px-8 sm:py-28">
       <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <h2 id="contact-title" className="text-5xl font-semibold leading-[1.02] tracking-[-0.06em] sm:text-7xl">Good things<br />start with<br /><span className="text-black/45 dark:text-white/45">a hello.</span></h2>
-          <p className="mt-7 max-w-sm text-base leading-relaxed text-black/65 dark:text-white/65 sm:text-lg">Have an idea? Let’s talk.</p>
+          <p className="mt-7 max-w-sm text-base leading-relaxed text-black/65 dark:text-white/65 sm:text-lg">A fresh interface, a website, or an idea you’re still figuring out. Tell me what you have in mind — let’s find the next step.</p>
           <div className="mt-10 border-t border-black/10 pt-6 dark:border-white/10 sm:mt-14">
             <p className="mb-3 text-xs uppercase tracking-[0.12em] text-black/55 dark:text-white/55">Prefer a direct hello?</p>
             <a href={`mailto:${email}`} className="inline-flex max-w-full items-center gap-2 text-sm font-medium underline-offset-4 hover:underline sm:text-base"><span className="break-all">{email}</span><ArrowUpRight aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
@@ -189,6 +189,6 @@ export default function ContactSection({ className = 'mx-auto max-w-[1400px] bor
           </div>
         </div>
       </dialog>
-    </div>
+    </section>
   );
 }

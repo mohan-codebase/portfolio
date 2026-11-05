@@ -1,6 +1,6 @@
 # Mohan — Portfolio
 
-A personal portfolio for Mohan, a UI designer and full-stack developer based in Chennai, India. It presents selected projects, services and ways to get in touch on a single scrolling page: a full-screen, Instagram-style feed on phones and tablets, and a sticky profile column beside the content on large screens.
+A personal portfolio for Mohan, a UI designer and full-stack developer based in Chennai, India. It presents selected projects, services and ways to get in touch through a responsive, multi-page website.
 
 **Live site:** [portfolio-wheat-kappa-44.vercel.app](https://portfolio-wheat-kappa-44.vercel.app)
 
@@ -41,10 +41,12 @@ pnpm social:generate # Generate social sharing images
 
 | Route | Content |
 | --- | --- |
-| `/` | Single page with `#about` (introduction, services, stack), `#work` (projects) and `#contact` |
+| `/` | Introduction, services, featured projects and contact |
+| `/work` | Project showcase |
 | `/work/[slug]` | Individual project details |
-
-`/about`, `/services`, `/work` and `/contact` redirect to the matching section of `/`. The feed components live in `components/feed/`.
+| `/about` | Background and introduction |
+| `/services` | Services offered |
+| `/contact` | Contact information and inquiry form |
 
 ## Project structure
 
