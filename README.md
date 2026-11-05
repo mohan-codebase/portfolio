@@ -2,7 +2,7 @@
 
 A personal portfolio for Mohan, a UI designer and full-stack developer based in Chennai, India. It presents selected projects, services and ways to get in touch through a responsive, multi-page website.
 
-**Live site:** [portfolio-wheat-kappa-44.vercel.app](https://portfolio-wheat-kappa-44.vercel.app)
+**Live site:** [mohan-portfolio-nextjs.vercel.app](https://mohan-portfolio-nextjs.vercel.app)
 
 ## Features
 
